@@ -1,0 +1,26 @@
+
+
+
+
+
+
+<div class ="documentsheader">{{{documents_header}}}</div><br>
+{{{returnbtn}}}  {{{mdocuments_btn}}}<br><br>
+<div class="userfullname">{{{user_fullname}}}</div><br>
+<div class="col-md-4"><a class="profile-img"><img src={{{imageurl}}}/></a> </div><br>
+<div class="nodata">{{{nodata}}}</div>
+
+
+
+<div class="row">
+<div class="col-md-3"><div class="documentname">{{{documentname}}}</div></div>
+<div class="col-md-3"><div class="documentname">{{{timecr}}}</div></div>
+<div class="col-md-3"><div class="documentname">{{{timemo}}}</div></div>
+</div><br>
+
+
+<div class="row">
+<div class="col-md-3"><div class="userdocuments">{{#documents}}{{#file}}<li class="doc_data">{{{.}}}</li>{{/file}}{{/documents}}</div></div>
+<div class="col-md-3"><div class="userdocuments">{{#documents}}{{#timecreated}}<li class="doc_data">{{{.}}}</li>{{/timecreated}}{{/documents}}</div></div>
+<div class="col-md-3"><div class="userdocuments">{{#documents}}{{#timemodified}}<li class="doc_data">{{{.}}}</li>{{/timemodified}}{{/documents}}</div></div>
+</div><br>

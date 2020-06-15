@@ -1,0 +1,54 @@
+
+.userheader {
+    /*  padding: 0px;
+      text-align: center;
+      background: #fdaf17 !important;
+      color: black;
+      font-size: 30px;*/
+}
+
+.documentsheader {
+    padding: 0px;
+    text-align: center;
+    background: #02457a !important;
+    color: white;
+    font-size: 30px;
+}
+
+.documentname {
+
+    font-weight: 900;
+    font-size: 20px;
+
+}
+
+.userdocuments {
+
+    font-weight: 600;
+    color: #0062cc !important;
+
+}
+
+.userfullname {
+
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 25px;
+
+}
+
+.nodata {
+
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 25px;
+
+}
+
+li.doc_data, a {
+
+    color: #0062cc !important;
+    margin-top: 10px;
+}
