@@ -63,6 +63,9 @@ class HtmlRenderer {
         $return->events = 0;
         $catids = array();
 
+        //hack saltapi
+        $total_course_duration = 0;
+
         if (!empty($aggregate['coursetotal'])) {
             foreach ($aggregate['coursetotal'] as $cid => $cdata) {
                 if ($cid != 0) {
@@ -102,6 +105,7 @@ class HtmlRenderer {
                 $template->siteevents = $output[0][SITEID]->events;
             }
 
+
             foreach ($output as $catid => $catdata) {
                 if ($catid == 0) {
                     continue;
@@ -116,12 +120,22 @@ class HtmlRenderer {
                     if (has_capability('report/trainingsessions:view', $ccontext)) {
                         $catlinetpl->canview = true;
                         $catlinetpl->elapsed = $this->rt->format_time($cdata->elapsed, $durationformat).'<br/>';
+
+                        //hack saltapi
+                        $total_course_duration = $total_course_duration + $cdata->elapsed;
+
                         $catlinetpl->events = $cdata->events;
                     } else {
                         $catlinetpl->canview = false;
                     }
                     $categorytpl->catlines[] = $catlinetpl;
                 }
+
+                //hack saltapi
+                $template->total_course_duration = $this->rt->format_time($total_course_duration, $durationformat);
+
+                //var_dump( $template->total_course_duration); exit;
+
                 $template->categories[] = $categorytpl;
             }
         } else {
@@ -407,7 +421,7 @@ class HtmlRenderer {
         }
 
         if ($withcompletion) {
-            $template->withcompletion = true;
+            $template->withcompletion = false;
             //saltapi
             // Print completion bar.
             if (!array_key_exists('ltcprogressinitems', $data) && !array_key_exists('ltcprogressinmandatoryitems', $data)) {
