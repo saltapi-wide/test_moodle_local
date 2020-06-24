@@ -4,6 +4,8 @@ $string['user_sessions'] = 'User Sessions';
 $string['user_sessions:addinstance'] = 'Add a new User Sessions block';
 $string['user_sessions:myaddinstance'] = 'Add a new User Sessions block to the My Moodle page';
 
+$string['user_sessions:managefiles'] = 'Can Manage Files';
+
 $string['title'] = 'User Sessions Title';
 $string['text'] = 'User Sessions Text';
 

@@ -21,7 +21,8 @@ class block_user_sessions_form extends moodleform {
 
         //$PAGE->set_context(context_system::instance());
 
-        if (has_capability('block/user_sessions:addinstance', $PAGE->context)) {
+        //if (has_capability('block/user_sessions:addinstance', $PAGE->context)) {
+        if (is_siteadmin() && (has_capability('block/user_sessions:addinstance',$PAGE->context))) {
             //do nothing
         }else{
             $url = '/my/';

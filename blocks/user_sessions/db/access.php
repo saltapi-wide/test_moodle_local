@@ -1,24 +1,18 @@
 <?php
+
     $capabilities = array(
- 
-    'block/user_sessions:myaddinstance' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
-            'user' => CAP_ALLOW
-        ),
- 
-        'clonepermissionsfrom' => 'moodle/my:manageblocks'
-    ),
  
     'block/user_sessions:addinstance' => array(
         'riskbitmask' => RISK_SPAM | RISK_XSS,
- 
         'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,
         'archetypes' => array(
-            'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
+            'manager' => CAP_PROHIBIT,
+            'student' => CAP_PROHIBIT,
+            'teacher' => CAP_PROHIBIT,
+            'editingteacher' => CAP_PROHIBIT,
+            'user' => CAP_PROHIBIT,
+            'coursecreator' => CAP_PROHIBIT
         ),
  
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
@@ -29,9 +23,12 @@
         'captype' => 'write',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => array(
-            'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW,
-            'teacher' => CAP_ALLOW
+            'manager' => CAP_PROHIBIT,
+            'student' => CAP_PROHIBIT,
+            'teacher' => CAP_PROHIBIT,
+            'editingteacher' => CAP_PROHIBIT,
+            'user' => CAP_PROHIBIT,
+            'coursecreator' => CAP_PROHIBIT
         )
     ),
 

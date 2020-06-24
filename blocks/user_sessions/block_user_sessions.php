@@ -51,6 +51,8 @@ class block_user_sessions extends block_base {
  
         $this->content         =  new stdClass;
 
+        if (is_siteadmin() && (has_capability('block/user_sessions:addinstance',$PAGE->context))) {
+
         $css = '<style>
     
         .block_user_sessions .card-title{
@@ -79,10 +81,15 @@ class block_user_sessions extends block_base {
         $this->content->footer = "<a class='btn btn-primary' href='{$url1}' target='_blank'>Settings</a>";
 
 
-        if (!has_capability('block/user_sessions:addinstance', $PAGE->context)) {
+        //if (!has_capability('block/user_sessions:addinstance', $PAGE->context)) {
 
+
+            //$this->title = false;
+            //$this->content = false;
+            //$this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
+        }else{
             $this->title = false;
-            $this->content = false;
+            $this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
         }
 
 

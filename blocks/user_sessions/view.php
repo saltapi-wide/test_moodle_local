@@ -24,6 +24,7 @@ $id = optional_param('id', 0, PARAM_INT);
 $PAGE->set_context(\context_system::instance());
 require_login();
 
+
 $course_info = $DB->get_record('course', array('id' => $courseid),'fullname');
 
 

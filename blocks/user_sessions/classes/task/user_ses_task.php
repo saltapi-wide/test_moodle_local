@@ -59,6 +59,7 @@ class user_ses_task extends \core\task\scheduled_task {
                 ORDER BY log.id,userid ASC";
         $sessions_all = $DB->get_records_sql($sql);
 
+
         $sql2 = 'SELECT uen.id, uen.enrolid enrolid, uen.userid userid,en.courseid,se.active,se.min_duration_user,se.max_duration,
                 uen.timestart,uen.timecreated,la.timeaccess,la.id lastaccessid
                 FROM {user_enrolments} uen
