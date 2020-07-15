@@ -32,15 +32,19 @@ env:
     # we dont need pgsql at the momment
     - DB=mariadb MOODLE_BRANCH=master
     - DB=mysqli MOODLE_BRANCH=master
+    - DB=mysql MOODLE_BRANCH=master
     - DB=pgsql  MOODLE_BRANCH=master
     - DB=mariadb MOODLE_BRANCH=MOODLE_36_STABLE
     - DB=mysqli MOODLE_BRANCH=MOODLE_36_STABLE
+    - DB=mysql MOODLE_BRANCH=MOODLE_36_STABLE
     - DB=pgsql  MOODLE_BRANCH=MOODLE_36_STABLE
     - DB=mariadb MOODLE_BRANCH=MOODLE_35_STABLE
     - DB=mysqli MOODLE_BRANCH=MOODLE_35_STABLE
+    - DB=mysql MOODLE_BRANCH=MOODLE_35_STABLE
     - DB=pgsql  MOODLE_BRANCH=MOODLE_35_STABLE
     - DB=mariadb MOODLE_BRANCH=MOODLE_34_STABLE
     - DB=mysqli MOODLE_BRANCH=MOODLE_34_STABLE
+    - DB=mysql MOODLE_BRANCH=MOODLE_34_STABLE
     - DB=pgsql MOODLE_BRANCH=MOODLE_34_STABLE
 
 before_install:
