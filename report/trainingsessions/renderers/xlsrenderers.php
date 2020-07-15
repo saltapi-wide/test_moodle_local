@@ -230,10 +230,11 @@ class XlsRenderer {
         if ($purpose == 'usertimes' || $purpose == 'allcourses') {
             $worksheet->set_row($startrow - 1, 12, $xlsformats['TT']);
             $i = 1;
-            $worksheet->write_string($startrow - 1, $i, get_string('item', 'report_trainingsessions'), $xlsformats['TT']);
-            $i++;
-            $worksheet->write_string($startrow - 1, $i, get_string('elapsedinitem', 'report_trainingsessions'), $xlsformats['TT']);
-            $i++;
+            //saltapi
+//            $worksheet->write_string($startrow - 1, $i, get_string('item', 'report_trainingsessions'), $xlsformats['TT']);
+//            $i++;
+//            $worksheet->write_string($startrow - 1, $i, get_string('elapsedinitem', 'report_trainingsessions'), $xlsformats['TT']);
+//            $i++;
             if (!empty($config->showhits)) {
                 $worksheet->write_string($startrow - 1, $i, get_string('hits', 'report_trainingsessions'), $xlsformats['TT']);
                 $i++;
@@ -360,7 +361,9 @@ class XlsRenderer {
         $worksheet->write_string($row, 1, strftime($datetimefmt, $data->from));
         $row++;
         $worksheet->write_string($row, 0, get_string('to').' :', $xlsformats['b']);
-        $worksheet->write_string($row, 1, strftime($datetimefmt, time()));
+        $worksheet->write_string($row, 1, strftime($datetimefmt, $data->to));
+        //saltapi
+        //$worksheet->write_string($row, 1, strftime($datetimefmt, time());
         $row++;
 
         if ($courseid) {
@@ -396,7 +399,8 @@ class XlsRenderer {
         }
 
         // Print completion bar.
-        if (!array_key_exists('ltcprogressinitems', $data) && !array_key_exists('ltcprogressinmandatoryitems', $data)) {
+        //saltapi
+        if (!array_key_exists('ltcprogressinitems', $data) && !array_key_exists('ltcprogressinmandatoryitems', $data) && 1==2) {
             if (empty($data->items)) {
                 $completed = 0;
             } else {
@@ -440,11 +444,16 @@ class XlsRenderer {
                 $worksheet->write_string($row, 1, $celldata);
             }
         }
+//saltapi
+//        $timecols = array('firstcourseaccess', 'lastcourseaccess');
+//        $durationcols = array('elapsed', 'extelapsed', 'extotherelapsed',
+//                          'activitytime', 'coursetime', 'othertime', 'uploadtime',
+//                          'elapsedoutofstructure', 'elapsedlastweek', 'extelapsedlastweek', 'extotherelapsedlastweek');
 
-        $timecols = array('firstcourseaccess', 'lastcourseaccess');
-        $durationcols = array('elapsed', 'extelapsed', 'extotherelapsed',
-                          'activitytime', 'coursetime', 'othertime', 'uploadtime',
-                          'elapsedoutofstructure', 'elapsedlastweek', 'extelapsedlastweek', 'extotherelapsedlastweek');
+        $timecols = array('firstcourseaccess');
+        $durationcols = array( 'extelapsed', 'extotherelapsed',
+            'othertime', 'uploadtime',
+            'elapsedlastweek', 'extelapsedlastweek', 'extotherelapsedlastweek');
 
         foreach ($cols as $c) {
 
@@ -453,6 +462,8 @@ class XlsRenderer {
             }
 
             $c = trim($c);
+
+
 
             $row++;
             $worksheet->write_string($row, 0, get_string($c, 'report_trainingsessions').' :', $xlsformats['b']);
@@ -507,7 +518,8 @@ class XlsRenderer {
 
         $cols = $this->rt->get_summary_cols();
 
-        $row = 12;
+        $row = 5;
+        //saltapi
 
         if ($courseid) {
             $row++;
@@ -694,6 +706,8 @@ class XlsRenderer {
                     }
                 }
             }
+
+
         }
 
         return $dataobject;
@@ -741,6 +755,12 @@ class XlsRenderer {
         $totalelapsed = 0;
 
         if (!empty($sessions)) {
+
+            $worksheet->write_string($row, 0, get_string('sessionstart', 'report_trainingsessions'), $xlsformats['t']);
+            $worksheet->write_string($row, 1, get_string('sessionend', 'report_trainingsessions'), $xlsformats['t']);
+            $worksheet->write_string($row, 2, get_string('duration', 'report_trainingsessions'), $xlsformats['t']);
+            $row++;
+
             foreach ($sessions as $session) {
 
                 if ($courseid && (empty($session->courses) || !array_key_exists($courseid, $session->courses))) {
@@ -801,13 +821,13 @@ class XlsRenderer {
                         }
                     }
 
-                    $worksheet->write_date($row, 0, @$s->sessionstart, $xlsformats['t']);
+                    $worksheet->write_string($row, 0, userdate(@$s->sessionstart), $xlsformats['t']);
                     if (!empty($s->sessionend)) {
-                        $worksheet->write_date($row, 1, @$s->sessionend, $xlsformats['t']);
+                        $worksheet->write_string($row, 1, userdate(@$s->sessionend), $xlsformats['t']);
                     }
                     $worksheet->write_string($row, 2, format_time(0 + @$s->elapsed), $xlsformats['TT']);
-                    $elapsed = $this->rt->format_time(0 + @$s->elapsed, 'xlsd');
-                    $worksheet->write_string($row, 3, $elapsed, $xlsformats['d']);
+                    //$elapsed = $this->rt->format_time(0 + @$s->elapsed, 'xlsd');
+                    //$worksheet->write_string($row, 3, $elapsed, $xlsformats['d']);
                     $totalelapsed += 0 + @$s->elapsed;
 
                     $row++;
@@ -867,21 +887,24 @@ class XlsRenderer {
         if (!empty($output)) {
 
             $elapsedstr = get_string('elapsed', 'report_trainingsessions');
-            $hitsstr = get_string('hits', 'report_trainingsessions');
+            //$hitsstr = get_string('hits', 'report_trainingsessions');
+            //saltapi
             $coursestr = get_string('course');
 
-            if (isset($output[0])) {
+            if (isset($output[0]) && 1==2) {
                 $worksheet->write_string($row, 0, get_string('site'), $xlsformats['TT']);
                 $row++;
                 $worksheet->write_string($row, 0, $elapsedstr, $xlsformats['a']);
-                $elapsed = $this->rt->format_time($output[0][SITEID]->elapsed, 'xlsd');
+                //$elapsed = $this->rt->format_time($output[0][SITEID]->elapsed, 'xlsd');
+                $elapsed = $this->rt->format_time($output->elapsed, 'xlsd');
                 $worksheet->write_string($row, 1, $elapsed, $xlsformats['d']);
                 $row++;
-                if (!empty($config->showhits)) {
-                    $worksheet->write_string($row, 0, $hitsstr, $xlsformats['a']);
-                    $worksheet->write_number($row, 1, $output[0][SITEID]->events, $xlsformats['n']);
-                    $row++;
-                }
+                //saltapi
+//                if (!empty($config->showhits)) {
+//                    $worksheet->write_string($row, 0, $hitsstr, $xlsformats['a']);
+//                    $worksheet->write_number($row, 1, $output[0][SITEID]->events, $xlsformats['n']);
+//                    $row++;
+//                }
             }
 
             foreach ($output as $catid => $catdata) {
@@ -892,13 +915,20 @@ class XlsRenderer {
                 $row++;
                 $worksheet->write_string($row, 0, $coursestr, $xlsformats['TT']);
                 $worksheet->write_string($row, 1, $elapsedstr, $xlsformats['TT']);
-                $worksheet->write_string($row, 2, $hitsstr, $xlsformats['TT']);
-                $row++;
+                //saltapi
+                //$worksheet->write_string($row, 2, $hitsstr, $xlsformats['TT']);
+                //$row++;
+
+                $total_site=0;
 
                 foreach ($catdata as $cid => $cdata) {
                     $ccontext = context_course::instance($cid);
                     if (has_capability('report/trainingsessions:view', $ccontext)) {
                         $worksheet->write_string($row, 0, $courses[$cid]->fullname, $xlsformats['a']);
+
+                        if($cid>1){
+                            $total_site=$total_site+$cdata->elapsed;
+                        }
                         $elapsed = $this->rt->format_time($cdata->elapsed, 'xlsd');
                         $worksheet->write_string($row, 1, $elapsed, $xlsformats['d']);
                         if (!empty($config->showhits)) {
@@ -911,7 +941,28 @@ class XlsRenderer {
                         $worksheet->write_string($row, 2, $label, $xlsformats['a']);
                     }
                 }
+
+                $worksheet->write_string($row, 0, get_string('site'), $xlsformats['TT']);
+                $row++;
+                $worksheet->write_string($row, 0, $elapsedstr, $xlsformats['a']);
+                //$elapsed = $this->rt->format_time($output[0][SITEID]->elapsed, 'xlsd');
+                $elapsed = $this->rt->format_time($total_site, 'xlsd');
+                $worksheet->write_string($row, 1, $elapsed, $xlsformats['d']);
+                $row++;
+
+
+                //extra time
+                $worksheet->write_string($row, 0, get_string('othertime', 'report_trainingsessions'), $xlsformats['a']);
+                //$elapsed = $this->rt->format_time($output[0][SITEID]->elapsed, 'xlsd');
+                $elapsed_extra = $return->elapsed-$total_site;
+                $elapsed_extra=$this->rt->format_time($elapsed_extra, 'xlsd');
+                $worksheet->write_string($row, 1, $elapsed_extra, $xlsformats['d']);
+                $row++;
+
             }
+
+
+
         }
 
         return $return;

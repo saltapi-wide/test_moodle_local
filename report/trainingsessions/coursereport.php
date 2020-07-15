@@ -123,6 +123,8 @@ $rt->filter_unwanted_users($targetusers, $course);
 // Get course structure.
 $coursestructure = $rt->get_course_structure($course->id, $items);
 
+//var_dump($coursestructure[0]);
+
 // Print result.
 
 if ($config->disablesuspendedenrolments && has_capability('report/trainingsessions:viewother', $context)) {

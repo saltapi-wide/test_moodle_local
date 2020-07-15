@@ -125,6 +125,7 @@ if($train_sess->is_cancelled()) {
         $record->min_duration_user = $min_duration_activity;
         $record->max_duration = $total_duration;
         $record->grade_pass = 7.00;
+        //$record->num_of_sessions = $fromform->num_of_sessions;
 
         if (!$DB->insert_record('user_sessions_settings', $record)) {
             print_error('inserterror', 'block_user_sessions');

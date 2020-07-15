@@ -60,10 +60,10 @@ class CourseSummarySelectorForm extends moodleform {
             'optional'  => false
         );
         $titles[] = get_string('from');
-        $row[] = & $mform->createElement('date_selector', 'from', '', $dateparms);
+        $row[] = & $mform->createElement('date_time_selector', 'from', '', $dateparms);
 
         $titles[] = get_string('to');
-        $row[] = & $mform->createElement('date_selector', 'to', '', $dateparms);
+        $row[] = & $mform->createElement('date_time_selector', 'to', '', $dateparms);
 
     }
 }
@@ -100,7 +100,7 @@ echo html_writer::select($groupoptions, 'groupid', $groupid);
 <?php
 print_string('to');
 echo ' :&nbsp;</td><td align="left">';
-print_date_selector('endday', 'endmonth', 'endyear', $to);
+print_date_time_selector('endday', 'endmonth', 'endyear', $to);
 ?>
     </td>
     <td/><td align="right">

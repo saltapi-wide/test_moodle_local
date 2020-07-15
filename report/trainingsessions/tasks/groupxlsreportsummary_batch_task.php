@@ -118,6 +118,7 @@ if (!empty($targetusers)) {
 
         $data = $rt->map_summary_cols($cols, $auser, $aggregate, $weekaggregate, $course->id);
 
+
         $rt->add_graded_data($data, $auser->id, $aggregate);
         $rt->add_calculated_data($data);
         $row = $renderer->print_rawline_xls($worksheet, $data, $dataformats, $row, $xlsformats);

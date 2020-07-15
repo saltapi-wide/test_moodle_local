@@ -548,6 +548,9 @@ class block_use_stats extends block_base {
                     if (!$courseid || (($COURSE->id > SITEID) && ($courseid == 1))) {
                         continue;
                     }
+                    if  ($courseid == 1) {
+                        continue;
+                    }
                 }
 
                 if ($course) {

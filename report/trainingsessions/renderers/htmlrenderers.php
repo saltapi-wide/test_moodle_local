@@ -498,7 +498,17 @@ class HtmlRenderer {
 
             $totalizertpl = new Stdclass;
             $totalizertpl->key = $c;
-            $totalizertpl->name = get_string($c, 'report_trainingsessions');
+
+            //saltapi
+            if($c=='elapsed'){
+                $totalizertpl->name = get_string('single_elapsed', 'report_trainingsessions');
+            }else{
+                $totalizertpl->name = get_string($c, 'report_trainingsessions');
+            }
+
+            //$totalizertpl->name = get_string($c, 'report_trainingsessions');
+            //saltapi
+
             $totalizertpl->help = $OUTPUT->help_icon($c, 'report_trainingsessions');
             $totalizertpl->elapsed = $this->rt->format_time(0 + @$data->$c, $durationformat);
             $h = str_replace('elapsed', 'hits', $c);
@@ -679,6 +689,8 @@ class HtmlRenderer {
                                 }
                             }
                         }
+
+
                     }
                 }
 
@@ -701,7 +713,7 @@ class HtmlRenderer {
                             !empty($ltcconfig->checkworkinghours))) {
                 $template->haslearningtimecheckdata = true;
                 $template->tplinhelpicon = $OUTPUT->help_icon('insessiontime', 'report_trainingsessions');
-                $tpl->induration = $this->rt->format_time($induration, $durationformat);
+                $template->induration = $this->rt->format_time($induration, $durationformat);
 
                 $template->tplouthelpicon = $OUTPUT->help_icon('outsessiontime', 'report_trainingsessions');
                 $template->outduration = $this->rt->format_time($outduration, $durationformat);

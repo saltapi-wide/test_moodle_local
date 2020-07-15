@@ -132,6 +132,9 @@ class block_use_stats_renderer extends plugin_renderer_base {
         if (!empty($users)) {
             $usermenu = array();
             foreach ($users as $user) {
+                if(is_siteadmin($user->id)){
+                    continue;
+                }
                 $usermenu[$user->id] = fullname($user, has_capability('moodle/site:viewfullnames', context_system::instance()));
             }
             $attrs = array('onchange' => 'document.ts_changeParms.submit();');
@@ -181,7 +184,8 @@ initusestatsto('.$context->id.', '.$state.',   \''.$date.'\');
 ';
             }
         }
-        if (is_siteadmin()) {
+        //saltapi
+        if (is_siteadmin() && (1==2)) {
             $str .= '<div class="admin-mode"><input type="checkbox" name="debug" value="1"> Debug mode</div>';
         }
         $str .= '</form><br/>';

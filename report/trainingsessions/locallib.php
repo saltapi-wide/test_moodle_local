@@ -1949,11 +1949,15 @@ class trainingsessions {
                 if ($data->from > 0) {
                     // Maybe we get it from parameters.
                     $dateelms = getdate($data->from);
+                    //saltapi
+                    $data->startminute = $dateelms['minutes'];
+                    $data->starthour = $dateelms['hours'];
+                    //saltapi
                     $data->startmonth = $dateelms['mon'];
                     $data->startyear = $dateelms['year'];
                     $data->startday = $dateelms['mday'];
 
-                    $data->from = mktime(0, 0, 0, $data->startmonth, $data->startday, $data->startyear);
+                    $data->from = mktime($data->starthour, $data->startminute, 0, $data->startmonth, $data->startday, $data->startyear);
                     $changed = true;
                 } else {
                     print_error('Bad start date');
@@ -1962,9 +1966,14 @@ class trainingsessions {
         }
 
         if ($changed) {
+            //saltapi
+            $_POST['from']['minutes'] = date('s', $data->from);
+            $_POST['from']['hours'] = date('i', $data->from);
+            //saltapi
             $_POST['from']['day'] = date('d', $data->from);
             $_POST['from']['month'] = date('m', $data->from);
-            $_POST['from']['year'] = date('!y', $data->from);
+            //$_POST['from']['year'] = date('!y', $data->from);
+            //den krataei etos
         }
 
         if (($data->to == -1) || @$data->tonow) {
@@ -1973,6 +1982,10 @@ class trainingsessions {
         } else {
 
             $dateelms = getdate($data->to);
+            //saltapi
+            $data->endminute = $dateelms['minutes'];
+            $data->endhour = $dateelms['hours'];
+            //saltapi
             $data->endmonth = $dateelms['mon'];
             $data->endyear = $dateelms['year'];
             $data->endday = $dateelms['mday'];
@@ -1984,7 +1997,7 @@ class trainingsessions {
             if ($data->endday == -1 || !empty($data->tonow)) {
                 $data->to = time();
             } else if ($data->endmonth != -1 && $data->endyear != -1) {
-                $data->to = mktime(23, 59, 59, $data->endmonth, $data->endday, $data->endyear);
+                $data->to = mktime($data->endhour, $data->endminute, 59, $data->endmonth, $data->endday, $data->endyear);
             } else {
                 print_error('Bad end date');
             }

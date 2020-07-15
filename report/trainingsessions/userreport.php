@@ -93,6 +93,29 @@ $headdata = (object) $headdata;
 $headdata->gradecols = $gradedata;
 
 $str = $renderer->print_html($coursestructure, $aggregate, $done);
+
+
+
+//saltapi hack
+
+$extra_time = intval($headdata->coursetime);
+
+$str .= "
+<table class='sessionreport level1'>
+<tbody><tr class='sessionlevel1 userreport-col0' valign='top'>
+        <td class='sessionitem item' width='55%'>
+            &nbsp;&nbsp;".get_string('extotherelapsed', 'report_trainingsessions')."
+        </td>
+        <td class='reportvalue rangedate userreport-col3' align='right'>
+             ".format_time($extra_time)."
+        </td>
+    </tr>
+</tbody>
+</table>
+";
+
+//saltapi hack end
+
 $headdata->done = $done;
 $headdata->items = $items;
 

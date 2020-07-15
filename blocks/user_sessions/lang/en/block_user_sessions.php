@@ -39,6 +39,8 @@ $string['no'] = 'No';
 $string['auto_generate'] = 'Auto Generate';
 $string['total_duration'] = 'Minimum Total Duration';
 
+$string['num_of_sessions'] = 'Minimum Sessions';
+
 
 $string['user_ses_task_title'] = 'User Sessions Task';
 

@@ -97,9 +97,14 @@ $xlsformats = $renderer->xls_formats($workbook);
 $startrow = $renderer->count_header_rows($course->id);
 $worksheet = $renderer->init_worksheet($user->id, $startrow, $xlsformats, $workbook);
 $cols = $rt->get_summary_cols();
+$input->view = 'allcourses';
 $renderer->print_header_xls($worksheet, $user->id, 0, $input, $cols, $xlsformats);
 
 $y = $renderer->print_allcourses_xls($worksheet, $aggregate, $startrow, $xlsformats);
+
+
+$w = $renderer->print_sessions_xls($worksheet, $startrow+10, @$aggregate['sessions'], $course->id, $xlsformats);
+
 
 // Sending HTTP headers.
 ob_end_clean();

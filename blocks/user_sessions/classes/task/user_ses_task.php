@@ -32,6 +32,10 @@ class user_ses_task extends \core\task\scheduled_task {
      * Run users sync.
      */
     public function execute() {
+
+
+        error_reporting(0);
+
         global $CFG,$DB;
 
         $sql = "SELECT name,value
@@ -54,33 +58,37 @@ class user_ses_task extends \core\task\scheduled_task {
                 FROM {logstore_standard_log} log
                 LEFT JOIN {user} u ON u.id=log.userid
                 LEFT JOIN {course} co ON log.courseid=co.id
-                WHERE u.id > 2 AND courseid > 1
+                WHERE u.id > 2
                 GROUP BY log.id,co.id 
-                ORDER BY log.id,userid ASC";
+                ORDER BY userid,logid ASC";
         $sessions_all = $DB->get_records_sql($sql);
+
+        //AND courseid > 1
 
 
         $sql2 = 'SELECT uen.id, uen.enrolid enrolid, uen.userid userid,en.courseid,se.active,se.min_duration_user,se.max_duration,
-                uen.timestart,uen.timecreated,la.timeaccess,la.id lastaccessid
+                uen.timestart,uen.timeend,uen.timecreated,la.timeaccess,la.id lastaccessid,
+                c.startdate,c.enddate
                 FROM {user_enrolments} uen
                 LEFT JOIN {enrol} en ON en.id=uen.enrolid
                 LEFT JOIN {user_sessions_settings} se ON se.courseid=en.courseid
                 LEFT JOIN {user_lastaccess} la ON la.userid=uen.userid AND la.courseid=en.courseid
-                WHERE uen.timeend=0 OR uen.timeend > NOW()
+                LEFT JOIN {course} c ON c.id=en.courseid
+                WHERE (uen.timeend=0 OR uen.timeend > NOW()) AND se.max_duration > 0
                 ORDER BY uen.id ASC';
         $user_enrolments = $DB->get_records_sql($sql2);
 
         //var_dump($user_enrolments); exit;
 
 
-        $sql3 = "SELECT cm.id,cm.course courseid,cm.module,m.name,se.active,se.min_duration_user,se.max_duration,m.name,co.startdate
-                FROM {course_modules} cm
-                LEFT JOIN {user_sessions_settings} se ON se.courseid=cm.course
-                LEFT JOIN {modules} m ON m.id=cm.module
-                LEFT JOIN {course} co ON co.id=se.courseid
-                WHERE NOT m.name='label' AND se.active=1
-                ORDER BY cm.id ASC";
-        $activities = $DB->get_records_sql($sql3);
+//        $sql3 = "SELECT cm.id,cm.course courseid,cm.module,m.name,se.active,se.min_duration_user,se.max_duration,m.name,co.startdate,cm.visible
+//                FROM {course_modules} cm
+//                LEFT JOIN {user_sessions_settings} se ON se.courseid=cm.course
+//                LEFT JOIN {modules} m ON m.id=cm.module
+//                LEFT JOIN {course} co ON co.id=se.courseid
+//                WHERE NOT m.name='label' AND se.active=1
+//                ORDER BY cm.id ASC";
+//        $activities = $DB->get_records_sql($sql3);
 
         // userid,
         // courseid,
@@ -94,31 +102,34 @@ class user_ses_task extends \core\task\scheduled_task {
 
         foreach($sessions_all AS $key=>$session){
 
-            if (array_key_exists($session->userid, $totals)) {
+            if ((isset($totals[$session->userid][$session->courseid]))&&( ($session->courseid > 1))) {
                 //echo "Array Key exists...";
+
                 if( (intval($sessions_all[$prev_key]->timecreated) > 0)
                     && ( abs(intval($session->timecreated) - intval($sessions_all[$prev_key]->timecreated)) < $sessiontimeout)
                     && (intval($session->timecreated) > intval($sessions_all[$prev_key]->timecreated) )
                 ) {
                     $result_helper = abs(intval($session->timecreated) - intval($sessions_all[$prev_key]->timecreated));
+//                    $result_helper = $result_helper + $result_helper*3/10;
                 }else{
-                    $result_helper = 0;
+                    $result_helper = 1000;
                 }
-
                 $totals[$session->userid][$session->courseid] = intval($totals[$session->userid][$session->courseid]) + intval($result_helper);
-
-            } else {
+            } else if((isset($totals[$session->userid][$session->courseid])) && ($session->courseid <= 1)){
+                //logout or other
+                $totals[$session->userid][$session->courseid] = intval($totals[$session->userid][$session->courseid]) + abs(intval($session->timecreated) - intval($sessions_all[$prev_key]->timecreated));
+                //$totals[$session->userid][$session->courseid]= $totals[$session->userid][$session->courseid] + abs(intval($session->timecreated) - intval($sessions_all[$prev_key]->timecreated))*3/10;
+            }else if ((!isset($totals[$session->userid][$session->courseid]))&&( ($session->courseid > 1))) {
                 //echo "Array Key does not exist...";
-                $totals[$session->userid][$session->courseid] = 0;
+                $totals[$session->userid][$session->courseid] = 20;
             }
-
             $prev_key = $key;
-
-
         }
 
+        //var_dump($user_enrolments);
+
         unset($totals[0]);
-        //var_dump($totals);
+        var_dump($totals);
 
 
 
@@ -126,85 +137,184 @@ class user_ses_task extends \core\task\scheduled_task {
 
 
             if ($enrolment->timeaccess == NULL) {
-                $last_time = intval($enrolment->timecreated);
+                $last_time = intval($enrolment->timestart);
             }else{
                 $last_time = $enrolment->timeaccess;
             }
+            $start_session_time = $last_time;
 
-            $count_activities = count($activities);
+
+            //orismos xronou gia kathe working session start
+
+            //user_enroloment
+            // time
+
+            //course
+            // date
+
+            if (intval($enrolment->timestart) <= intval($enrolment->startdate)){
+                $start_course = intval($enrolment->startdate);
+            }else{
+                $start_course = intval($enrolment->timestart);
+            }
+
+            $end_course = intval($enrolment->enddate);
+
+            //echo "start: ".$start_course." end: ".$end_course;
+            //mtrace("");
+
+            if(($end_course > 0) && ($end_course > time())) {
+                $time_per_course = intval($end_course - $start_course);
+            }else{
+                $time_per_course = $end_course - time();
+            }
+
+            //echo "time_per_course: ".$time_per_course;
+            //mtrace("");
+
+            $random_time_total = 0;
 
 
-            if( (intval($totals[$enrolment->userid][$enrolment->courseid]) < intval($enrolment->max_duration))){
+            //$count_activities = count($activities);
+
+
+            if(  (intval($totals[$enrolment->userid][$enrolment->courseid]) < intval($enrolment->max_duration))){
 
                 //echo 'MIKROTERO';
                 //var_dump($enrolment);
 
+
+                $sql3 = "SELECT cm.id,cm.course courseid,cm.module,m.name,se.active,se.min_duration_user,se.max_duration,m.name,co.startdate,cm.visible
+                FROM {course_modules} cm
+                LEFT JOIN {user_sessions_settings} se ON se.courseid=cm.course
+                LEFT JOIN {modules} m ON m.id=cm.module
+                LEFT JOIN {course} co ON co.id=se.courseid
+                WHERE NOT m.name='label' AND se.active=1 AND co.id={$enrolment->courseid}
+                ORDER BY cm.id ASC";
+                $activities = $DB->get_records_sql($sql3);
+
                 $loop = 0;
                 $flag_big_activity = 0;
+                $day_change = 0;
+
+                $count_activities = count($activities);
+
+                //working sessions start
+
+                $time_per_working_session =3600;
+                $session_now = 0;
+                //$time_per_working_session = ($enrolment->max_duration / $time_per_course)*60;
+
+
+//                if($time_per_working_session < 1800){
+//                    $time_per_working_session = 1800;
+//                }
+
+                //echo "limit per session: ".$time_per_working_session;
+                //mtrace(" ");
+
+                //working sessions end
+
+
+                //split activity time
+                $split_activity_loops = round($enrolment->min_duration_user / 1800);
+
+                if($split_activity_loops >= 1){
+                    $enrolment->min_duration_user = $enrolment->min_duration_user / $split_activity_loops;
+                    echo "min_duration: ".$enrolment->min_duration_user;
+                    mtrace(" ");
+                }else{
+                    $split_activity_loops = 1;
+                }
 
                 foreach($activities AS $key=>$activity){
 
                     $loop = $loop + 1;
+                    $start_session_time = $last_time;
 
                     //echo 'count '.$count_activities.' loop '.$loop;
-                    //echo '<br>';
 
                     if(($activity->active == '1')
                         && ($activity->courseid == $enrolment->courseid)
                         && (intval($totals[$enrolment->userid][$enrolment->courseid]) < intval($enrolment->max_duration))
-                        //&& ($activity->name != 'label')
+                        && ($activity->visible == '1')
+                        //&& ($random_time_total <= intval($totals[$enrolment->userid][$enrolment->courseid]))
                     ){
 
                         $context = \context_module::instance($activity->id);
                         $contextid = $context->id;
 
-                        $count_activities = count($activities);
-                        $min=1;
-                        $max=$enrolment->min_duration_user;
+                        for ($i = 1; $i <= ($split_activity_loops+3*$flag_big_activity); $i++) {
 
-                        $random_int = intval($enrolment->min_duration_user) + intval(rand($min,$max));
-                        //$random_int = $max - $key  ;
-                        //$last_time = intval($random_int + $last_time);
-                        $time_inserted = $random_int + intval($last_time) + $random_int * $flag_big_activity;
-                        $last_time = $time_inserted;
+                            $min = 1;
+                            $max = $enrolment->min_duration_user;
 
-                        $insertion_log = new \stdClass();
-                        $insertion_log->eventname = '\mod_'.$activity->name.'\event\course_module_viewed';
-                        $insertion_log->component = 'mod_'.$activity->name;
-                        $insertion_log->action = 'viewed';
-                        $insertion_log->target = 'course_module';
-                        $insertion_log->objecttable= $activity->name;
-                        $insertion_log->objectid='1';
-                        $insertion_log->crud= 'r';
-                        $insertion_log->edulevel= '2';
-                        $insertion_log->contextid= $contextid;
-                        $insertion_log->contextinstanceid= $activity->id;
-                        $insertion_log->contextlevel= '70';
-                        $insertion_log->userid= $enrolment->userid;
-                        $insertion_log->courseid= $activity->courseid;
-                        $insertion_log->relateduserid= NULL;
-                        $insertion_log->anonymous= '0';
-                        $insertion_log->other= 'N;';
-                        //$insertion_log->timecreated = time() - $random_int;
-                        $insertion_log->timecreated = $time_inserted;
-                        $insertion_log->origin= 'web';
-                        $insertion_log->ip= '127.0.0.1';
-                        $insertion_log->realuserid= NULL;
-
-                        //echo '<h2>'.$time_inserted.'</h2><br>';
-
-                        $insert_id = $DB->insert_record('logstore_standard_log', $insertion_log);
+                            $random_int = intval(rand($min, $max));
+                            //$time_inserted = $max + $random_int + intval($last_time) + $day_change + $flag_big_activity*$random_int;
+                            $time_inserted = $random_int + intval($last_time) + $day_change;
+                            $last_time = $time_inserted;
 
 
-                        //check if activity is quiz or scorm
+                            if(intval($last_time-$start_session_time) <= $sessiontimeout) {
+                                $session_now = $session_now + intval($last_time-$start_session_time);
+                                $random_time_total = $session_now;
+                            }
 
-                        if(($activity->name == 'quiz') || ($activity->name == 'scorm')){
-                            $flag_big_activity = 1;
-                        }else{
-                            $flag_big_activity = 0;
+
+
+                            mtrace($last_time);
+                            mtrace($start_session_time);
+                            mtrace($session_now);
+                            $day_change = 0;
+
+                            $insertion_log = new \stdClass();
+                            $insertion_log->eventname = '\mod_' . $activity->name . '\event\course_module_viewed';
+                            $insertion_log->component = 'mod_' . $activity->name;
+                            $insertion_log->action = 'viewed';
+                            $insertion_log->target = 'course_module';
+                            $insertion_log->objecttable = $activity->name;
+                            $insertion_log->objectid = '1';
+                            $insertion_log->crud = 'r';
+                            $insertion_log->edulevel = '2';
+                            $insertion_log->contextid = $contextid;
+                            $insertion_log->contextinstanceid = $activity->id;
+                            $insertion_log->contextlevel = '70';
+                            $insertion_log->userid = $enrolment->userid;
+                            $insertion_log->courseid = $activity->courseid;
+                            $insertion_log->relateduserid = NULL;
+                            $insertion_log->anonymous = '0';
+                            $insertion_log->other = 'N;';
+                            //$insertion_log->timecreated = time() - $random_int;
+                            $insertion_log->timecreated = $time_inserted;
+                            $insertion_log->origin = 'web';
+                            $insertion_log->ip = '127.0.0.1';
+                            $insertion_log->realuserid = NULL;
+
+                            //echo '<h2>'.$time_inserted.'</h2><br>';
+
+                            $insert_id = $DB->insert_record('logstore_standard_log', $insertion_log);
+
+
+
+                            //check if activity is quiz or scorm
+                            if(($activity->name == 'quiz') || ($activity->name == 'scorm')){
+                                $flag_big_activity = 1;
+                            }else{
+                                $flag_big_activity = 0;
+                            }
+                            //end check
+
+                            $random_time_total = $random_time_total+$session_now;
+
+                            if($session_now > $time_per_working_session){
+                                $random_int_day = intval(rand(10800,108000));
+                                $day_change = $random_int_day;
+                                $session_now = 0;
+                                $start_session_time = $last_time;
+                                mtrace("ALLAKSE H MERA");
+                            }
+
                         }
-
-                        //end check
 
 
                         $random_int = intval(rand($min,$max));
@@ -273,15 +383,19 @@ class user_ses_task extends \core\task\scheduled_task {
 
                         }
 
-                        $duration_total = $last_time + $random_int;
+                        //$duration_total = $last_time + $random_int;
 
 
-                        echo 'random duration courseid: '.$activity->courseid.' userid: '.$enrolment->userid;
-                        echo '<br>';
+//                        echo 'random duration courseid: '.$activity->courseid.' userid: '.$enrolment->userid;
+//                        echo '<br>';
 
 
                     }
                 }
+
+                echo 'random duration: '.$random_time_total.' courseid: '.$activity->courseid.' userid: '.$enrolment->userid;
+                mtrace(" ");
+
 
             }
 

@@ -1,5 +1,29 @@
 <?php
 
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * User Sessions Block
+ *
+ * @package    block_user_sessions
+ * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+
 class block_user_sessions extends block_base {
 
 
@@ -67,26 +91,26 @@ class block_user_sessions extends block_base {
 
         $this->content->text = $css.'This is the '.$COURSE->fullname.' course.';
 
-        //anti gia footer vazw link
+        // anti gia footer vazw link
 
 
 
         $url1 = new moodle_url('/blocks/user_sessions/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
-        //$url2 = new moodle_url('/blocks/simplehtml/view_datatable.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        // $url2 = new moodle_url('/blocks/simplehtml/view_datatable.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
 
-        //$this->content->footer = html_writer::link($url1, get_string('addpage', 'block_trainingsessions'),array('taget'=>'_blank'));
-        //$this->content->footer.= html_writer::link($url2, get_string('datatable', 'block_trainingsessions'),array('taget'=>'_blank'));
+        // $this->content->footer = html_writer::link($url1, get_string('addpage', 'block_trainingsessions'),array('taget'=>'_blank'));
+        // $this->content->footer.= html_writer::link($url2, get_string('datatable', 'block_trainingsessions'),array('taget'=>'_blank'));
 
 
         $this->content->footer = "<a class='btn btn-primary' href='{$url1}' target='_blank'>Settings</a>";
 
 
-        //if (!has_capability('block/user_sessions:addinstance', $PAGE->context)) {
+        // if (!has_capability('block/user_sessions:addinstance', $PAGE->context)) {
 
 
-            //$this->title = false;
-            //$this->content = false;
-            //$this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
+            // $this->title = false;
+            // $this->content = false;
+            // $this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
         }else{
             $this->title = false;
             $this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
@@ -122,5 +146,4 @@ class block_user_sessions extends block_base {
 
 
 }
-
 

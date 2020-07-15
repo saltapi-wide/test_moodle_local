@@ -101,6 +101,9 @@ if (!empty($targetusers)) {
 
         $headdata = (object) $rt->map_summary_cols($cols, $auser, $aggregate, $weekaggregate, $course->id, true /* associative */);
 
+        $headdata->from = $input->from;
+        $headdata->to = $input->to;
+
         $renderer->print_xls($worksheet, $coursestructure, $aggregate, $done, $row, $xlsformats);
         $renderer->print_header_xls($worksheet, $auser->id, $course->id, $headdata, $cols, $xlsformats);
 

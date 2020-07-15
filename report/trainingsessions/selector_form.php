@@ -63,16 +63,16 @@ class SelectorForm extends moodleform {
 
         $dateparms = array(
             'startyear' => 2008,
-            'stopyear'  => 2020,
+            'stopyear'  => 2025,
             'timezone'  => 99,
             'applydst'  => true,
             'optional'  => false
         );
         $titles[] = get_string('from');
-        $row[] = & $mform->createElement('date_selector', 'from', '', $dateparms);
+        $row[] = & $mform->createElement('date_time_selector', 'from', '', $dateparms);
 
         $titles[] = get_string('to');
-        $row[] = & $mform->createElement('date_selector', 'to', '', $dateparms);
+        $row[] = & $mform->createElement('date_time_selector', 'to', '', $dateparms);
 
         $context = context_course::instance($this->courseid);
 
@@ -86,6 +86,11 @@ class SelectorForm extends moodleform {
                 $useroptions = array();
 
                 foreach ($users as $user) {
+
+                    if(is_siteadmin($user->id)){
+                        continue;
+                    }
+
                     if (!has_capability('report/trainingsessions:iscompiled', $context, $user->id, false)) {
                         continue;
                     }
@@ -93,6 +98,8 @@ class SelectorForm extends moodleform {
                     if (!empty($config->disablesuspendedstudents) && $user->suspended) {
                         continue;
                     }
+
+
 
                     if (!$allgroupaccess) {
                         $keep = false;
@@ -106,15 +113,21 @@ class SelectorForm extends moodleform {
                         }
                     }
 
-                    $useroptions[$user->id] = $user->lastname.' '.$user->firstname;
+                    $useroptions[$user->id] = $user->firstname.' '.$user->lastname;
                     if (!array_key_exists($USER->id, $useroptions)) {
                         /*
                          * In some case, you may also want to see your data even if NOT
                          * primarily concerned with reports.
                          */
+
+                        if(is_siteadmin($USER->id)){
+                            continue;
+                        }
+
                         $useroptions[$USER->id] = fullname($USER);
                     }
                 }
+
                 $titles[] = get_string('user');
                 $row[] = & $mform->createElement('select', 'userid', '', $useroptions);
             } else {
@@ -154,7 +167,8 @@ class SelectorForm extends moodleform {
         }
         $row2[] = & $mform->createElement('checkbox', 'tonow', '', $updatetostr);
         if (has_capability('moodle/site:config', $context)) {
-            $row2[] = & $mform->createElement('checkbox', 'debug', '', $debugmodestr);
+            //saltapi
+            //$row2[] = & $mform->createElement('checkbox', 'debug', '', $debugmodestr);
         }
         $row2[] = $mform->createElement('html', ''); // This stands for an empty cell, but needs being a Quickform object.
         $row2[] = $mform->createElement('html', ''); // This stands for an empty cell, but needs being a Quickform object.

@@ -98,10 +98,15 @@ $headdata = (object) $headdata;
 $headdata->gradecols = $gradedata;
 
 $renderer->print_xls($worksheet, $coursestructure, $aggregate, $done, $row, $xlsformats);
+
+//$worksheet->write_string($row, 0, get_string('site'), $xlsformats['TT']);
+
+
 $headdata->done = $done;
 $rt->calculate_course_structure($coursestructure, $aggregate, $done, $items);
 
 $headdata->from = $input->from;
+$headdata->to = $input->to;
 
 $renderer->print_header_xls($worksheet, $auser->id, $course->id, $headdata, $cols, $xlsformats);
 

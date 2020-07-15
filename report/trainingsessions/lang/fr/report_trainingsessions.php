@@ -88,6 +88,7 @@ $string['discreteforcenumber'] = 'Echelle discrète numérique';
 $string['done'] = 'Visités ';
 $string['duration'] = 'Durée';
 $string['elapsed'] = 'Temps total dans le cours '; // @DYNAKEY
+$string['single_elapsed'] = 'Temps dans le cours ';
 $string['elapsedadvice'] = 'Les durées affichées de vos sessions de travail peuvent différer légèrement des mesures du cours affichées ci-dessus. Ces sessions peuvent en effet calculer des temps que vous avez passé pendant la même session de connexion, mais dans d\'autres volumes de cours où vous êtes inscrit.';
 $string['elapsedinitem'] = 'Temps passé';
 $string['elapsedlastweek'] = 'Temps passé dern. semaine'; // @DYNAKEY

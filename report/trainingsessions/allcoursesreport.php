@@ -160,6 +160,10 @@ if ($data->output == 'html') {
     echo '</center>';
     echo '<br/>';
 
+    //var_dump(get_config("report_trainingsessions"));
+    //var_dump($data);
+    //echo $data->view;
+
 } else {
 
     require_once($CFG->dirroot.'/report/trainingsessions/renderers/xlsrenderers.php');

@@ -50,11 +50,13 @@ $selform->from = optional_param_array('from', null, PARAM_INT);
 if (empty($selform->from) || @$selform->fromstart) {
     // Maybe we get it from parameters.
     $from = $course->startdate;
+    $selform->from["minute"] = strtotime('i', $from);
+    $selform->from["hour"] = strtotime('h', $from);
     $selform->from['day'] = date('d', $from);
     $selform->from['year'] = date('Y', $from);
     $selform->from['month'] = date('m', $from);
 } else {
-    $from = mktime(0, 0, 0, $selform->from['month'], $selform->from['day'], $selform->from['year']);
+    $from = mktime($selform->from["hour"], $selform->from["minute"], 0, $selform->from['month'], $selform->from['day'], $selform->from['year']);
 }
 
 $startday = $selform->from['day']; // From (-1 is from course start).
@@ -65,11 +67,13 @@ $selform->to = optional_param_array('to', null, PARAM_INT);
 if (empty($selform->to) || @$selform->tonow) {
     // Maybe we get it from parameters.
     $to = time();
+    $selform->to["minute"] = strtotime('i', $from);
+    $selform->to["hour"] = strtotime('h', $from);
     $selform->to['day'] = date('d', $to);
     $selform->to['year'] = date('Y', $to);
     $selform->to['month'] = date('m', $to);
 } else {
-    $to = mktime(0, 0, 0, $selform->to['month'], $selform->to['day'], $selform->to['year']);
+    $to = mktime($selform->to['hour'], $selform->to['minute'], 0, $selform->to['month'], $selform->to['day'], $selform->to['year']);
 }
 
 $endday = $selform->to['day']; // To (-1 is from course start).
