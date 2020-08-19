@@ -166,7 +166,7 @@ class cc11_forum extends entities11 {
         $fileinfo = pathinfo($filename);
 
         if (in_array($fileinfo['extension'], $images_extensions)) {
-            return '<img src="$@FILEPHP@$/' . $filename . '" title="' . $fileinfo['basename'] . '" alt="' . $fileinfo['basename'] . '" /><br />';
+            return '<pix src="$@FILEPHP@$/' . $filename . '" title="' . $fileinfo['basename'] . '" alt="' . $fileinfo['basename'] . '" /><br />';
         } else {
             return '<a href="$@FILEPHP@$/' . $filename . '" title="' . $fileinfo['basename'] . '" alt="' . $fileinfo['basename'] . '">' . $fileinfo['basename'] . '</a><br />';
         }

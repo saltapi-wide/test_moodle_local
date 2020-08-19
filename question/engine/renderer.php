@@ -293,7 +293,7 @@ class core_question_renderer extends plugin_renderer_base {
                         html_writer::empty_tag('input', $checkboxattributes) .
                         html_writer::empty_tag('input',
                                 array('type' => 'hidden', 'value' => $postdata, 'class' => 'questionflagpostdata')) .
-                        html_writer::tag('label', $this->get_flag_html($qa->is_flagged(), $id . 'img'),
+                        html_writer::tag('label', $this->get_flag_html($qa->is_flagged(), $id . 'pix'),
                                 array('id' => $id . 'label', 'for' => $id . 'checkbox')) . "\n";
 
                 $divattributes = array(
@@ -313,11 +313,11 @@ class core_question_renderer extends plugin_renderer_base {
     }
 
     /**
-     * Work out the actual img tag needed for the flag
+     * Work out the actual pix tag needed for the flag
      *
      * @param bool $flagged whether the question is currently flagged.
-     * @param string $id an id to be added as an attribute to the img (optional).
-     * @return string the img tag.
+     * @param string $id an id to be added as an attribute to the pix (optional).
+     * @return string the pix tag.
      */
     protected function get_flag_html($flagged, $id = '') {
         if ($flagged) {
@@ -337,7 +337,7 @@ class core_question_renderer extends plugin_renderer_base {
         if ($id) {
             $attributes['id'] = $id;
         }
-        $img = html_writer::empty_tag('img', $attributes);
+        $img = html_writer::empty_tag('pix', $attributes);
         $img .= html_writer::span($label);
 
         return $img;

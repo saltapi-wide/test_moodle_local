@@ -1361,7 +1361,7 @@ function portfolio_include_callback_file($component, $class = null) {
 function portfolio_rewrite_pluginfile_urls($text, $contextid, $component, $filearea, $itemid, $format, $options=null) {
     $patterns = array(
         '(<(a|A)[^<]*?href="@@PLUGINFILE@@/[^>]*?>.*?</(a|A)>)',
-        '(<(img|IMG)\s[^<]*?src="@@PLUGINFILE@@/[^>]*?/?>)',
+        '(<(pix|IMG)\s[^<]*?src="@@PLUGINFILE@@/[^>]*?/?>)',
     );
     $pattern = '~' . implode('|', $patterns) . '~';
     $callback = partial('portfolio_rewrite_pluginfile_url_callback', $contextid, $component, $filearea, $itemid, $format, $options);

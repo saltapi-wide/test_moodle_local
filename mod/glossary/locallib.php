@@ -742,7 +742,7 @@ function mod_glossary_get_tagged_entries($tag, $exclusivemode = false, $fromctx 
             $cmname = html_writer::link($cm->url, $cm->get_formatted_name());
             $coursename = format_string($item->fullname, true, array('context' => context_course::instance($item->courseid)));
             $coursename = html_writer::link($courseurl, $coursename);
-            $icon = html_writer::link($pageurl, html_writer::empty_tag('img', array('src' => $cm->get_icon_url())));
+            $icon = html_writer::link($pageurl, html_writer::empty_tag('pix', array('src' => $cm->get_icon_url())));
 
             $approved = "";
             if (!$item->approved) {

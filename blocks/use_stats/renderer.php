@@ -145,6 +145,7 @@ class block_use_stats_renderer extends plugin_renderer_base {
             if (@$config->backtracksource == 'studentchoice') {
                 $str .= ' ';
                 $str .= get_string('from', 'block_use_stats');
+                //saltapi
                 foreach (array(5, 15, 30, 60, 90, 180, 365) as $interval) {
                     $timemenu[$interval] = $interval.' '.get_string('days');
                 }

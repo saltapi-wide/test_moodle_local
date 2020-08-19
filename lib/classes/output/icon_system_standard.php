@@ -31,7 +31,7 @@ use pix_icon;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Standard icon rendering. No mapping - img tags used.
+ * Standard icon rendering. No mapping - pix tags used.
  *
  * @package    core
  * @category   output

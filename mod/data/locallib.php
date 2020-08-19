@@ -933,7 +933,7 @@ function mod_data_get_tagged_records($tag, $exclusivemode = false, $fromctx = 0,
             $cmname = html_writer::link($cm->url, $cm->get_formatted_name());
             $coursename = format_string($item->fullname, true, array('context' => context_course::instance($item->courseid)));
             $coursename = html_writer::link($courseurl, $coursename);
-            $icon = html_writer::link($pageurl, html_writer::empty_tag('img', array('src' => $cm->get_icon_url())));
+            $icon = html_writer::link($pageurl, html_writer::empty_tag('pix', array('src' => $cm->get_icon_url())));
             $tagfeed->add($icon, $pagename, $cmname . '<br>' . $coursename);
         }
         $content = $OUTPUT->render_from_template('core_tag/tagfeed', $tagfeed->export_for_template($OUTPUT));

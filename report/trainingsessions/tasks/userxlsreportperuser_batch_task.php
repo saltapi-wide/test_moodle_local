@@ -79,7 +79,7 @@ ob_end_clean();
 $workbook->send($filename);
 
 $xlsformats = $renderer->xls_formats($workbook);
-$startrow = $renderer->count_header_rows($course->id) + 5;
+$startrow = $renderer->count_header_rows($course->id) + 10;
 
 $row = $startrow;
 $worksheet = $renderer->init_worksheet($auser->id, $row, $xlsformats, $workbook);
@@ -99,8 +99,11 @@ $headdata->gradecols = $gradedata;
 
 $renderer->print_xls($worksheet, $coursestructure, $aggregate, $done, $row, $xlsformats);
 
-//$worksheet->write_string($row, 0, get_string('site'), $xlsformats['TT']);
+//saltapi
+//$worksheet->write_string($row, 1, get_string('extotherelapsed','report_trainingsessions'), $xlsformats['TT']);
+//$worksheet->write_string($row, 2, format_time($headdata->coursetime), $xlsformats['b']);
 
+//saltapi
 
 $headdata->done = $done;
 $rt->calculate_course_structure($coursestructure, $aggregate, $done, $items);
@@ -110,7 +113,7 @@ $headdata->to = $input->to;
 
 $renderer->print_header_xls($worksheet, $auser->id, $course->id, $headdata, $cols, $xlsformats);
 
-if (!empty($config->showsessions)) {
+if (!empty($config->showsessions) && ($USER->id=='10109')) {
 
     if (!empty($aggregate['sessions'])) {
 

@@ -1158,7 +1158,7 @@ class behat_base extends Behat\MinkExtension\Context\RawMinkContext {
      * If you override this method in your plugin (e.g. mod_mymod), to define
      * new selectors specific to your plugin. For example, if you returned
      *   new behat_component_named_selector('Thingy',
-     *           [".//some/xpath//img[contains(@alt, %locator%)]/.."])
+     *           [".//some/xpath//pix[contains(@alt, %locator%)]/.."])
      * then
      *   Then I should see "Useful text" in the "Whatever" "mod_mymod > Thingy"
      * would work.

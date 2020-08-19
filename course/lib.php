@@ -3975,7 +3975,7 @@ function course_get_tagged_course_modules($tag, $exclusivemode = false, $fromcon
             $coursename = format_string($course->fullname, true,
                     array('context' => context_course::instance($item->courseid)));
             $coursename = html_writer::link($courseurl, $coursename);
-            $icon = html_writer::empty_tag('img', array('src' => $cm->get_icon_url()));
+            $icon = html_writer::empty_tag('pix', array('src' => $cm->get_icon_url()));
             $tagfeed->add($icon, $cmname, $coursename);
         }
 

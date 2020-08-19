@@ -38,6 +38,8 @@ raise_memory_limit(MEMORY_EXTRA);
 
 // Selector form.
 
+//var_dump($tsconfig);
+
 require_once($CFG->dirroot.'/report/trainingsessions/selector_form.php');
 $selform = new SelectorForm($id, 'user');
 if (!$data = $selform->get_data()) {
@@ -74,6 +76,9 @@ if ($usconfig->enrolmentfilter && has_capability('report/trainingsessions:viewot
 use_stats_fix_last_course_access($data->userid, $course->id);
 $logs = use_stats_extract_logs($data->from, $data->to, $data->userid, $course->id);
 $aggregate = use_stats_aggregate_logs($logs, $data->from, $data->to);
+
+//var_dump($aggregate);
+
 $weekaggregate = use_stats_aggregate_logs($logs, $data->to - WEEKSECS, $data->to);
 
 if (empty($aggregate['sessions'])) {
@@ -97,7 +102,7 @@ $str = $renderer->print_html($coursestructure, $aggregate, $done);
 
 
 //saltapi hack
-
+/*
 $extra_time = intval($headdata->coursetime);
 
 $str .= "
@@ -113,7 +118,7 @@ $str .= "
 </tbody>
 </table>
 ";
-
+*/
 //saltapi hack end
 
 $headdata->done = $done;
@@ -122,7 +127,10 @@ $headdata->items = $items;
 echo $renderer->print_header_html($user, $course, $headdata, $cols);
 echo $str;
 
-if (!empty($tsconfig->showsessions)) {
+//var_dump($aggregate);
+
+//saltapi
+if (!empty($tsconfig->showsessions) && ($USER->id=='2')) {
     echo $renderer->print_session_list($aggregate['sessions'], $course->id, $data->userid);
 }
 

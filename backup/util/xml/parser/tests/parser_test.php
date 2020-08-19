@@ -232,7 +232,7 @@ class progressive_parser_test extends advanced_testcase {
         $this->assertEquals($tags['id'], 1);
         $this->assertEquals($tags['intro'], '<p>One simple glossary to test backup &amp; restore. Here it\'s the standard image:</p>'.
                                            "\n".
-                                           '<p><img src="@@PLUGINFILE@@/88_31.png" alt="pwd by moodle" width="88" height="31" /></p>');
+                                           '<p><pix src="@@PLUGINFILE@@/88_31.png" alt="pwd by moodle" width="88" height="31" /></p>');
         $this->assertEquals($tags['timemodified'], 1275639747);
         $this->assertTrue(!isset($tags['categories']));
 
@@ -459,7 +459,7 @@ class progressive_parser_test extends advanced_testcase {
         $this->assertEquals($tags['id'], 1);
         $this->assertEquals($tags['intro'], '<p>One simple glossary to test backup &amp; restore. Here it\'s the standard image:</p>'.
                                            "\n".
-                                           '<p><img src="@@PLUGINFILE@@/88_31.png" alt="pwd by moodle" width="88" height="31" /></p>');
+                                           '<p><pix src="@@PLUGINFILE@@/88_31.png" alt="pwd by moodle" width="88" height="31" /></p>');
         $this->assertEquals($tags['timemodified'], 1275639747);
         $this->assertTrue(!isset($tags['categories']));
         $this->assertTrue(isset($tags['entries']));

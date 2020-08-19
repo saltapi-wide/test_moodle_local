@@ -37,8 +37,8 @@ class HTMLPurifier_HTMLModule_Tidy_XHTMLAndHTML4 extends HTMLPurifier_HTMLModule
                 )
             );
 
-        // @align for img -------------------------------------------------
-        $r['img@align'] =
+        // @align for pix -------------------------------------------------
+        $r['pix@align'] =
             new HTMLPurifier_AttrTransform_EnumToCSS(
                 'align',
                 array(
@@ -100,8 +100,8 @@ class HTMLPurifier_HTMLModule_Tidy_XHTMLAndHTML4 extends HTMLPurifier_HTMLModule
         $r['th@bgcolor'] =
             new HTMLPurifier_AttrTransform_BgColor();
 
-        // @border for img ------------------------------------------------
-        $r['img@border'] = new HTMLPurifier_AttrTransform_Border();
+        // @border for pix ------------------------------------------------
+        $r['pix@border'] = new HTMLPurifier_AttrTransform_Border();
 
         // @clear for br --------------------------------------------------
         $r['br@clear'] =
@@ -120,8 +120,8 @@ class HTMLPurifier_HTMLModule_Tidy_XHTMLAndHTML4 extends HTMLPurifier_HTMLModule
         $r['th@height'] =
             new HTMLPurifier_AttrTransform_Length('height');
 
-        // @hspace for img ------------------------------------------------
-        $r['img@hspace'] = new HTMLPurifier_AttrTransform_ImgSpace('hspace');
+        // @hspace for pix ------------------------------------------------
+        $r['pix@hspace'] = new HTMLPurifier_AttrTransform_ImgSpace('hspace');
 
         // @noshade for hr ------------------------------------------------
         // this transformation is not precise but often good enough.
@@ -164,8 +164,8 @@ class HTMLPurifier_HTMLModule_Tidy_XHTMLAndHTML4 extends HTMLPurifier_HTMLModule
         $r['ol@type'] = new HTMLPurifier_AttrTransform_EnumToCSS('type', $ol_types, true);
         $r['li@type'] = new HTMLPurifier_AttrTransform_EnumToCSS('type', $li_types, true);
 
-        // @vspace for img ------------------------------------------------
-        $r['img@vspace'] = new HTMLPurifier_AttrTransform_ImgSpace('vspace');
+        // @vspace for pix ------------------------------------------------
+        $r['pix@vspace'] = new HTMLPurifier_AttrTransform_ImgSpace('vspace');
 
         // @width for hr, td, th ------------------------------------------
         $r['td@width'] =

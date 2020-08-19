@@ -125,7 +125,7 @@ class qformat_blackboard_six_base extends qformat_based_on_xml {
     public function text_field($text) {
         $data = array();
         // Step one, find all file refs then add to array.
-        preg_match_all('|<img[^>]+src="([^"]*)"|i', $text, $out); // Find all src refs.
+        preg_match_all('|<pix[^>]+src="([^"]*)"|i', $text, $out); // Find all src refs.
         $filepaths = array();
         foreach ($out[1] as $path) {
             $fullpath = $this->filebase . '/' . $path;

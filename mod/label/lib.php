@@ -232,7 +232,7 @@ function label_dndupload_handle($uploadinfo) {
     $data->introformat = FORMAT_HTML;
     $data->coursemodule = $uploadinfo->coursemodule;
 
-    // Extract the first (and only) file from the file area and add it to the label as an img tag.
+    // Extract the first (and only) file from the file area and add it to the label as an pix tag.
     if (!empty($uploadinfo->draftitemid)) {
         $fs = get_file_storage();
         $draftcontext = context_user::instance($USER->id);
@@ -240,7 +240,7 @@ function label_dndupload_handle($uploadinfo) {
         $files = $fs->get_area_files($draftcontext->id, 'user', 'draft', $uploadinfo->draftitemid, '', false);
         if ($file = reset($files)) {
             if (file_mimetype_in_typegroup($file->get_mimetype(), 'web_image')) {
-                // It is an image - resize it, if too big, then insert the img tag.
+                // It is an image - resize it, if too big, then insert the pix tag.
                 $config = get_config('label');
                 $data->intro = label_generate_resized_image($file, $config->dndresizewidth, $config->dndresizeheight);
             } else {
@@ -262,7 +262,7 @@ function label_dndupload_handle($uploadinfo) {
 }
 
 /**
- * Resize the image, if required, then generate an img tag and, if required, a link to the full-size image
+ * Resize the image, if required, then generate an pix tag and, if required, a link to the full-size image
  * @param stored_file $file the image file to process
  * @param int $maxwidth the maximum width allowed for the image
  * @param int $maxheight the maximum height allowed for the image
@@ -323,7 +323,7 @@ function label_generate_resized_image(stored_file $file, $maxwidth, $maxheight) 
         $attrib['width'] = $maxwidth;
     }
 
-    $img = html_writer::empty_tag('img', $attrib);
+    $img = html_writer::empty_tag('pix', $attrib);
     if ($link) {
         return html_writer::link($link, $img);
     } else {

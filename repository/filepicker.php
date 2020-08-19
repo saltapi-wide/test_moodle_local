@@ -142,7 +142,7 @@ case 'search':
             if (isset($item['thumbnail_width'])) {
                 $style .= 'max-width:'.$item['thumbnail_width'].'px;';
             }
-            echo html_writer::empty_tag('img', array('src' => $item['thumbnail'], 'alt' => '', 'style' => $style));
+            echo html_writer::empty_tag('pix', array('src' => $item['thumbnail'], 'alt' => '', 'style' => $style));
             echo '</td><td>';
             if (!empty($item['url'])) {
                 echo html_writer::link($item['url'], s($item['title']), array('target'=>'_blank'));
@@ -238,7 +238,7 @@ case 'sign':
                 if (isset($item['thumbnail_width'])) {
                     $style .= 'max-width:'.$item['thumbnail_width'].'px;';
                 }
-                echo html_writer::empty_tag('img', array('src' => $item['thumbnail'], 'style' => $style));
+                echo html_writer::empty_tag('pix', array('src' => $item['thumbnail'], 'style' => $style));
                 echo '</td><td>';
                 if (!empty($item['url'])) {
                     echo html_writer::link($item['url'], s($item['title']), array('target'=>'_blank'));
@@ -353,7 +353,7 @@ case 'download':
 case 'confirm':
     echo $OUTPUT->header();
     echo '<div><a href="'.s($PAGE->url->out(false)).'">'.get_string('back', 'repository').'</a></div>';
-    echo '<img src="'.$thumbnail.'" />';
+    echo '<pix src="'.$thumbnail.'" />';
     echo '<form method="post">';
     echo '<table>';
     echo '  <tr>';
@@ -393,7 +393,7 @@ case 'plugins':
         $aurl->params(array('savepath'=>$savepath, 'action' => 'list', 'repo_id' => $info->id, 'draftpath'=>$draftpath));
 
         echo '<li>';
-        echo html_writer::empty_tag('img', array('src'=>$info->icon, 'alt'=>$info->name, 'class'=>'icon icon-pre'));
+        echo html_writer::empty_tag('pix', array('src'=>$info->icon, 'alt'=>$info->name, 'class'=>'icon icon-pre'));
         echo html_writer::link($aurl, s($info->name));
         echo '</li>';
     }

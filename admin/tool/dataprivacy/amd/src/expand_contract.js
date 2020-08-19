@@ -25,8 +25,8 @@
 
 define(['jquery', 'core/url', 'core/str'], function($, url, str) {
 
-    var expandedImage = $('<img alt="" src="' + url.imageUrl('t/expanded') + '"/>');
-    var collapsedImage = $('<img alt="" src="' + url.imageUrl('t/collapsed') + '"/>');
+    var expandedImage = $('<pix alt="" src="' + url.imageUrl('t/expanded') + '"/>');
+    var collapsedImage = $('<pix alt="" src="' + url.imageUrl('t/collapsed') + '"/>');
 
     /*
      * Class names to apply when expanding/collapsing nodes.
@@ -50,14 +50,14 @@ define(['jquery', 'core/url', 'core/str'], function($, url, str) {
                 targetnode.attr('aria-expanded', true);
                 thisnode.find(':header i.fa').removeClass(CLASSES.EXPAND);
                 thisnode.find(':header i.fa').addClass(CLASSES.COLLAPSE);
-                thisnode.find(':header img.icon').attr('src', expandedImage.attr('src'));
+                thisnode.find(':header pix.icon').attr('src', expandedImage.attr('src'));
             } else {
                 targetnode.removeClass('visible');
                 targetnode.addClass('hide');
                 targetnode.attr('aria-expanded', false);
                 thisnode.find(':header i.fa').removeClass(CLASSES.COLLAPSE);
                 thisnode.find(':header i.fa').addClass(CLASSES.EXPAND);
-                thisnode.find(':header img.icon').attr('src', collapsedImage.attr('src'));
+                thisnode.find(':header pix.icon').attr('src', collapsedImage.attr('src'));
             }
         },
 
@@ -88,7 +88,7 @@ define(['jquery', 'core/url', 'core/str'], function($, url, str) {
                 $(this).removeClass(iconclassnow);
                 $(this).addClass(iconclassnext);
             });
-            $(':header img.icon').each(function() {
+            $(':header pix.icon').each(function() {
                 $(this).attr('src', imagenow);
             });
         }

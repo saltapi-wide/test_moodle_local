@@ -213,7 +213,7 @@ function(
                 return null;
             }
             // Check the message html for a src attribute, indicative of media.
-            // Replace <img with <noimg to stop browsers pre-fetching the image as part of tmp element creation.
+            // Replace <pix with <noimg to stop browsers pre-fetching the image as part of tmp element creation.
             var tmpElement = document.createElement("element");
             tmpElement.innerHTML = lastMessage.text.replace(/<img /g, '<noimg ');
             var isMedia = tmpElement.querySelector("[src]") || false;
@@ -234,7 +234,7 @@ function(
             var pix = 'i/messagecontentmultimediageneral';
             var label = 'messagecontentmultimediageneral';
 
-            if (lastMessage.text.includes('<img')) {
+            if (lastMessage.text.includes('<pix')) {
                 pix = 'i/messagecontentimage';
                 label = 'messagecontentimage';
             } else if (lastMessage.text.includes('<video')) {

@@ -50,7 +50,7 @@ class qtype_ddmarker_renderer extends qtype_ddtoimage_renderer_base {
 
         $bgimage = self::get_url_for_image($qa, 'bgimage');
 
-        $img = html_writer::empty_tag('img', array(
+        $img = html_writer::empty_tag('pix', array(
                 'class' => 'dropbackground',
                 'alt' => get_string('dropbackground', 'qtype_ddmarker')));
 

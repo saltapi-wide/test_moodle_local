@@ -198,7 +198,7 @@ Y.extend(ANNOTATION, Y.Base, {
             this.drawable.shapes.push(shape);
 
             // Add a delete X to the annotation.
-            var deleteicon = Y.Node.create('<img src="' + M.util.image_url('trash', 'assignfeedback_editpdf') + '"/>'),
+            var deleteicon = Y.Node.create('<pix src="' + M.util.image_url('trash', 'assignfeedback_editpdf') + '"/>'),
                 deletelink = Y.Node.create('<a href="#" role="button"></a>');
 
             deleteicon.setAttrs({

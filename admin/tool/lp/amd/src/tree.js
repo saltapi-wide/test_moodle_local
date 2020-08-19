@@ -29,9 +29,9 @@
 define(['jquery', 'core/url', 'core/log'], function($, url, log) {
     // Private variables and functions.
     /** @var {String} expandedImage The html for an expanded tree node twistie. */
-    var expandedImage = $('<img alt="" src="' + url.imageUrl('t/expanded') + '"/>');
+    var expandedImage = $('<pix alt="" src="' + url.imageUrl('t/expanded') + '"/>');
     /** @var {String} collapsedImage The html for a collapsed tree node twistie. */
-    var collapsedImage = $('<img alt="" src="' + url.imageUrl('t/collapsed') + '"/>');
+    var collapsedImage = $('<pix alt="" src="' + url.imageUrl('t/collapsed') + '"/>');
 
     /**
      * Constructor

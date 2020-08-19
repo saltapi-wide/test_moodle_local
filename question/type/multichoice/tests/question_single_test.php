@@ -182,12 +182,12 @@ class qtype_multichoice_single_question_test extends advanced_testcase {
         $mc = test_question_maker::make_a_multichoice_single_question();
         $this->assertEquals('Frog', $mc->make_html_inline('<p>Frog</p>'));
         $this->assertEquals('Frog<br />Toad', $mc->make_html_inline("<p>Frog</p>\n<p>Toad</p>"));
-        $this->assertEquals('<img src="http://example.com/pic.png" alt="Graph" />',
+        $this->assertEquals('<pix src="http://example.com/pic.png" alt="Graph" />',
                 $mc->make_html_inline(
-                    '<p><img src="http://example.com/pic.png" alt="Graph" /></p>'));
-        $this->assertEquals("Frog<br />XXX <img src='http://example.com/pic.png' alt='Graph' />",
+                    '<p><pix src="http://example.com/pic.png" alt="Graph" /></p>'));
+        $this->assertEquals("Frog<br />XXX <pix src='http://example.com/pic.png' alt='Graph' />",
                 $mc->make_html_inline(" <p> Frog </p> \n\r
-                    <p> XXX <img src='http://example.com/pic.png' alt='Graph' /> </p> "));
+                    <p> XXX <pix src='http://example.com/pic.png' alt='Graph' /> </p> "));
         $this->assertEquals('Frog', $mc->make_html_inline('<p>Frog</p><p></p>'));
         $this->assertEquals('Frog<br />†', $mc->make_html_inline('<p>Frog</p><p>†</p>'));
     }

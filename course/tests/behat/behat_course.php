@@ -445,7 +445,7 @@ class behat_course extends behat_base {
         // Ensures the section exists.
         $xpath = $this->section_exists($sectionnumber);
 
-        // The important checking, we can not check the img.
+        // The important checking, we can not check the pix.
         $this->execute('behat_general::should_exist_in_the', ['Remove highlight', 'link', $xpath, 'xpath_element']);
     }
 

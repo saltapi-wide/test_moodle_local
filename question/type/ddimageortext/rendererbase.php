@@ -63,7 +63,7 @@ class qtype_ddtoimage_renderer_base extends qtype_with_combined_feedback_rendere
 
         $bgimage = self::get_url_for_image($qa, 'bgimage');
 
-        $img = html_writer::empty_tag('img', array(
+        $img = html_writer::empty_tag('pix', array(
                 'src' => $bgimage, 'class' => 'dropbackground',
                 'alt' => get_string('dropbackground', 'qtype_ddimageortext')));
         $dropzones = html_writer::tag('div', '', array('class' => 'dropzones'));
@@ -86,7 +86,7 @@ class qtype_ddtoimage_renderer_base extends qtype_with_combined_feedback_rendere
                     $dragimagehomesgroup .= html_writer::tag('div', $dragimage->text,
                             array('src' => $dragimageurl, 'class' => join(' ', $classes)));
                 } else {
-                    $dragimagehomesgroup .= html_writer::empty_tag('img',
+                    $dragimagehomesgroup .= html_writer::empty_tag('pix',
                             array('src' => $dragimageurl, 'alt' => $dragimage->text,
                                     'class' => join(' ', $classes)));
                 }

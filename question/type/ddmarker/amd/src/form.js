@@ -394,7 +394,7 @@ define(['jquery', 'core/dragdrop', 'qtype_ddmarker/shapes'], function($, dragDro
             $('fieldset#id_previewareaheader div.fcontainer').append(
                 '<div class="ddarea que ddmarker">' +
                 '   <div id="ddm-droparea" class="droparea">' +
-                '       <img class="dropbackground" />' +
+                '       <pix class="dropbackground" />' +
                 '       <div id="ddm-dropzone" class="dropzones">' +
                 '       </div>' +
                 '   </div>' +

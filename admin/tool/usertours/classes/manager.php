@@ -256,13 +256,13 @@ class manager {
             (object) [
                 'link'  => helper::get_edit_tour_link(),
                 'linkproperties' => [],
-                'img'   => 'b/tour-new',
+                'pix'   => 'b/tour-new',
                 'title' => get_string('newtour', 'tool_usertours'),
             ],
             (object) [
                 'link'  => helper::get_import_tour_link(),
                 'linkproperties' => [],
-                'img'   => 'b/tour-import',
+                'pix'   => 'b/tour-import',
                 'title' => get_string('importtour', 'tool_usertours'),
             ],
             (object) [
@@ -270,7 +270,7 @@ class manager {
                 'linkproperties' => [
                         'target' => '_blank',
                     ],
-                'img'   => 'b/tour-shared',
+                'pix'   => 'b/tour-shared',
                 'title' => get_string('sharedtourslink', 'tool_usertours'),
             ],
         ];

@@ -138,7 +138,7 @@ class MoodleQuickForm_wikieditor extends MoodleQuickForm_textarea {
         foreach ($wiki_editor as $button) {
             $html .= "<a href=\"javascript:insertTags";
             $html .= "('".$button[2]."','".$button[3]."','".$button[4]."');\">";
-            $html .= html_writer::empty_tag('img', array('alt' => $button[1], 'src' => $CFG->wwwroot . '/mod/wiki/editors/wiki/images/' . $button[0]));
+            $html .= html_writer::empty_tag('pix', array('alt' => $button[1], 'src' => $CFG->wwwroot . '/mod/wiki/editors/wiki/images/' . $button[0]));
             $html .= "</a>";
         }
         $html .= "<label class='accesshide' for='addtags'>" . get_string('insertimage', 'wiki')  . "</label>";

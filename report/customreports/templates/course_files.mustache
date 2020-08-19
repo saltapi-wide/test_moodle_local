@@ -1,0 +1,68 @@
+
+<div class='panel'>
+    <button class='btn_view dashboard_view'>Dashboard</button>
+    <button class='btn_view toreports'>Reports list</button>
+
+
+</div>
+
+<div class="datatable_info">
+    <br>
+    <h2 style="text-align: center;">Course Files report</h2>
+    <h5 style="text-align: center;"></h5>
+
+
+
+    <select style="display: none; border-radius: 5px;" class="btn-group btn btn-secondary courses_list" name="courses" onchange="location = '?' + this.value;">
+    {{#course_list}}
+        <option {{#flag}}selected{{/flag}} value="courseid={{courseid}}" >{{coursefullname}}</option>
+    {{/course_list}}
+    </select>
+
+
+
+</div>
+
+
+
+<table class="reporttable display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Filename</th>
+        <th>Uploaded By</th>
+        <th>Used in</th>
+        <th>Time Uploaded</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#files_list}}
+        <tr>
+            <td></td>
+            <td>{{filename}}</td>
+            <td>{{uploaded_by}}</td>
+            <td><a {{#haslink}}target="_blank" href="{{filelink}}" {{/haslink}}>{{used_in}}</a></td>
+            <td>{{time_created}}</td>
+        </tr>
+    {{/files_list}}
+    </tbody>
+</table>
+
+
+{{#js}}
+    require(
+    ['local_customreports/datatables_init',
+    'local_customreports/jszip',
+    'local_customreports/button_course'] , function(Main,Jszip,button_course) {
+    window.JSZip=Jszip;
+    Main.init();
+    button_course.courses_list();
+    });
+
+
+
+{{/js}}
+
+
+
+

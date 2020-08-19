@@ -4,7 +4,7 @@
 
 /**
  * Transform that supplies default values for the src and alt attributes
- * in img tags, as well as prevents the img tag from being removed
+ * in pix tags, as well as prevents the pix tag from being removed
  * because of a missing alt tag. This needs to be registered as both
  * a pre and post attribute transform.
  */

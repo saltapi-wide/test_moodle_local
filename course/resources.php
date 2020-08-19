@@ -128,7 +128,7 @@ foreach ($cms as $cm) {
     }
 
     $extra = empty($cm->extra) ? '' : $cm->extra;
-    $icon = '<img src="'.$cm->get_icon_url().'" class="activityicon" alt="'.$cm->get_module_type_name().'" /> ';
+    $icon = '<pix src="'.$cm->get_icon_url().'" class="activityicon" alt="'.$cm->get_module_type_name().'" /> ';
 
     if (isset($resource->intro) && isset($resource->introformat)) {
         $intro = format_module_intro($cm->modname, $resource, $cm->id);

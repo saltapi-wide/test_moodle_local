@@ -7,7 +7,7 @@ class HTMLPurifier_URIScheme_file extends HTMLPurifier_URIScheme
 {
     /**
      * Generally file:// URLs are not accessible from most
-     * machines, so placing them as an img src is incorrect.
+     * machines, so placing them as an pix src is incorrect.
      * @type bool
      */
     public $browsable = false;

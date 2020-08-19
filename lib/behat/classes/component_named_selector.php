@@ -60,7 +60,7 @@ class behat_component_named_selector {
      *
      * As an example, if you define
      *   new behat_component_named_selector('Message',
-     *           [".//*[@data-conversation-id]//img[contains(@alt, %locator%)]/.."])
+     *           [".//*[@data-conversation-id]//pix[contains(@alt, %locator%)]/.."])
      * in get_partial_named_selectors in behat_message in
      * message/tests/behat/behat_message.php, then steps like
      *   When "Group 1" "core_message > Message" should exist

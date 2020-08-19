@@ -1357,7 +1357,7 @@ function get_host_from_url($url) {
  * images, objects, etc.
  */
 function html_is_blank($string) {
-    return trim(strip_tags($string, '<img><object><applet><input><select><textarea><hr>')) == '';
+    return trim(strip_tags($string, '<pix><object><applet><input><select><textarea><hr>')) == '';
 }
 
 /**
@@ -7292,6 +7292,7 @@ function get_string_manager($forcereload=false) {
 function get_string($identifier, $component = '', $a = null, $lazyload = false) {
     global $CFG;
 
+
     // If the lazy load argument has been supplied return a lang_string object
     // instead.
     // We need to make sure it is true (and a bool) as you will see below there
@@ -8413,7 +8414,7 @@ function shorten_text($text, $ideal=30, $exact = false, $ending='...') {
         // If there is any html-tag in this line, handle it and add it (uncounted) to the output.
         if (!empty($linematchings[1])) {
             // If it's an "empty element" with or without xhtml-conform closing slash (f.e. <br/>).
-            if (!preg_match('/^<(\s*.+?\/\s*|\s*(img|br|input|hr|area|base|basefont|col|frame|isindex|link|meta|param)(\s.+?)?)>$/is', $linematchings[1])) {
+            if (!preg_match('/^<(\s*.+?\/\s*|\s*(pix|br|input|hr|area|base|basefont|col|frame|isindex|link|meta|param)(\s.+?)?)>$/is', $linematchings[1])) {
                 if (preg_match('/^<\s*\/([^\s]+?)\s*>$/s', $linematchings[1], $tagmatchings)) {
                     // Record closing tag.
                     $tagdetails[] = (object) array(

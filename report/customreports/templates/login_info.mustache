@@ -1,0 +1,71 @@
+
+<div class='panel'>
+    <button class='btn_view dashboard_view'>Dashboard</button>
+    <button class='btn_view toreports'>Reports list</button>
+
+
+</div>
+
+<div class="datatable_info">
+    <br>
+    <h2 style="text-align: center;">{{#str}}login_info_title,report_customreports{{/str}}</h2>
+    <h5 style="text-align: center;">{{#str}}login_info_text,report_customreports{{/str}}</h5>
+<!--    <hr>-->
+<!--    <div class="dates">-->
+
+<!--        <input class="startdate" placeholder="Select from date"  data-format="d-m-Y">-->
+<!--        <input class="enddate" placeholder="Select to date"  data-format="d-m-Y">-->
+<!--        <button class="submitdates btn btn-secondary">Submit chosen dates</button>-->
+<!--    </div>-->
+
+
+</div>
+
+
+
+<table class="reporttable display"  cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th></th>
+        <th>{{#str}}employee_id,report_customreports{{/str}}</th>
+        <th>{{#str}}name,report_customreports{{/str}}</th>
+        <th>{{#str}}lastname,report_customreports{{/str}}</th>
+        <th>{{#str}}log_in_date,report_customreports{{/str}}</th>
+        <th>{{#str}}log_out_date,report_customreports{{/str}}</th>
+<!--        <th>Log in time</th>-->
+<!--        <th>Log out time</th>-->
+        <th>{{#str}}total_time,report_customreports{{/str}}</th>
+
+    </tr>
+    </thead>
+
+
+    <tbody>
+    {{#users_info}}
+        <tr>
+            <td></td>
+            <td>{{id}}</td>
+            <td>{{firstname}}</td>
+            <td>{{lastname}}</td>
+            <td>{{login_date}}</td>
+            <td>{{logout_date}}</td>
+<!--            <td>{{login_time}}</td>-->
+<!--            <td>{{logout_time}}</td>-->
+            <td>{{total_time}}</td>
+        </tr>
+    {{/users_info}}
+    </tbody>
+
+</table>
+
+{{#js}}
+    require(
+    ['report_customreports/datatables_init',
+    'report_customreports/jszip'] , function(Main,Jszip) {
+    window.JSZip=Jszip;
+    Main.init();
+
+    });
+{{/js}}
+
+

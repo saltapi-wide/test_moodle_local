@@ -60,7 +60,7 @@ define(['jquery', 'core/dragdrop'], function($, dragDrop) {
             $('#id_previewareaheader').append(
                 '<div class="ddarea">' +
                 '  <div class="droparea">' +
-                '    <img class="dropbackground" />' +
+                '    <pix class="dropbackground" />' +
                 '    <div class="dropzones"></div>' +
                 '  </div>' +
                 '  <div class="dragitems"></div>' +
@@ -156,7 +156,7 @@ define(['jquery', 'core/dragdrop'], function($, dragDrop) {
                         continue;
                     }
                     // Althoug these are previews of drops, we also add the class name 'drag',
-                    dropZoneHolder.append('<img class="droppreview group' + group + ' drop' + dropNo +
+                    dropZoneHolder.append('<pix class="droppreview group' + group + ' drop' + dropNo +
                             '" src="' + imgUrl + '" alt="' + label + '" data-drop-no="' + dropNo + '">');
 
                 } else if (label !== '') {
@@ -172,7 +172,7 @@ define(['jquery', 'core/dragdrop'], function($, dragDrop) {
          * This polls until all the drop-zone images have loaded, and then calls updateDropZones().
          */
         waitForAllDropImagesToBeLoaded: function() {
-            var notYetLoadedImages = $('.dropzones img').not(function(i, imgNode) {
+            var notYetLoadedImages = $('.dropzones pix').not(function(i, imgNode) {
                 return dragDropToImageForm.imageIsLoaded(imgNode);
             });
 

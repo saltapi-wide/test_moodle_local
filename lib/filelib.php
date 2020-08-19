@@ -1637,7 +1637,7 @@ function download_file_content($url, $headers=null, $postdata=null, $fullrespons
  *     FILENAME-24, FILENAME-32, FILENAME-64, FILENAME-128, FILENAME-256 are recommended.
  * 'groups' (optional) - array of filetype groups this filetype extension is part of;
  *     commonly used in moodle the following groups:
- *       - web_image - image that can be included as <img> in HTML
+ *       - web_image - image that can be included as <pix> in HTML
  *       - image - image that we can parse using GD to find it's dimensions, also used for portfolio format
  *       - video - file that can be imported as video in text editor
  *       - audio - file that can be imported as audio in text editor
@@ -1779,7 +1779,7 @@ function mimeinfo_from_type($element, $mimetype) {
  * <code>
  * // $file - instance of stored_file or file_info
  * $icon = $OUTPUT->image_url(file_file_icon($file))->out();
- * echo html_writer::empty_tag('img', array('src' => $icon, 'alt' => get_mimetype_description($file)));
+ * echo html_writer::empty_tag('pix', array('src' => $icon, 'alt' => get_mimetype_description($file)));
  * </code>
  * or
  * <code>
@@ -1828,7 +1828,7 @@ function file_file_icon($file, $size = null) {
  * Usage:
  * <code>
  * $icon = $OUTPUT->image_url(file_folder_icon())->out();
- * echo html_writer::empty_tag('img', array('src' => $icon));
+ * echo html_writer::empty_tag('pix', array('src' => $icon));
  * </code>
  * or
  * <code>
@@ -1865,7 +1865,7 @@ function file_folder_icon($iconsize = null) {
  * <code>
  * $mimetype = 'image/jpg';
  * $icon = $OUTPUT->image_url(file_mimetype_icon($mimetype))->out();
- * echo html_writer::empty_tag('img', array('src' => $icon, 'alt' => get_mimetype_description($mimetype)));
+ * echo html_writer::empty_tag('pix', array('src' => $icon, 'alt' => get_mimetype_description($mimetype)));
  * </code>
  *
  * @category files
@@ -1888,7 +1888,7 @@ function file_mimetype_icon($mimetype, $size = NULL) {
  * <code>
  * $filename = '.jpg';
  * $icon = $OUTPUT->image_url(file_extension_icon($filename))->out();
- * echo html_writer::empty_tag('img', array('src' => $icon, 'alt' => '...'));
+ * echo html_writer::empty_tag('pix', array('src' => $icon, 'alt' => '...'));
  * </code>
  *
  * @todo MDL-31074 When an $OUTPUT->icon method is available this function should be altered

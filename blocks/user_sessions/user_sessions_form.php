@@ -57,12 +57,6 @@ class block_user_sessions_form extends moodleform {
         //$dur->setValue(intval($duration));
         $mform->setDefault('total_duration', $duration);
 
-//        $num_of_sessions = $savedAutoGenValue->num_of_sessions;
-//
-//        $mform->addElement('text', 'num_of_sessions', get_string('num_of_sessions', 'block_user_sessions'));
-//        $mform->addRule('num_of_sessions', 'Numeric', 'numeric', null, 'client');
-//        $mform->setDefault('num_of_sessions', $num_of_sessions);
-
 
 
         $this->add_action_buttons();
@@ -73,7 +67,7 @@ class block_user_sessions_form extends moodleform {
         global $DB;
 
         $sql = 'SELECT *
-			FROM {user_sessions_settings} 
+			FROM {us_settings} 
 			WHERE courseid=?';
 
         $result = $DB->get_record_sql($sql,array($courseid));
@@ -84,12 +78,14 @@ class block_user_sessions_form extends moodleform {
 
         if ($result) {
             $return->active = $result->active;
-            $return->total_duration = $result->max_duration;
-            //$return->num_of_sessions = $result->num_of_sessions;
         }else{
             $return->active = 0;
+        }
+
+        if ($result) {
+            $return->total_duration = $result->max_duration;
+        }else{
             $return->total_duration = 0;
-            //$return->num_of_sessions = 0;
         }
 
 

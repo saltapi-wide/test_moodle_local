@@ -52,7 +52,7 @@ class behat_partial_named_selector extends \Behat\Mink\Selector\PartialNamedSele
             $this->registerReplacement($from, implode(' or ', $tos));
         }
 
-        $this->registerReplacement('%iconMatch%', "(contains(concat(' ', @class, ' '), ' icon ') or name() = 'img')");
+        $this->registerReplacement('%iconMatch%', "(contains(concat(' ', @class, ' '), ' icon ') or name() = 'pix')");
         $this->registerReplacement('%imgAltMatch%', './/*[%iconMatch% and (%altMatch% or %titleMatch%)]');
         parent::__construct();
     }
@@ -165,7 +165,7 @@ XPATH
     ]
 XPATH
         , 'group_message' => <<<XPATH
-        .//*[@data-conversation-id]//img[contains(@alt, %locator%)]/..
+        .//*[@data-conversation-id]//pix[contains(@alt, %locator%)]/..
 XPATH
         , 'group_message_conversation' => <<<XPATH
             .//*[@data-region='message-drawer' and contains(., %locator%)]//div[@data-region='content-message-container']

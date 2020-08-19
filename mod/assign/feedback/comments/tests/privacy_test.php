@@ -83,7 +83,7 @@ class assignfeedback_comments_privacy_testcase extends \mod_assign\tests\mod_ass
         $fs->create_file_from_string($dummy, $feedbacktext);
 
         $feedbacktext = $feedbacktext .
-            " <img src='{$CFG->wwwroot}/draftfile.php/{$context->id}/user/draft/{$draftitemid}/feedback1.txt.png>";
+            " <pix src='{$CFG->wwwroot}/draftfile.php/{$context->id}/user/draft/{$draftitemid}/feedback1.txt.png>";
 
         $plugin = $assign->get_feedback_plugin_by_type('comments');
         $feedbackdata = new \stdClass();

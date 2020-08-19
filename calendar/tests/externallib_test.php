@@ -330,14 +330,14 @@ class core_calendar_externallib_testcase extends externallib_advanced_testcase {
             'filename'  => 'fakeimage.png',
         );
         $fs = get_file_storage();
-        $fs->create_file_from_string($filerecord, 'img contents');
+        $fs->create_file_from_string($filerecord, 'pix contents');
 
         $record = new stdClass();
         $record->courseid = $course->id;
         $record->groupid = 0;
         $record->description = array(
             'format' => FORMAT_HTML,
-            'text' => 'Text with img <img src="@@PLUGINFILE@@/fakeimage.png">',
+            'text' => 'Text with pix <pix src="@@PLUGINFILE@@/fakeimage.png">',
             'itemid' => $draftidfile
         );
         $courseevent = $this->create_calendar_event('course', $USER->id, 'course', 2, time(), $record);

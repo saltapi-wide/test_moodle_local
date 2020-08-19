@@ -1600,7 +1600,7 @@ function glossary_print_attachments($entry, $cm, $type=NULL, $unused = null) {
             } else {
                 if (in_array($mimetype, array('image/gif', 'image/jpeg', 'image/png'))) {
                     // Image attachments don't get printed as links
-                    $imagereturn .= "<br /><img src=\"$path\" alt=\"\" />";
+                    $imagereturn .= "<br /><pix src=\"$path\" alt=\"\" />";
                 } else {
                     $output .= "<a href=\"$path\">$iconimage</a> ";
                     $output .= format_text("<a href=\"$path\">".s($filename)."</a>", FORMAT_HTML, array('context'=>$context));

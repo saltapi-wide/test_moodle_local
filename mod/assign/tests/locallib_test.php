@@ -3029,10 +3029,10 @@ I'm writing to you from the Moodle Majlis in Muscat, Oman, where we just had sev
 URL outside a tag: https://moodle.org/logo/logo-240x60.gif
 Plugin url outside a tag: @@PLUGINFILE@@/logo-240x60.gif
 
-External link 1:<img src='https://moodle.org/logo/logo-240x60.gif' alt='Moodle'/>
-External link 2:<img alt=\"Moodle\" src=\"https://moodle.org/logo/logo-240x60.gif\"/>
-Internal link 1:<img src='@@PLUGINFILE@@/logo-240x60.gif' alt='Moodle'/>
-Internal link 2:<img alt=\"Moodle\" src=\"@@PLUGINFILE@@logo-240x60.gif\"/>
+External link 1:<pix src='https://moodle.org/logo/logo-240x60.gif' alt='Moodle'/>
+External link 2:<pix alt=\"Moodle\" src=\"https://moodle.org/logo/logo-240x60.gif\"/>
+Internal link 1:<pix src='@@PLUGINFILE@@/logo-240x60.gif' alt='Moodle'/>
+Internal link 2:<pix alt=\"Moodle\" src=\"@@PLUGINFILE@@logo-240x60.gif\"/>
 Anchor link 1:<a href=\"@@PLUGINFILE@@logo-240x60.gif\" alt=\"bananas\">Link text</a>
 Anchor link 2:<a title=\"bananas\" href=\"../logo-240x60.gif\">Link text</a>
 ";
@@ -3076,10 +3076,10 @@ I'm writing to you from the Moodle Majlis in Muscat, Oman, where we just had sev
 URL outside a tag: https://moodle.org/logo/logo-240x60.gif
 Plugin url outside a tag: $url/logo-240x60.gif
 
-External link 1:<img src=\"https://moodle.org/logo/logo-240x60.gif\" alt=\"Moodle\" />
-External link 2:<img alt=\"Moodle\" src=\"https://moodle.org/logo/logo-240x60.gif\" />
-Internal link 1:<img src=\"$url/logo-240x60.gif\" alt=\"Moodle\" />
-Internal link 2:<img alt=\"Moodle\" src=\"@@PLUGINFILE@@logo-240x60.gif\" />
+External link 1:<pix src=\"https://moodle.org/logo/logo-240x60.gif\" alt=\"Moodle\" />
+External link 2:<pix alt=\"Moodle\" src=\"https://moodle.org/logo/logo-240x60.gif\" />
+Internal link 1:<pix src=\"$url/logo-240x60.gif\" alt=\"Moodle\" />
+Internal link 2:<pix alt=\"Moodle\" src=\"@@PLUGINFILE@@logo-240x60.gif\" />
 Anchor link 1:<a href=\"@@PLUGINFILE@@logo-240x60.gif\">Link text</a>
 Anchor link 2:<a title=\"bananas\" href=\"../logo-240x60.gif\">Link text</a>
 ";

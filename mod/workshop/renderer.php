@@ -757,7 +757,7 @@ class mod_workshop_renderer extends plugin_renderer_base {
                     'moodle', array('class' => 'icon'));
                 $link = html_writer::link($attachment->fileurl, $icon.' '.substr($attachment->filepath.$attachment->filename, 1));
                 if (file_mimetype_in_typegroup($attachment->mimetype, 'web_image')) {
-                    $preview = html_writer::empty_tag('img', array('src' => $attachment->previewurl, 'alt' => '', 'class' => 'preview'));
+                    $preview = html_writer::empty_tag('pix', array('src' => $attachment->previewurl, 'alt' => '', 'class' => 'preview'));
                     $preview = html_writer::tag('a', $preview, array('href' => $attachment->fileurl));
                     $images .= $this->output->container($preview);
                 } else {
@@ -897,7 +897,7 @@ class mod_workshop_renderer extends plugin_renderer_base {
 
             if ($format == 'html') {
                 if (file_mimetype_in_typegroup($type, 'web_image')) {
-                    $preview     = html_writer::empty_tag('img', array('src' => $embedurl, 'alt' => '', 'class' => 'preview'));
+                    $preview     = html_writer::empty_tag('pix', array('src' => $embedurl, 'alt' => '', 'class' => 'preview'));
                     $preview     = html_writer::tag('a', $preview, array('href' => $fileurl));
                     $outputimgs .= $this->output->container($preview);
 

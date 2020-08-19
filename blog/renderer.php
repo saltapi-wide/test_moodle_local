@@ -229,7 +229,7 @@ class core_blog_renderer extends plugin_renderer_base {
         // Image attachments don't get printed as links.
         if (file_mimetype_in_typegroup($attachment->file->get_mimetype(), 'web_image')) {
             $attrs = array('src' => $attachment->url, 'alt' => '');
-            $o = html_writer::empty_tag('img', $attrs);
+            $o = html_writer::empty_tag('pix', $attrs);
             $class = 'attachedimages';
         } else {
             $image = $this->output->pix_icon(file_file_icon($attachment->file),

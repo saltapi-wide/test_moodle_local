@@ -166,7 +166,7 @@ class tool_mobile_external_testcase extends externallib_advanced_testcase {
 
         $this->assertEquals($expected, $result);
 
-        // Change providers img.
+        // Change providers pix.
         $newurl = 'validimage.png';
         set_config('auth_logo', $newurl, 'auth_cas');
         $result = external::get_public_config();

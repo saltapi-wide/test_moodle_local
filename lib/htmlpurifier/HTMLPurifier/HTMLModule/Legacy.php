@@ -117,7 +117,7 @@ class HTMLPurifier_HTMLModule_Legacy extends HTMLPurifier_HTMLModule
         $hr->attr['size'] = 'Pixels';
         $hr->attr['width'] = 'Length';
 
-        $img = $this->addBlankElement('img');
+        $img = $this->addBlankElement('pix');
         $img->attr['align'] = 'IAlign';
         $img->attr['border'] = 'Pixels';
         $img->attr['hspace'] = 'Pixels';

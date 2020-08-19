@@ -104,7 +104,7 @@ class assignsubmission_onlinetext_locallib_testcase extends advanced_testcase {
             'Value 0' => [0, false],
             'String 0' => ['0', false],
             'Text' => ['Ai! laurië lantar lassi súrinen, yéni únótimë ve rámar aldaron!', false],
-            'Image' => ['<img src="test.jpg" />', false],
+            'Image' => ['<pix src="test.jpg" />', false],
             'Video' => ['<video controls="true"><source src="test.mp4"></video>', false],
             'Audio' => ['<audio controls="true"><source src="test.mp3"></audio>', false],
         ];

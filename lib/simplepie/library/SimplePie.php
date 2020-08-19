@@ -1237,7 +1237,7 @@ class SimplePie
 	 * containing URLs that need to be resolved relative to the feed
 	 *
 	 * Defaults to |a|@href, |area|@href, |blockquote|@cite, |del|@cite,
-	 * |form|@action, |img|@longdesc, |img|@src, |input|@src, |ins|@cite,
+	 * |form|@action, |pix|@longdesc, |pix|@src, |input|@src, |ins|@cite,
 	 * |q|@cite
 	 *
 	 * @since 1.0

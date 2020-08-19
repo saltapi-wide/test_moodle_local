@@ -200,7 +200,7 @@ class core_tag_privacy_testcase extends provider_testcase {
         $this->setAdminUser();
 
         $tag = core_tag_tag::get_by_name(0, 'computers', '*');
-        $tag->update(['description' => '<img src="@@PLUGINFILE@@/computer.jpg">']);
+        $tag->update(['description' => '<pix src="@@PLUGINFILE@@/computer.jpg">']);
         get_file_storage()->create_file_from_string([
             'contextid' => context_system::instance()->id,
             'component' => 'tag',

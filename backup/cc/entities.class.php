@@ -86,7 +86,7 @@ class entities {
 
         $document = $this->load_html($html);
 
-        $tags = array('img' => 'src' , 'a' => 'href');
+        $tags = array('pix' => 'src' , 'a' => 'href');
 
         foreach ($tags as $tag => $attribute) {
 
@@ -158,7 +158,7 @@ class entities {
 
         $document = $this->load_html($html);
 
-        $images = $document->getElementsByTagName('img');
+        $images = $document->getElementsByTagName('pix');
 
         foreach ($images as $image) {
 

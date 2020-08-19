@@ -25,7 +25,7 @@ YUI.add('moodle-tool_installaddon-permcheck', function(Y) {
                 plugintypesel.on('change', function() {
                     this.check_for_permission(plugintypesel);
                 }, this);
-                this.repeat_permcheck_icon = Y.Node.create('<div><a href="#repeat-permcheck"><img src="' + M.util.image_url('i/reload') + '" /> ' +
+                this.repeat_permcheck_icon = Y.Node.create('<div><a href="#repeat-permcheck"><pix src="' + M.util.image_url('i/reload') + '" /> ' +
                     M.util.get_string('permcheckrepeat', 'tool_installaddon') + '</a></div>');
                 this.repeat_permcheck_icon.one('a').on('click', function(e) {
                     e.preventDefault();
@@ -94,13 +94,13 @@ YUI.add('moodle-tool_installaddon-permcheck', function(Y) {
             var resultline = Y.one('#tool_installaddon_installfromzip_permcheck');
             if (resultline) {
                 if (status === 'success') {
-                    resultline.setHTML('<span class="success"><img src="' + M.util.image_url('i/valid') + '" /> ' +
+                    resultline.setHTML('<span class="success"><pix src="' + M.util.image_url('i/valid') + '" /> ' +
                         msg + '</span>');
                 } else if (status === 'progress') {
-                    resultline.setHTML('<span class="progress"><img src="' + M.cfg.loadingicon + '" /> ' +
+                    resultline.setHTML('<span class="progress"><pix src="' + M.cfg.loadingicon + '" /> ' +
                         msg + '</span>');
                 } else {
-                    resultline.setHTML('<span class="error"><img src="' + M.util.image_url('i/invalid') + '" /> ' +
+                    resultline.setHTML('<span class="error"><pix src="' + M.util.image_url('i/invalid') + '" /> ' +
                         msg + '</span>').append(this.repeat_permcheck_icon);
                 }
             }

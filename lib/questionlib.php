@@ -1109,7 +1109,7 @@ function question_sort_tags($tagobjects, $categorycontext, $filtercourses = null
  *
  * @param object $question The question object for which the icon is required.
  *       Only $question->qtype is used.
- * @return string the HTML for the img tag.
+ * @return string the HTML for the pix tag.
  */
 function print_question_icon($question) {
     global $PAGE;

@@ -45,9 +45,9 @@ class httpsreplace_test extends \advanced_testcase {
         $wwwroothttp = preg_replace('/^https:/', 'http:', $CFG->wwwroot);
         return [
             "Test image from another site should be replaced" => [
-                "content" => '<img src="' . $this->getExternalTestFileUrl('/test.jpg', false) . '">',
+                "content" => '<pix src="' . $this->getExternalTestFileUrl('/test.jpg', false) . '">',
                 "outputregex" => '/UPDATE/',
-                "expectedcontent" => '<img src="' . $this->get_converted_http_link('/test.jpg') . '">',
+                "expectedcontent" => '<pix src="' . $this->get_converted_http_link('/test.jpg') . '">',
             ],
             "Test object from another site should be replaced" => [
                 "content" => '<object data="' . $this->getExternalTestFileUrl('/test.swf', false) . '">',
@@ -55,29 +55,29 @@ class httpsreplace_test extends \advanced_testcase {
                 "expectedcontent" => '<object data="' . $this->get_converted_http_link('/test.swf') . '">',
             ],
             "Test image from a site with international name should be replaced" => [
-                "content" => '<img src="http://中国互联网络信息中心.中国/logosy/201706/W01.png">',
+                "content" => '<pix src="http://中国互联网络信息中心.中国/logosy/201706/W01.png">',
                 "outputregex" => '/UPDATE/',
-                "expectedcontent" => '<img src="https://中国互联网络信息中心.中国/logosy/201706/W01.png">',
+                "expectedcontent" => '<pix src="https://中国互联网络信息中心.中国/logosy/201706/W01.png">',
             ],
             "Link that is from this site should be replaced" => [
-                "content" => '<img src="' . $wwwroothttp . '/logo.png">',
+                "content" => '<pix src="' . $wwwroothttp . '/logo.png">',
                 "outputregex" => '/UPDATE/',
-                "expectedcontent" => '<img src="' . $CFG->wwwroot . '/logo.png">',
+                "expectedcontent" => '<pix src="' . $CFG->wwwroot . '/logo.png">',
             ],
             "Link that is from this site, https new so doesn't need replacing" => [
-                "content" => '<img src="' . $CFG->wwwroot . '/logo.png">',
+                "content" => '<pix src="' . $CFG->wwwroot . '/logo.png">',
                 "outputregex" => '/^$/',
-                "expectedcontent" => '<img src="' . $CFG->wwwroot . '/logo.png">',
+                "expectedcontent" => '<pix src="' . $CFG->wwwroot . '/logo.png">',
             ],
             "Unavailable image should be replaced" => [
-                "content" => '<img src="http://intentionally.unavailable/link1.jpg">',
+                "content" => '<pix src="http://intentionally.unavailable/link1.jpg">',
                 "outputregex" => '/UPDATE/',
-                "expectedcontent" => '<img src="https://intentionally.unavailable/link1.jpg">',
+                "expectedcontent" => '<pix src="https://intentionally.unavailable/link1.jpg">',
             ],
             "Https content that has an http url as a param should not be replaced" => [
-                "content" => '<img src="https://anothersite.com?param=http://asdf.com">',
+                "content" => '<pix src="https://anothersite.com?param=http://asdf.com">',
                 "outputregex" => '/^$/',
-                "expectedcontent" => '<img src="https://anothersite.com?param=http://asdf.com">',
+                "expectedcontent" => '<pix src="https://anothersite.com?param=http://asdf.com">',
             ],
             "Search for params should be case insensitive" => [
                 "content" => '<object DATA="' . $this->getExternalTestFileUrl('/test.swf', false) . '">',
@@ -90,16 +90,16 @@ class httpsreplace_test extends \advanced_testcase {
                 "expectedcontent" => '<object data="https://some.site/path?query">',
             ],
             "More params should not interfere" => [
-                "content" => '<img alt="A picture" src="' . $this->getExternalTestFileUrl('/test.png', false) .
+                "content" => '<pix alt="A picture" src="' . $this->getExternalTestFileUrl('/test.png', false) .
                     '" width="1”><p style="font-size: \'20px\'"></p>',
                 "outputregex" => '/UPDATE/',
-                "expectedcontent" => '<img alt="A picture" src="' . $this->get_converted_http_link('/test.png') .
+                "expectedcontent" => '<pix alt="A picture" src="' . $this->get_converted_http_link('/test.png') .
                     '" width="1”><p style="font-size: \'20px\'"></p>',
             ],
             "Broken URL should not be changed" => [
-                "content" => '<img src="broken.' . $this->getExternalTestFileUrl('/test.png', false) . '">',
+                "content" => '<pix src="broken.' . $this->getExternalTestFileUrl('/test.png', false) . '">',
                 "outputregex" => '/^$/',
-                "expectedcontent" => '<img src="broken.' . $this->getExternalTestFileUrl('/test.png', false) . '">',
+                "expectedcontent" => '<pix src="broken.' . $this->getExternalTestFileUrl('/test.png', false) . '">',
             ],
             "Link URL should not be changed" => [
                 "content" => '<a href="' . $this->getExternalTestFileUrl('/test.png', false) . '">' .
@@ -109,10 +109,10 @@ class httpsreplace_test extends \advanced_testcase {
                     $this->getExternalTestFileUrl('/test.png', false) . '</a>',
             ],
             "Test image from another site should be replaced but link should not" => [
-                "content" => '<a href="' . $this->getExternalTestFileUrl('/test.png', false) . '"><img src="' .
+                "content" => '<a href="' . $this->getExternalTestFileUrl('/test.png', false) . '"><pix src="' .
                     $this->getExternalTestFileUrl('/test.jpg', false) . '"></a>',
                 "outputregex" => '/UPDATE/',
-                "expectedcontent" => '<a href="' . $this->getExternalTestFileUrl('/test.png', false) . '"><img src="' .
+                "expectedcontent" => '<a href="' . $this->getExternalTestFileUrl('/test.png', false) . '"><pix src="' .
                     $this->get_converted_http_link('/test.jpg') . '"></a>',
             ],
         ];
@@ -169,22 +169,22 @@ class httpsreplace_test extends \advanced_testcase {
         $testdomain = $this->get_converted_http_link('');
         return [
             "Test image from an available site so shouldn't be reported" => [
-                "content" => '<img src="' . $this->getExternalTestFileUrl('/test.jpg', false) . '">',
+                "content" => '<pix src="' . $this->getExternalTestFileUrl('/test.jpg', false) . '">',
                 "domain" => $testdomain,
                 "expectedcount" => 0,
             ],
             "Link that is from this site shouldn't be reported" => [
-                "content" => '<img src="' . $wwwroothttp . '/logo.png">',
+                "content" => '<pix src="' . $wwwroothttp . '/logo.png">',
                 "domain" => $wwwrootdomain,
                 "expectedcount" => 0,
             ],
             "Unavailable, but https shouldn't be reported" => [
-                "content" => '<img src="https://intentionally.unavailable/logo.png">',
+                "content" => '<pix src="https://intentionally.unavailable/logo.png">',
                 "domain" => 'intentionally.unavailable',
                 "expectedcount" => 0,
             ],
             "Unavailable image should be reported" => [
-                "content" => '<img src="http://intentionally.unavailable/link1.jpg">',
+                "content" => '<pix src="http://intentionally.unavailable/link1.jpg">',
                 "domain" => 'intentionally.unavailable',
                 "expectedcount" => 1,
             ],
@@ -273,7 +273,7 @@ class httpsreplace_test extends \advanced_testcase {
 
         $generator = $this->getDataGenerator();
         $course = $generator->create_course((object) [
-            'summary' => '<img src="' . $CFG->wwwroot . '/image.png">',
+            'summary' => '<pix src="' . $CFG->wwwroot . '/image.png">',
         ]);
 
         $results = $finder->http_link_stats();
@@ -290,7 +290,7 @@ class httpsreplace_test extends \advanced_testcase {
     public function test_upgrade_http_links_excluded_tables() {
         $this->resetAfterTest();
 
-        set_config('test_upgrade_http_links', '<img src="http://somesite/someimage.png" />');
+        set_config('test_upgrade_http_links', '<pix src="http://somesite/someimage.png" />');
 
         $finder = new tool_httpreplace_url_finder_test();
         ob_start();
@@ -322,7 +322,7 @@ class httpsreplace_test extends \advanced_testcase {
 
         $generator = $this->getDataGenerator();
         $course = $generator->create_course((object) [
-            'summary' => '<script src="http://example.com/test.js"><img src="http://EXAMPLE.COM/someimage.png">',
+            'summary' => '<script src="http://example.com/test.js"><pix src="http://EXAMPLE.COM/someimage.png">',
         ]);
 
         $results = $finder->http_link_stats();
@@ -334,7 +334,7 @@ class httpsreplace_test extends \advanced_testcase {
         $this->assertContains('https://secure.example.com', $summary);
         $this->assertNotContains('http://example.com', $summary);
         $this->assertEquals('<script src="https://secure.example.com/test.js">' .
-            '<img src="https://secure.example.com/someimage.png">', $summary);
+            '<pix src="https://secure.example.com/someimage.png">', $summary);
     }
 
     /**
@@ -348,10 +348,10 @@ class httpsreplace_test extends \advanced_testcase {
         $original2 = '';
         $expected2 = '';
         for ($i = 0; $i < 15; $i++) {
-            $original1 .= '<img src="http://example.com/image' . $i . '.png">';
-            $expected1 .= '<img src="https://example.com/image' . $i . '.png">';
-            $original2 .= '<img src="http://example.com/image' . ($i + 15 ) . '.png">';
-            $expected2 .= '<img src="https://example.com/image' . ($i + 15) . '.png">';
+            $original1 .= '<pix src="http://example.com/image' . $i . '.png">';
+            $expected1 .= '<pix src="https://example.com/image' . $i . '.png">';
+            $original2 .= '<pix src="http://example.com/image' . ($i + 15 ) . '.png">';
+            $expected2 .= '<pix src="https://example.com/image' . ($i + 15) . '.png">';
         }
         $finder = new tool_httpreplace_url_finder_test();
 
@@ -391,9 +391,9 @@ class httpsreplace_test extends \advanced_testcase {
         $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
         $dbman->create_table($table);
 
-        // Insert a record with an <img> in this table and run tool.
-        $content = '<img src="http://example.com/image.png">';
-        $expectedcontent = '<img src="https://example.com/image.png">';
+        // Insert a record with an <pix> in this table and run tool.
+        $content = '<pix src="http://example.com/image.png">';
+        $expectedcontent = '<pix src="https://example.com/image.png">';
         $columnamequoted = $dbman->generator->getEncQuoted('where');
         $DB->execute("INSERT INTO {reserved_words_temp} ($columnamequoted) VALUES (?)", [$content]);
 

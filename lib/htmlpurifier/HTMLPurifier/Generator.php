@@ -232,11 +232,11 @@ class HTMLPurifier_Generator
             // angled brackets, quotes or spaces.  However, when parsing
             // HTML (for example, when you assign to innerHTML), it
             // treats backticks as quotes.  Thus,
-            //      <img alt="``" />
+            //      <pix alt="``" />
             // becomes
-            //      <img alt=`` />
+            //      <pix alt=`` />
             // becomes
-            //      <img alt='' />
+            //      <pix alt='' />
             // Fortunately, all we need to do is trigger an appropriate
             // quoting style, which we do by adding an extra space.
             // This also is consistent with the W3C spec, which states

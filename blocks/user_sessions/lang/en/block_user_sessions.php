@@ -38,9 +38,17 @@ $string['no'] = 'No';
 
 $string['auto_generate'] = 'Auto Generate';
 $string['total_duration'] = 'Minimum Total Duration';
-
-$string['num_of_sessions'] = 'Minimum Sessions';
-
+$string['min_duration'] = 'Minimum Total Duration';
+$string['max_duration'] = 'Maximum Total Duration';
+$string['users']='Select User to edit';
+$string['generaloptions']='General user options';
+$string['specificoptions']='User specific options';
 
 $string['user_ses_task_title'] = 'User Sessions Task';
+
+$string['from'] = 'Start date to generate time';
+
+$string['data_generation'] = 'Enable/Disable data generation';
+$string['data_generation_user'] = 'Enable/Disable data generation for this user';
+
 

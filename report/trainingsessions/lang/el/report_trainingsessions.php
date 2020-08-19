@@ -32,6 +32,8 @@ $string['trainingsessions:downloadreports'] = 'Μπορεί να κατεβάσ�
 $string['trainingsessions:batch'] = 'Δυνατότητα δέσμης αναφορών'; // @DYNAKEY
 $string['trainingsessions:usegrading'] = 'Μπορεί να ρυθμίσει την παραγωγή βαθμολογίας'; // @DYNAKEY
 
+$string['check_customtime'] = 'Συγκεκρημένο εύρος ωρών';
+
 $string['accountstart'] = 'Ημερομηνία δημιουργίας λογαριασμού χρήστη';
 $string['activitytime'] = 'Χρόνος στις δραστηριότητες';
 $string['addcoursegrade'] = 'Προσθέστε βαθμό μαθημάτων για αναφορά';
@@ -426,12 +428,16 @@ $string['insessiontime_help'] = 'Αυτός είναι ο χρόνος εκμά�
 
 $string['outsessiontime_help'] = 'Αυτός είναι ο υπόλοιπος χρόνος εκμάθησης που ΔΕΝ ταιριάζει με τους κανόνες επικύρωσης';
 
+/*
 $string['activitytime_help'] = '
 <p>This time calculation considers all use time spent in course activities, letting course
     layout times out of calculation. In certain cases (when using the Learning Time Check (non standard) with
     standard time allocation (http://github.com/vfremaux/moodle-mod_learningtimecheck.git), additional
     standard time are used rather than real extracted times from log.</p>
 ';
+*/
+
+$string['activitytime_help'] = '<p>Αυτό συνοψίζει τον χρόνο που αφιερώνεται σε δραστηριότητες του μαθηματος.</p>';
 
 $string['elapsed_help'] = '
 <p>Αυτό συνοψίζει όλο το χρόνο που αφιερώνεται στο μάθημα ή οποιαδήποτε εξάρτηση του μαθήματος.</p>

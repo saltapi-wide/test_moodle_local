@@ -126,10 +126,10 @@ class filter_urltolink_filter_testcase extends basic_testcase {
             '<b>a link here www.moodle.org</b>' => '<b>a link here <a href="http://www.moodle.org" class="_blanktarget">www.moodle.org</a></b>',
             //some text containing a link within unrelated tags
             '<br />This is some text. www.moodle.com then some more text<br />' => '<br />This is some text. <a href="http://www.moodle.com" class="_blanktarget">www.moodle.com</a> then some more text<br />',
-            //check we aren't modifying img tags
-            'image<img src="http://moodle.org/logo/logo-240x60.gif" />' => 'image<img src="http://moodle.org/logo/logo-240x60.gif" />',
-            'image<img src="www.moodle.org/logo/logo-240x60.gif" />'    => 'image<img src="www.moodle.org/logo/logo-240x60.gif" />',
-            'image<img src="http://www.example.com/logo.gif" />'        => 'image<img src="http://www.example.com/logo.gif" />',
+            //check we aren't modifying pix tags
+            'image<pix src="http://moodle.org/logo/logo-240x60.gif" />' => 'image<pix src="http://moodle.org/logo/logo-240x60.gif" />',
+            'image<pix src="www.moodle.org/logo/logo-240x60.gif" />'    => 'image<pix src="www.moodle.org/logo/logo-240x60.gif" />',
+            'image<pix src="http://www.example.com/logo.gif" />'        => 'image<pix src="http://www.example.com/logo.gif" />',
             //and another url within one tag
             '<td background="http://moodle.org">&nbsp;</td>' => '<td background="http://moodle.org">&nbsp;</td>',
             '<td background="www.moodle.org">&nbsp;</td>' => '<td background="www.moodle.org">&nbsp;</td>',
@@ -141,10 +141,10 @@ class filter_urltolink_filter_testcase extends basic_testcase {
             '<table style="background-image: url(http://moodle.org/pic.jpg);">' => '<table style="background-image: url(http://moodle.org/pic.jpg);">',
             '<table style="background-image: url("http://moodle.org/pic.jpg");">' => '<table style="background-image: url("http://moodle.org/pic.jpg");">',
             '<table style="background-image: url( http://moodle.org/pic.jpg );">' => '<table style="background-image: url( http://moodle.org/pic.jpg );">',
-            //partially escaped img tag
-            'partially escaped img tag &lt;img src="http://moodle.org/logo/logo-240x60.gif" />' => 'partially escaped img tag &lt;img src="http://moodle.org/logo/logo-240x60.gif" />',
-            //fully escaped img tag. Commented out as part of MDL-21183
-            //htmlspecialchars('fully escaped img tag <img src="http://moodle.org/logo/logo-240x60.gif" />') => 'fully escaped img tag &lt;img src="http://moodle.org/logo/logo-240x60.gif" /&gt;',
+            //partially escaped pix tag
+            'partially escaped pix tag &lt;pix src="http://moodle.org/logo/logo-240x60.gif" />' => 'partially escaped pix tag &lt;pix src="http://moodle.org/logo/logo-240x60.gif" />',
+            //fully escaped pix tag. Commented out as part of MDL-21183
+            //htmlspecialchars('fully escaped pix tag <pix src="http://moodle.org/logo/logo-240x60.gif" />') => 'fully escaped pix tag &lt;pix src="http://moodle.org/logo/logo-240x60.gif" /&gt;',
             //Double http with www
             'One more link like http://www.moodle.org to test' => 'One more link like <a href="http://www.moodle.org" class="_blanktarget">http://www.moodle.org</a> to test',
             //Encoded URLs in the path

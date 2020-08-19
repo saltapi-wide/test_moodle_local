@@ -870,7 +870,7 @@ class core_filelib_testcase extends advanced_testcase {
         file_save_draft_area_files(IGNORE_FILE_MERGE, $usercontext->id, 'user', 'private', 0);
         $this->assertCount(2, $fs->get_area_files($usercontext->id, 'user', 'private'));
         // Save again, this time including some inline text.
-        $inlinetext = 'Some text <img src="@@PLUGINFILE@@/file.png">';
+        $inlinetext = 'Some text <pix src="@@PLUGINFILE@@/file.png">';
         $text = file_save_draft_area_files(IGNORE_FILE_MERGE, $usercontext->id, 'user', 'private', 0, null, $inlinetext);
         $this->assertCount(2, $fs->get_area_files($usercontext->id, 'user', 'private'));
         $this->assertEquals($inlinetext, $text);
@@ -1109,7 +1109,7 @@ EOF;
     public function test_file_rewrite_pluginfile_urls() {
 
         $syscontext = context_system::instance();
-        $originaltext = 'Fake test with an image <img src="@@PLUGINFILE@@/image.png">';
+        $originaltext = 'Fake test with an image <pix src="@@PLUGINFILE@@/image.png">';
 
         // Do the rewrite.
         $finaltext = file_rewrite_pluginfile_urls($originaltext, 'pluginfile.php', $syscontext->id, 'user', 'private', 0);
@@ -1134,7 +1134,7 @@ EOF;
         $this->resetAfterTest();
 
         $syscontext = context_system::instance();
-        $originaltext = 'Fake test with an image <img src="@@PLUGINFILE@@/image.png">';
+        $originaltext = 'Fake test with an image <pix src="@@PLUGINFILE@@/image.png">';
         $options = ['includetoken' => true];
 
         // Rewrite the content. This will generate a new token.
@@ -1143,7 +1143,7 @@ EOF;
 
         $token = get_user_key('core_files', $USER->id);
         $expectedurl = new \moodle_url("/tokenpluginfile.php/{$token}/{$syscontext->id}/user/private/0/image.png");
-        $expectedtext = "Fake test with an image <img src=\"{$expectedurl}\">";
+        $expectedtext = "Fake test with an image <pix src=\"{$expectedurl}\">";
         $this->assertEquals($expectedtext, $finaltext);
 
         // Do it again - the second time will use an existing token.
@@ -1168,7 +1168,7 @@ EOF;
 
         $token = get_user_key('core_files', $user->id);
         $expectedurl = new \moodle_url("/tokenpluginfile.php/{$token}/{$syscontext->id}/user/private/0/image.png");
-        $expectedtext = "Fake test with an image <img src=\"{$expectedurl}\">";
+        $expectedtext = "Fake test with an image <pix src=\"{$expectedurl}\">";
         $this->assertEquals($expectedtext, $finaltext);
     }
 
@@ -1183,7 +1183,7 @@ EOF;
         $this->resetAfterTest();
 
         $syscontext = context_system::instance();
-        $originaltext = 'Fake test with an image <img src="@@PLUGINFILE@@/image.png">';
+        $originaltext = 'Fake test with an image <pix src="@@PLUGINFILE@@/image.png">';
         $options = ['includetoken' => true];
 
         // Rewrite the content. This will generate a new token.
@@ -1193,7 +1193,7 @@ EOF;
         $token = get_user_key('core_files', $USER->id);
         $expectedurl = new \moodle_url("/tokenpluginfile.php");
         $expectedurl .= "?token={$token}&file=/{$syscontext->id}/user/private/0/image.png";
-        $expectedtext = "Fake test with an image <img src=\"{$expectedurl}\">";
+        $expectedtext = "Fake test with an image <pix src=\"{$expectedurl}\">";
         $this->assertEquals($expectedtext, $finaltext);
 
         // Do it again - the second time will use an existing token.
@@ -1568,8 +1568,8 @@ EOF;
         $editor = [
             'itemid' => $draftitemid,
             'text' => '
-                <img src="'.$CFG->wwwroot.'/draftfile.php/'.$usercontext->id.'/user/draft/'.$draftitemid.'/file%203.png" alt="">
-                <img src="'.$CFG->wwwroot.'/draftfile.php/'.$usercontext->id.'/user/draft/'.$draftitemid.'/file1.png" alt="">'
+                <pix src="'.$CFG->wwwroot.'/draftfile.php/'.$usercontext->id.'/user/draft/'.$draftitemid.'/file%203.png" alt="">
+                <pix src="'.$CFG->wwwroot.'/draftfile.php/'.$usercontext->id.'/user/draft/'.$draftitemid.'/file1.png" alt="">'
         ];
 
         // Run the remove orphaned drafts function and confirm that only the referenced files remain in the user drafts.

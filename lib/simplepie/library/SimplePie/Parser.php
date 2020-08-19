@@ -358,7 +358,7 @@ class SimplePie_Parser
 		if ($this->current_xhtml_construct >= 0)
 		{
 			$this->current_xhtml_construct--;
-			if (end($this->namespace) === SIMPLEPIE_NAMESPACE_XHTML && !in_array(end($this->element), array('area', 'base', 'basefont', 'br', 'col', 'frame', 'hr', 'img', 'input', 'isindex', 'link', 'meta', 'param')))
+			if (end($this->namespace) === SIMPLEPIE_NAMESPACE_XHTML && !in_array(end($this->element), array('area', 'base', 'basefont', 'br', 'col', 'frame', 'hr', 'pix', 'input', 'isindex', 'link', 'meta', 'param')))
 			{
 				$this->data['data'] .= '</' . end($this->element) . '>';
 			}
@@ -563,12 +563,12 @@ class SimplePie_Parser
 							$hidden = $j === 0 ? '' : 'class="hidden" ';
 							$description .= '<a href="'.$photo_list[$j].'" '.$hidden.
 								'data-lightbox="image-set-'.$image_set_id.'">'.
-								'<img src="'.$photo_list[$j].'"></a>';
+								'<pix src="'.$photo_list[$j].'"></a>';
 						}
 						$description .= '<br><b>'.$count.' photos</b></p>';
 					}
 					else if ($count == 1) {
-						$description = '<p><img src="'.$photo_list[0].'"></p>';
+						$description = '<p><pix src="'.$photo_list[0].'"></p>';
 					}
 				}
 				if (isset($entry['properties']['content'][0]['html'])) {

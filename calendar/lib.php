@@ -1550,17 +1550,17 @@ function calendar_add_event_metadata($event) {
             $eventtype = '';
         }
 
-        $event->icon = '<img src="' . s($module->get_icon_url()) . '" alt="' . s($eventtype) .
+        $event->icon = '<pix src="' . s($module->get_icon_url()) . '" alt="' . s($eventtype) .
             '" title="' . s($modulename) . '" class="icon" />';
         $event->referer = html_writer::link($module->url, $event->name);
         $event->courselink = calendar_get_courselink($module->get_course());
         $event->cmid = $module->id;
     } else if ($event->courseid == SITEID) { // Site event.
-        $event->icon = '<img src="' . $OUTPUT->image_url('i/siteevent') . '" alt="' .
+        $event->icon = '<pix src="' . $OUTPUT->image_url('i/siteevent') . '" alt="' .
             get_string('siteevent', 'calendar') . '" class="icon" />';
         $event->cssclass = 'calendar_event_site';
     } else if ($event->courseid != 0 && $event->courseid != SITEID && $event->groupid == 0) { // Course event.
-        $event->icon = '<img src="' . $OUTPUT->image_url('i/courseevent') . '" alt="' .
+        $event->icon = '<pix src="' . $OUTPUT->image_url('i/courseevent') . '" alt="' .
             get_string('courseevent', 'calendar') . '" class="icon" />';
         $event->courselink = calendar_get_courselink($event->courseid);
         $event->cssclass = 'calendar_event_course';
@@ -1575,7 +1575,7 @@ function calendar_add_event_metadata($event) {
         $event->courselink = calendar_get_courselink($event->courseid) . ', ' . $groupname;
         $event->cssclass = 'calendar_event_group';
     } else if ($event->userid) { // User event.
-        $event->icon = '<img src="' . $OUTPUT->image_url('i/userevent') . '" alt="' .
+        $event->icon = '<pix src="' . $OUTPUT->image_url('i/userevent') . '" alt="' .
             get_string('userevent', 'calendar') . '" class="icon" />';
         $event->cssclass = 'calendar_event_user';
     }

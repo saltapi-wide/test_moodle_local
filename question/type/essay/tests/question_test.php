@@ -39,7 +39,7 @@ require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
 class qtype_essay_question_test extends advanced_testcase {
     public function test_get_question_summary() {
         $essay = test_question_maker::make_an_essay_question();
-        $essay->questiontext = 'Hello <img src="http://example.com/globe.png" alt="world" />';
+        $essay->questiontext = 'Hello <pix src="http://example.com/globe.png" alt="world" />';
         $this->assertEquals('Hello [world]', $essay->get_question_summary());
     }
 

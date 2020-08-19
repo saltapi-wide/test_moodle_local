@@ -134,9 +134,9 @@ EOD;
         $dom->loadHTML('<?xml version="1.0" encoding="UTF-8" ?>' . $html);
         libxml_clear_errors();
 
-        // Find all img tags.
-        if ($imgnodes = $dom->getElementsByTagName('img')) {
-            // Replace img nodes with the img alt text without overriding DOM elements.
+        // Find all pix tags.
+        if ($imgnodes = $dom->getElementsByTagName('pix')) {
+            // Replace pix nodes with the pix alt text without overriding DOM elements.
             for ($i = ($imgnodes->length - 1); $i >= 0; $i--) {
                 $imgnode = $imgnodes->item($i);
                 $alt = ($imgnode->hasAttribute('alt')) ? ' [ ' . $imgnode->getAttribute('alt') . ' ] ' : ' ';

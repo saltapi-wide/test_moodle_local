@@ -26,7 +26,7 @@ $string['aboutus'] = 'عنا';
 $string['pluginname'] = 'Eguru';
 $string['address'] = 'عنوان';
 $string['choosereadme'] = '<div class="clearfix"><div class="theme_screenshot">
-<img class=img-polaroid src="eguru/pix/screenshot.jpg" />
+<pix class=pix-polaroid src="eguru/pix/screenshot.jpg" />
 <h3>قروض موضوع</h3>
 <p>
 <h3>Moodle Eguru موضوع</h3>

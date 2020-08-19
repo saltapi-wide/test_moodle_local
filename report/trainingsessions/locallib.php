@@ -1906,6 +1906,8 @@ class trainingsessions {
     public function process_bounds(&$data, &$course) {
         global $DB;
 
+        echo "from start: ".$data->from."<br>";
+
         $changed = false;
         // Calculate start time.
         if (!empty($data->fromstart) && ($data->fromstart == 'course' || $data->fromstart === 1)) {
@@ -1964,6 +1966,8 @@ class trainingsessions {
                 }
             }
         }
+
+        echo "from start: ".$data->fromstart;
 
         if ($changed) {
             //saltapi

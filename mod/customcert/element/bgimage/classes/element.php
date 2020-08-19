@@ -123,7 +123,7 @@ class element extends \customcertelement_image\element {
 
             // Set the image to the size of the page.
             $style = 'width: ' . $page->width . 'mm; height: ' . $page->height . 'mm';
-            return \html_writer::tag('img', '', array('src' => $url, 'style' => $style));
+            return \html_writer::tag('pix', '', array('src' => $url, 'style' => $style));
         }
     }
 }

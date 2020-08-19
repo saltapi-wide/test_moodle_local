@@ -140,7 +140,7 @@ class mod_folder_renderer extends plugin_renderer_base {
             $filenamedisplay = clean_filename($filename);
             if (file_extension_in_typegroup($filename, 'web_image')) {
                 $image = $url->out(false, array('preview' => 'tinyicon', 'oid' => $file->get_timemodified()));
-                $image = html_writer::empty_tag('img', array('src' => $image));
+                $image = html_writer::empty_tag('pix', array('src' => $image));
             } else {
                 $image = $this->output->pix_icon(file_file_icon($file, 24), $filenamedisplay, 'moodle');
             }

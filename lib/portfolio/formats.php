@@ -94,7 +94,7 @@ abstract class portfolio_format {
         $content = $file->get_filename();
         if (in_array($file->get_mimetype(), portfolio_format_image::mimetypes())) {
             $srcattr = 'src';
-            $tag     = 'img';
+            $tag     = 'pix';
             $content = '';
         }
 

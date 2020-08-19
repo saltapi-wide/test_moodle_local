@@ -79,7 +79,7 @@ class data_field_picture extends data_field_base {
         $str .= '<noscript>';
         if ($file) {
             $src = file_encode_url($CFG->wwwroot.'/pluginfile.php/', $this->context->id.'/mod_data/content/'.$content->id.'/'.$file->get_filename());
-            $str .= '<img width="'.s($this->previewwidth).'" height="'.s($this->previewheight).'" src="'.$src.'" alt="" />';
+            $str .= '<pix width="'.s($this->previewwidth).'" height="'.s($this->previewheight).'" src="'.$src.'" alt="" />';
         }
         $str .= '</noscript>';
 
@@ -174,13 +174,13 @@ class data_field_picture extends data_field_base {
         if ($template == 'listtemplate') {
             $src = file_encode_url($CFG->wwwroot.'/pluginfile.php', '/'.$this->context->id.'/mod_data/content/'.$content->id.'/'.'thumb_'.$content->content);
             // no need to add width/height, because the thumb is resized properly
-            $str = '<a href="view.php?d='.$this->field->dataid.'&amp;rid='.$recordid.'"><img src="'.$src.'" alt="'.s($alt).'" title="'.s($title).'" class="list_picture"/></a>';
+            $str = '<a href="view.php?d='.$this->field->dataid.'&amp;rid='.$recordid.'"><pix src="'.$src.'" alt="'.s($alt).'" title="'.s($title).'" class="list_picture"/></a>';
 
         } else {
             $src = file_encode_url($CFG->wwwroot.'/pluginfile.php', '/'.$this->context->id.'/mod_data/content/'.$content->id.'/'.$content->content);
             $width  = $this->field->param1 ? ' width="'.s($this->field->param1).'" ':' ';
             $height = $this->field->param2 ? ' height="'.s($this->field->param2).'" ':' ';
-            $str = '<a href="'.$src.'"><img '.$width.$height.' src="'.$src.'" alt="'.s($alt).'" title="'.s($title).'" class="list_picture"/></a>';
+            $str = '<a href="'.$src.'"><pix '.$width.$height.' src="'.$src.'" alt="'.s($alt).'" title="'.s($title).'" class="list_picture"/></a>';
         }
 
         return $str;

@@ -314,7 +314,7 @@ class core_files_renderer extends plugin_renderer_base {
      *
      * the element with class 'fp-thumbnail' will be resized to the repository thumbnail size
      * (both width and height, unless min-width and/or min-height is set in CSS) and the content of
-     * an element will be replaced with an appropriate img;
+     * an element will be replaced with an appropriate pix;
      *
      * the width of element with class 'fp-filename' will be set to the repository thumbnail width
      * (unless min-width is set in css) and the content of an element will be replaced with filename
@@ -344,7 +344,7 @@ class core_files_renderer extends plugin_renderer_base {
     /**
      * FilePicker JS template for displaying file name in 'table view' and 'tree view' modes.
      *
-     * content of the element with class 'fp-icon' will be replaced with an appropriate img;
+     * content of the element with class 'fp-icon' will be replaced with an appropriate pix;
      *
      * content of element with class 'fp-filename' will be replaced with filename supplied by
      * repository;

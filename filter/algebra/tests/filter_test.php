@@ -56,13 +56,13 @@ class filter_algebra_testcase extends basic_testcase {
 
 
     function test_algebra_filter_pluginfile() {
-        $this->assertEquals('<img src="@@PLUGINFILE@@/photo.jpg">',
-                $this->filter->filter('<img src="@@PLUGINFILE@@/photo.jpg">'));
+        $this->assertEquals('<pix src="@@PLUGINFILE@@/photo.jpg">',
+                $this->filter->filter('<pix src="@@PLUGINFILE@@/photo.jpg">'));
     }
 
     function test_algebra_filter_draftfile() {
-        $this->assertEquals('<img src="@@DRAFTFILE@@/photo.jpg">',
-                $this->filter->filter('<img src="@@DRAFTFILE@@/photo.jpg">'));
+        $this->assertEquals('<pix src="@@DRAFTFILE@@/photo.jpg">',
+                $this->filter->filter('<pix src="@@DRAFTFILE@@/photo.jpg">'));
     }
 
     function test_algebra_filter_unified_diff() {

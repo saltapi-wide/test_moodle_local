@@ -135,7 +135,7 @@ class dataformfield_picture_renderer extends dataformfield_file_renderer {
             $imgattr['src'] = $src;
             $imgattr['style'] = implode(';', $imgattr['style']);
 
-            $str = html_writer::empty_tag('img', $imgattr);
+            $str = html_writer::empty_tag('pix', $imgattr);
 
             if (!empty($params['linked'])) {
                 return html_writer::link($src, $str);

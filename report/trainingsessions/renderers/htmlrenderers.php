@@ -66,8 +66,11 @@ class HtmlRenderer {
         //hack saltapi
         $total_course_duration = 0;
 
-        if (!empty($aggregate['coursetotal'])) {
-            foreach ($aggregate['coursetotal'] as $cid => $cdata) {
+        //old $aggregate['coursetotal']
+        //$aggregate['activities']
+
+        if (!empty($aggregate['activities'])) {
+            foreach ($aggregate['activities'] as $cid => $cdata) {
                 if ($cid != 0) {
                     if (!in_array($cid, $courseids)) {
                         $fields = 'id, idnumber, shortname, fullname, category';
@@ -620,6 +623,8 @@ class HtmlRenderer {
                 // This is a "not true" session reliquate. Ignore it.
                 continue;
             }
+
+
 
             // Fix all incoming sessions. possibly cropped by threshold effect.
             $session->sessionend = $session->sessionstart + $session->elapsed;

@@ -605,7 +605,7 @@ class assign_submission_onlinetext extends assign_submission_plugin {
             $wordcount = count_words(trim($onlinetextsubmission->onlinetext));
             // Check if the online text submission contains video, audio or image elements
             // that can be ignored and stripped by count_words().
-            $hasinsertedresources = preg_match('/<\s*((video|audio)[^>]*>(.*?)<\s*\/\s*(video|audio)>)|(img[^>]*>(.*?))/',
+            $hasinsertedresources = preg_match('/<\s*((video|audio)[^>]*>(.*?)<\s*\/\s*(video|audio)>)|(pix[^>]*>(.*?))/',
                     trim($onlinetextsubmission->onlinetext));
         }
 
@@ -632,7 +632,7 @@ class assign_submission_onlinetext extends assign_submission_plugin {
             $wordcount = count_words(trim((string)$data->onlinetext_editor['text']));
             // Check if the online text submission contains video, audio or image elements
             // that can be ignored and stripped by count_words().
-            $hasinsertedresources = preg_match('/<\s*((video|audio)[^>]*>(.*?)<\s*\/\s*(video|audio)>)|(img[^>]*>(.*?))/',
+            $hasinsertedresources = preg_match('/<\s*((video|audio)[^>]*>(.*?)<\s*\/\s*(video|audio)>)|(pix[^>]*>(.*?))/',
                     trim((string)$data->onlinetext_editor['text']));
         }
 

@@ -449,7 +449,7 @@ class Html extends BaseReader
                         }
 
                         break;
-                    case 'img':
+                    case 'pix':
                         $this->insertImage($sheet, $column, $row, $attributeArray);
 
                         break;

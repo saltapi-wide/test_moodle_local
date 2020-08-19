@@ -476,7 +476,7 @@ function print_badge_image(badge $badge, stdClass $context, $size = 'small') {
     $imageurl->param('refresh', rand(1, 10000));
     $attributes = array('src' => $imageurl, 'alt' => s($badge->name), 'class' => 'activatebadge');
 
-    return html_writer::empty_tag('img', $attributes);
+    return html_writer::empty_tag('pix', $attributes);
 }
 
 /**

@@ -124,7 +124,7 @@ class block_social_activities extends block_list {
                             continue;
                         }
                         $this->content->items[] = '<a title="'.$strmovefull.'" href="'.$CFG->wwwroot.'/course/mod.php?moveto='.$mod->id.'&amp;sesskey='.sesskey().'">'.
-                            '<img style="height:16px; width:80px; border:0px" src="'.$OUTPUT->image_url('movehere') . '" alt="'.$strmovehere.'" /></a>';
+                            '<pix style="height:16px; width:80px; border:0px" src="'.$OUTPUT->image_url('movehere') . '" alt="'.$strmovehere.'" /></a>';
                         $this->content->icons[] = '';
                     }
                     if (!$mod->url) {
@@ -141,7 +141,7 @@ class block_social_activities extends block_list {
 
         if ($ismoving) {
             $this->content->items[] = '<a title="'.$strmovefull.'" href="'.$CFG->wwwroot.'/course/mod.php?movetosection='.$section->id.'&amp;sesskey='.sesskey().'">'.
-                                      '<img style="height:16px; width:80px; border:0px" src="'.$OUTPUT->image_url('movehere') . '" alt="'.$strmovehere.'" /></a>';
+                                      '<pix style="height:16px; width:80px; border:0px" src="'.$OUTPUT->image_url('movehere') . '" alt="'.$strmovehere.'" /></a>';
             $this->content->icons[] = '';
         }
 

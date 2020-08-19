@@ -213,7 +213,7 @@ class SimplePie_Sanitize
 	 * containing URLs that need to be resolved relative to the feed
 	 *
 	 * Defaults to |a|@href, |area|@href, |blockquote|@cite, |del|@cite,
-	 * |form|@action, |img|@longdesc, |img|@src, |input|@src, |ins|@cite,
+	 * |form|@action, |pix|@longdesc, |pix|@src, |input|@src, |ins|@cite,
 	 * |q|@cite
 	 *
 	 * @since 1.0
@@ -229,7 +229,7 @@ class SimplePie_Sanitize
 				'blockquote' => 'cite',
 				'del' => 'cite',
 				'form' => 'action',
-				'img' => array(
+				'pix' => array(
 					'longdesc',
 					'src'
 				),
@@ -329,7 +329,7 @@ class SimplePie_Sanitize
 				// If image handling (caching, etc.) is enabled, cache and rewrite all the image tags.
 				if (isset($this->image_handler) && ((string) $this->image_handler) !== '' && $this->enable_cache)
 				{
-					$images = $document->getElementsByTagName('img');
+					$images = $document->getElementsByTagName('pix');
 					foreach ($images as $img)
 					{
 						if ($img->hasAttribute('src'))

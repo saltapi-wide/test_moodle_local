@@ -63,7 +63,7 @@ function GetDepFiles($manifestroot, $fname,$folder,&$filenames) {
 
 
 function GetDepFilesXML ($manifestroot, $fname,&$filenames,&$dcx, $folder){
-        $nlist = $dcx->nodeList("//img/@src | //attachments/attachment/@href  | //link/@href | //script/@src");
+        $nlist = $dcx->nodeList("//pix/@src | //attachments/attachment/@href  | //link/@href | //script/@src");
         $css_obj_array = array();
         foreach ($nlist as $nl) {
             $item = $nl->nodeValue;
@@ -92,7 +92,7 @@ function GetDepFilesXML ($manifestroot, $fname,&$filenames,&$dcx, $folder){
 
 function GetDepFilesHTML ($manifestroot, $fname,&$filenames,&$dcx, $folder){
         $dcx->resetXpath();
-        $nlist = $dcx->nodeList("//img/@src | //link/@href | //script/@src | //a[not(starts-with(@href,'#'))]/@href");
+        $nlist = $dcx->nodeList("//pix/@src | //link/@href | //script/@src | //a[not(starts-with(@href,'#'))]/@href");
         $css_obj_array=array();
         foreach ($nlist as $nl) {
             $item = $nl->nodeValue;

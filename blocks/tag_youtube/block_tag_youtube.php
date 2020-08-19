@@ -297,7 +297,7 @@ class block_tag_youtube extends block_base {
         // If we reach that point we already know that the API key is set.
         $service = $this->get_service();
 
-        $text = html_writer::start_tag('ul', array('class' => 'yt-video-entry unlist img-text'));
+        $text = html_writer::start_tag('ul', array('class' => 'yt-video-entry unlist pix-text'));
         foreach ($videosdata->items as $video) {
 
             // Link to the video included in the playlist if listing a playlist.
@@ -325,7 +325,7 @@ class block_tag_youtube extends block_base {
             $text .= html_writer::start_tag('li');
 
             $imgattrs = array('class' => 'youtube-thumb', 'src' => $thumbnail->url, 'alt' => $video->snippet->title);
-            $thumbhtml = html_writer::empty_tag('img', $imgattrs);
+            $thumbhtml = html_writer::empty_tag('pix', $imgattrs);
             $link = html_writer::tag('a', $thumbhtml, array('href' => $url));
             $text .= html_writer::tag('div', $link, array('class' => 'clearfix'));
 

@@ -231,7 +231,7 @@ class api {
         // Nextcloud has a custom baseurl. Thus, the creation of endpoints has to be done later.
         $record = (object) [
             'name' => 'Nextcloud',
-            'image' => 'https://nextcloud.com/wp-content/themes/next/assets/img/common/favicon.png?x16328',
+            'image' => 'https://nextcloud.com/wp-content/themes/next/assets/pix/common/favicon.png?x16328',
             'basicauth' => 1,
         ];
 

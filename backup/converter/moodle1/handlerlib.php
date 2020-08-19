@@ -1223,7 +1223,7 @@ class moodle1_question_bank_handler extends moodle1_xml_handler {
         if (!empty($data['image'])) {
             if (core_text::substr(core_text::strtolower($data['image']), 0, 7) == 'http://') {
                 // it is a link, appending to existing question text
-                $data['questiontext'] .= ' <img src="' . $data['image'] . '" />';
+                $data['questiontext'] .= ' <pix src="' . $data['image'] . '" />';
 
             } else {
                 // it is a file in course_files
@@ -1245,7 +1245,7 @@ class moodle1_question_bank_handler extends moodle1_xml_handler {
                     // note this is slightly different from the upgrade code as we put the file into the
                     // root folder here. this makes our life easier as we do not need to create all the
                     // directories within the specified filearea/itemid
-                    $data['questiontext'] .= ' <img src="@@PLUGINFILE@@/' . $filename . '" />';
+                    $data['questiontext'] .= ' <pix src="@@PLUGINFILE@@/' . $filename . '" />';
 
                 } else {
                     $this->log('question file not found', backup::LOG_WARNING, array($data['id'], $filepath.$filename));

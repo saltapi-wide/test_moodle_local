@@ -128,7 +128,7 @@ class Horde_Mime_Related implements IteratorAggregate
                     $this->_cidReplace($node, 'background', $callback);
                     break;
 
-                case 'img':
+                case 'pix':
                     $this->_cidReplace($node, 'src', $callback);
                     break;
                 }

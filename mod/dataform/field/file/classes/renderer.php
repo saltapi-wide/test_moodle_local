@@ -207,7 +207,7 @@ class dataformfield_file_renderer extends mod_dataform\pluginbase\dataformfieldr
         $filename = $file->get_filename();
         $displayname = $altname ? $altname : $filename;
 
-        $fileicon = html_writer::empty_tag('img', array(
+        $fileicon = html_writer::empty_tag('pix', array(
             'src' => $OUTPUT->image_url(file_mimetype_icon($file->get_mimetype())),
             'alt' => $file->get_mimetype(),
             'height' => 16,

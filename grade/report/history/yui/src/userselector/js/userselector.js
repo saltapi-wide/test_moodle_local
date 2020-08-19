@@ -165,7 +165,7 @@ Y.namespace('M.gradereport_history').UserSelector = Y.extend(USERSELECTOR, M.cor
                     '<form>' +
                         '<div class="{{CSS.AJAXCONTENT}}" aria-live="polite"></div>' +
                         '<div class="{{CSS.LIGHTBOX}} {{CSS.HIDDEN}}">' +
-                            '<img class="{{CSS.LOADINGICON}}" alt="{{get_string "loading" "admin"}}"' +
+                            '<pix class="{{CSS.LOADINGICON}}" alt="{{get_string "loading" "admin"}}"' +
                                 'src="{{{loadingIcon}}}">' +
                         '</div>' +
                         '<div class="{{CSS.CLOSEBTN}}">' +

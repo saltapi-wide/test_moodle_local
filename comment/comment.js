@@ -244,7 +244,7 @@ M.core_comment = {
                             var result = scope.render(ret.list);
                         }
                         container.set('innerHTML', result.html);
-                        var img = Y.one('#comment-img-'+scope.client_id);
+                        var img = Y.one('#comment-pix-'+scope.client_id);
                         if (img) {
                             img.set('src', M.util.image_url('t/expanded', 'core'));
                         }
@@ -361,7 +361,7 @@ M.core_comment = {
                 var commenttoggler = Y.one('#comment-link-' + this.client_id);
                 var container = Y.one('#comment-ctrl-'+this.client_id);
                 var ta = Y.one('#dlg-content-'+this.client_id);
-                var img = Y.one('#comment-img-'+this.client_id);
+                var img = Y.one('#comment-pix-'+this.client_id);
                 var d = container.getStyle('display');
                 if (d=='none'||d=='') {
                     // show
@@ -434,7 +434,7 @@ M.core_comment = {
             },
             wait: function() {
                 var container = Y.one('#comment-list-'+this.client_id);
-                container.set('innerHTML', '<div class="mdl-align"><img src="'+M.util.image_url('i/loading_small', 'core')+'" /></div>');
+                container.set('innerHTML', '<div class="mdl-align"><pix src="'+M.util.image_url('i/loading_small', 'core')+'" /></div>');
             }
         });
 

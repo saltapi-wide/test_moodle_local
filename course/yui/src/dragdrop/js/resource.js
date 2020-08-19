@@ -122,7 +122,7 @@ Y.extend(DRAGRESOURCE, M.core.dragdrop, {
             return;
         }
         drag.get('dragNode').setContent(drag.get('node').get('innerHTML'));
-        drag.get('dragNode').all('img.iconsmall').setStyle('vertical-align', 'baseline');
+        drag.get('dragNode').all('pix.iconsmall').setStyle('vertical-align', 'baseline');
     },
 
     drag_dropmiss: function(e) {

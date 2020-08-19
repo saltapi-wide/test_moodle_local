@@ -164,8 +164,38 @@ function use_stats_extract_logs($from, $to, $for = null, $course = null) {
             $logs[] = $log;
         }
         $rs->close($rs);
+
+
+        //saltapi
+        //var_dump($logs);
+
+//        echo '<br>';
+//        echo 'FROM: '.date( "h:m", $from);
+//        echo '<br>';
+//        echo 'TO: '.date( "h:m", $to);
+//        echo '<br>';
+
+        /*foreach($logs AS $key=>$logarisma){
+
+            //date( "Y-m-d", strtotime( "2009-01-31 +1 month" ) )
+            //
+            //echo  $logarisma->time."<br>";
+            //echo date( "h:m", $logarisma->time);
+            //echo '<br>';
+
+            if ((date( "h:m", $logarisma->time) < date( "h:m", $from))
+                && (date( "h:m", $logarisma->time) > date( "h:m", $to)))
+            {
+                unset($logs[$key]);
+                //echo "BAD TIME";
+            }
+        } */
+        //saltapi
+
+
         return $logs;
     }
+
     return array();
 }
 
@@ -227,6 +257,8 @@ function use_stats_aggregate_logs($logs, $from = 0, $to = 0, $progress = '', $no
     if (!empty($logs)) {
         $logs = array_values($logs);
 
+        //var_dump($logs);
+
         $memlap = 0; // Will store the accumulated time for in the way but out of scope laps.
 
         $logsize = count($logs);
@@ -243,6 +275,9 @@ function use_stats_aggregate_logs($logs, $from = 0, $to = 0, $progress = '', $no
 
             $log = $logs[$i];
             // We "guess" here the real identity of the log's owner.
+
+
+
             $currentuser = $log->userid;
 
             // Let's get lap time to next log in track.
@@ -823,6 +858,10 @@ function use_stats_aggregate_logs($logs, $from = 0, $to = 0, $progress = '', $no
                 if ($to) {
                     $select .= " AND timemodified <= $to ";
                 }
+
+                //saltapi
+                //$select .= " AND CAST(timemodified) >= ".strtotime($from)." AND CAST(timemodified) <= ".strtotime($to);
+
                 if ($realtimes = $DB->get_records_select('scorm_scoes_track', $select, array(), 'id, element, value')) {
                     foreach ($realtimes as $rt) {
                         preg_match("/(\d\d):(\d\d):(\d\d)\./", $rt->value, $matches);

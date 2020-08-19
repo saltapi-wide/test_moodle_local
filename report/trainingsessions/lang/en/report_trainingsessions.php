@@ -32,6 +32,8 @@ $string['trainingsessions:downloadreports'] = 'Can download report documents'; /
 $string['trainingsessions:batch'] = 'Can batch reports'; // @DYNAKEY
 $string['trainingsessions:usegrading'] = 'Can setup grading output'; // @DYNAKEY
 
+$string['check_customtime'] = 'Custom hour range';
+
 $string['accountstart'] = 'User account creation date';
 $string['activitytime'] = 'Time in activities';
 $string['addcoursegrade'] = 'Add course grade to report';

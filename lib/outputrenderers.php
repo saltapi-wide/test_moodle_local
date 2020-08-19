@@ -1168,13 +1168,13 @@ class core_renderer extends renderer_base {
             // Special case for site home page - please do not remove
             return '<div class="sitelink">' .
                    '<a title="Moodle" href="http://moodle.org/">' .
-                   '<img src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
+                   '<pix src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
 
         } else if (!empty($CFG->target_release) && $CFG->target_release != $CFG->release) {
             // Special case for during install/upgrade.
             return '<div class="sitelink">'.
                    '<a title="Moodle" href="http://docs.moodle.org/en/Administrator_documentation" onclick="this.target=\'_blank\'">' .
-                   '<img src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
+                   '<pix src="' . $this->image_url('moodlelogo_grayhat') . '" alt="'.get_string('moodlelogo').'" /></a></div>';
 
         } else if ($this->page->course->id == $SITE->id || strpos($this->page->pagetype, 'course-view') === 0) {
             return '<div class="homelink"><a href="' . $CFG->wwwroot . '/">' .
@@ -2536,7 +2536,7 @@ class core_renderer extends renderer_base {
         }
 
         // get the image html output fisrt
-        $output = html_writer::empty_tag('img', $attributes);
+        $output = html_writer::empty_tag('pix', $attributes);
 
         // Show fullname together with the picture when desired.
         if ($userpicture->includefullname) {
@@ -4094,8 +4094,8 @@ EOD;
 
         if ($this->should_display_main_logo($headinglevel)) {
             $sitename = format_string($SITE->fullname, true, array('context' => context_course::instance(SITEID)));
-            return html_writer::div(html_writer::empty_tag('img', [
-                    'src' => $this->get_logo_url(null, 150), 'alt' => $sitename, 'class' => 'img-fluid']), 'logo');
+            return html_writer::div(html_writer::empty_tag('pix', [
+                    'src' => $this->get_logo_url(null, 150), 'alt' => $sitename, 'class' => 'pix-fluid']), 'logo');
         }
 
         // Make sure to use the heading if it has been set.
@@ -4240,7 +4240,7 @@ EOD;
                     ));
                     $image .= html_writer::span($button['title'], 'header-button-title');
                 } else {
-                    $image = html_writer::empty_tag('img', array(
+                    $image = html_writer::empty_tag('pix', array(
                         'src' => $button['formattedimage'],
                         'role' => 'presentation'
                     ));

@@ -47,7 +47,7 @@ M.core_question_flags = {
             input.set('name', checkbox.get('name'));
             input.set('value', checkbox.get('checked') ? 1 : 0);
 
-            // Create an image input to replace the img tag.
+            // Create an image input to replace the pix tag.
             var image = Y.Node.create('<input type="image" class="questionflagimage" />');
             var flagtext = Y.Node.create('<span class="questionflagtext">.</span>');
             M.core_question_flags.update_flag(input, image, flagtext);

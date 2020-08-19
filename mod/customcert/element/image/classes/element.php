@@ -275,7 +275,7 @@ class element extends \mod_customcert\element {
                 $style .= 'height: ' . $imageinfo->height . 'mm';
             }
 
-            return \html_writer::tag('img', '', array('src' => $url, 'style' => $style));
+            return \html_writer::tag('pix', '', array('src' => $url, 'style' => $style));
         }
     }
 

@@ -67,7 +67,7 @@ class filter_urltolink extends moodle_text_filter {
      * @param string $text Passed in by reference. The string to be searched for urls.
      */
     protected function convert_urls_into_links(&$text) {
-        //I've added img tags to this list of tags to ignore.
+        //I've added pix tags to this list of tags to ignore.
         //See MDL-21168 for more info. A better way to ignore tags whether or not
         //they are escaped partially or completely would be desirable. For example:
         //<a href="blah">
@@ -173,5 +173,5 @@ function filter_urltolink_img_callback($link) {
         // this is not a link created by this filter, because the url does not match the text
         return $link[0];
     }
-    return '<img class="filter_urltolink_image" alt="" src="'.$link[1].'" />';
+    return '<pix class="filter_urltolink_image" alt="" src="'.$link[1].'" />';
 }

@@ -1243,14 +1243,14 @@ class moodle_content_writer_test extends advanced_testcase {
             'zeroitemid' => [
                 'intro',
                 0,
-                '<p><img src="@@PLUGINFILE@@/hello.gif" /></p>',
-                '<p><img src="System _.1/_files/intro/hello.gif" /></p>',
+                '<p><pix src="@@PLUGINFILE@@/hello.gif" /></p>',
+                '<p><pix src="System _.1/_files/intro/hello.gif" /></p>',
             ],
             'nonzeroitemid' => [
                 'submission_content',
                 34,
-                '<p><img src="@@PLUGINFILE@@/first.png" alt="First" /></p>',
-                '<p><img src="System _.1/_files/submission_content/_34/first.png" alt="First" /></p>',
+                '<p><pix src="@@PLUGINFILE@@/first.png" alt="First" /></p>',
+                '<p><pix src="System _.1/_files/submission_content/_34/first.png" alt="First" /></p>',
             ],
             'withfilepath' => [
                 'post_content',

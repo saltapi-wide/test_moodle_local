@@ -66,13 +66,22 @@ class SelectorForm extends moodleform {
             'stopyear'  => 2025,
             'timezone'  => 99,
             'applydst'  => true,
-            'optional'  => false
+            'optional'  => false,
+            'step' => 1
         );
         $titles[] = get_string('from');
         $row[] = & $mform->createElement('date_time_selector', 'from', '', $dateparms);
 
         $titles[] = get_string('to');
         $row[] = & $mform->createElement('date_time_selector', 'to', '', $dateparms);
+
+        //saltapi
+
+        //$titles[] = get_string('check_customtime','report_trainingsessions');
+        //$row[] = & $mform->createElement('checkbox', 'check_customtime', '');
+
+
+        //saltapi
 
         $context = context_course::instance($this->courseid);
 
@@ -159,11 +168,14 @@ class SelectorForm extends moodleform {
         $row[] = $mform->createElement('submit', 'go_btn', get_string('update'));
 
         if ($this->mode == 'user') {
+            $row2[] = & $mform->createElement('radio', 'fromstart', '', 'Προσαρμοσμένη Ημερομηνία', 'clear');
             $row2[] = & $mform->createElement('radio', 'fromstart', '', $updatestr, 'course');
-            $row2[] = & $mform->createElement('radio', 'fromstart', '', $updatestr2, 'account');
-            $row2[] = & $mform->createElement('radio', 'fromstart', '', $updatestr3, 'enrol');
+            //$row2[] = & $mform->createElement('radio', 'fromstart', '', $updatestr2, 'account');
+            //$row2[] = & $mform->createElement('radio', 'fromstart', '', $updatestr3, 'enrol');
+            //$row2[] = & $mform->createElement('radio', 'fromstart', '', 'Clear', 'clear');
         } else {
-            $row2[] = & $mform->createElement('radio', 'fromstart', '', $updatestr);
+            $row2[] = & $mform->createElement('radio', 'fromstart', '', 'Προσαρμοσμένη Ημερομηνία', 'clear');
+            $row2[] = & $mform->createElement('radio', 'fromstart', '', $updatestr, 'course');
         }
         $row2[] = & $mform->createElement('checkbox', 'tonow', '', $updatetostr);
         if (has_capability('moodle/site:config', $context)) {

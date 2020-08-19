@@ -651,7 +651,7 @@ class core_course_renderer extends plugin_renderer_base {
         $onclick = htmlspecialchars_decode($mod->onclick, ENT_QUOTES);
 
         // Display link itself.
-        $activitylink = html_writer::empty_tag('img', array('src' => $mod->get_icon_url(),
+        $activitylink = html_writer::empty_tag('pix', array('src' => $mod->get_icon_url(),
                 'class' => 'iconlarge activityicon', 'alt' => '', 'role' => 'presentation', 'aria-hidden' => 'true')) .
                 html_writer::tag('span', $instancename . $altname, array('class' => 'instancename'));
         if ($mod->uservisible) {
@@ -940,7 +940,7 @@ class core_course_renderer extends plugin_renderer_base {
         }
 
         $altname = get_accesshide(' ' . $cm->modfullname);
-        $name = html_writer::empty_tag('img', array('src' => $cm->get_icon_url(),
+        $name = html_writer::empty_tag('pix', array('src' => $cm->get_icon_url(),
                 'class' => 'iconlarge activityicon', 'alt' => ' ', 'role' => 'presentation')) .
             html_writer::tag('span', ' '.$cm->get_formatted_name() . $altname, array('class' => 'instancename'));
         $formattedinfo = \core_availability\info::format_info($cm->availableinfo, $cm->get_course());
@@ -1019,7 +1019,7 @@ class core_course_renderer extends plugin_renderer_base {
         }
 
         // Always output the section module list.
-        $output .= html_writer::tag('ul', $sectionoutput, array('class' => 'section img-text'));
+        $output .= html_writer::tag('ul', $sectionoutput, array('class' => 'section pix-text'));
 
         return $output;
     }
@@ -1186,7 +1186,7 @@ class core_course_renderer extends plugin_renderer_base {
                     $file->get_filearea(). $file->get_filepath(). $file->get_filename(), !$isimage);
             if ($isimage) {
                 $contentimages .= html_writer::tag('div',
-                        html_writer::empty_tag('img', array('src' => $url)),
+                        html_writer::empty_tag('pix', array('src' => $url)),
                         array('class' => 'courseimage'));
             } else {
                 $image = $this->output->pix_icon(file_file_icon($file, 24), $file->get_filename(), 'moodle');
@@ -2125,7 +2125,7 @@ class core_course_renderer extends plugin_renderer_base {
      * @return string html code
      */
     public function hubinfo($hubinfo) {
-        $screenshothtml = html_writer::empty_tag('img',
+        $screenshothtml = html_writer::empty_tag('pix',
             array('src' => $hubinfo['imgurl'], 'alt' => $hubinfo['name']));
         $hubdescription = html_writer::tag('div', $screenshothtml,
             array('class' => 'hubscreenshot'));

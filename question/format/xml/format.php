@@ -233,7 +233,7 @@ class qformat_xml extends qformat_default {
                 'filename'  => $filename,
             );
             $fs->create_file_from_string($filerecord, base64_decode($filedata));
-            $qo->questiontext .= ' <img src="@@PLUGINFILE@@/' . $filename . '" />';
+            $qo->questiontext .= ' <pix src="@@PLUGINFILE@@/' . $filename . '" />';
         }
 
         $qo->idnumber = $this->getpath($question, ['#', 'idnumber', 0, '#'], null);
@@ -518,7 +518,7 @@ class qformat_xml extends qformat_default {
                 'filename'  => $filename,
             );
             $fs->create_file_from_string($filerecord, base64_decode($filedata));
-            $qo->questiontext .= ' <img src="@@PLUGINFILE@@/' . $filename . '" />';
+            $qo->questiontext .= ' <pix src="@@PLUGINFILE@@/' . $filename . '" />';
         }
 
         // Restore files in generalfeedback.

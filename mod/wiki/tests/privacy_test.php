@@ -100,7 +100,7 @@ class mod_wiki_privacy_testcase extends provider_testcase {
         // Create and modify pages in collaborative wiki.
         $this->pages[1][1] = $this->create_first_page($cm1);
         $this->pages[1][2] = $this->create_page($cm1, ['content' => 'initial content']);
-        $this->update_page($cm1, $this->pages[1][2], ['content' => 'update1 <img src="@@PLUGINFILE@@/Dog%20jump.jpg">']);
+        $this->update_page($cm1, $this->pages[1][2], ['content' => 'update1 <pix src="@@PLUGINFILE@@/Dog%20jump.jpg">']);
         $this->attach_file($cm1, "Dog jump.jpg", 'jpg:Doggy');
         $this->update_page($cm1, $this->pages[1][2], ['content' => 'update2']);
 
@@ -113,7 +113,7 @@ class mod_wiki_privacy_testcase extends provider_testcase {
         $this->setUser($this->users[2]);
 
         // Modify existing pages in the first collaborative wiki.
-        $this->update_page($cm1, $this->pages[1][2], ['content' => 'update3 <img src="@@PLUGINFILE@@/Hamster.jpg">']);
+        $this->update_page($cm1, $this->pages[1][2], ['content' => 'update3 <pix src="@@PLUGINFILE@@/Hamster.jpg">']);
         $this->attach_file($cm1, "Hamster.jpg", 'jpg:Hamster');
 
         // Create pages in individual wiki.
@@ -399,11 +399,11 @@ class mod_wiki_privacy_testcase extends provider_testcase {
 
         // This user was the last one to modify this page, so the page info is returned.
         $data12 = $data[$this->pagepaths[1][2]];
-        $this->assertEquals('update3 <img src="files/Hamster.jpg" alt="Hamster.jpg" />', trim($data12['page']['cachedcontent']));
+        $this->assertEquals('update3 <pix src="files/Hamster.jpg" alt="Hamster.jpg" />', trim($data12['page']['cachedcontent']));
         // He made one revision.
         $this->assertEquals(1, count($data12['revisions']));
         $lastrevision = reset($data12['revisions']);
-        $this->assertEquals('update3 <img src="files/Hamster.jpg">', trim($lastrevision['content']));
+        $this->assertEquals('update3 <pix src="files/Hamster.jpg">', trim($lastrevision['content']));
 
         // Only one file was used in the first wiki by this user - Hamster.jpg.
         $files = writer::with_context($this->contexts[1])->get_files([$this->subwikis[1]]);

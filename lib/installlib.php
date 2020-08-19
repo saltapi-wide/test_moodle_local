@@ -162,7 +162,7 @@ function install_helpbutton($url, $title='') {
     echo "<a href=\"javascript:void(0)\" ";
     echo "onclick=\"return window.open('$url','Help','menubar=0,location=0,scrollbars,resizable,width=500,height=400')\"";
     echo ">";
-    echo "<img src=\"pix/help.gif\" class=\"iconhelp\" alt=\"$title\" title=\"$title\"/>";
+    echo "<pix src=\"pix/help.gif\" class=\"iconhelp\" alt=\"$title\" title=\"$title\"/>";
     echo "</a>\n";
 }
 
@@ -405,7 +405,7 @@ function install_print_footer($config, $reload=false) {
 
     $homelink  = '<div class="sitelink">'.
        '<a title="Moodle '. $CFG->target_release .'" href="http://docs.moodle.org/en/Administrator_documentation" onclick="this.target=\'_blank\'">'.
-       '<img src="pix/moodlelogo.png" alt="'.get_string('moodlelogo').'" /></a></div>';
+       '<pix src="pix/moodlelogo.png" alt="'.get_string('moodlelogo').'" /></a></div>';
 
     echo '</form></div>';
     echo '<div id="page-footer">'.$homelink.'</div>';

@@ -59,6 +59,8 @@ if (empty($selform->from) || @$selform->fromstart) {
     $from = mktime($selform->from["hour"], $selform->from["minute"], 0, $selform->from['month'], $selform->from['day'], $selform->from['year']);
 }
 
+$starthour = $selform->from["minute"];
+$startminute = $selform->from["hour"];
 $startday = $selform->from['day']; // From (-1 is from course start).
 $startmonth = $selform->from['month']; // From (-1 is from course start).
 $startyear = $selform->from['year']; // From (-1 is from course start).
@@ -75,7 +77,8 @@ if (empty($selform->to) || @$selform->tonow) {
 } else {
     $to = mktime($selform->to['hour'], $selform->to['minute'], 0, $selform->to['month'], $selform->to['day'], $selform->to['year']);
 }
-
+$endhour = $selform->to["minute"];
+$endminute = $selform->to["hour"];
 $endday = $selform->to['day']; // To (-1 is from course start).
 $endmonth = $selform->to['month']; // To (-1 is from course start).
 $endyear = $selform->to['year']; // To (-1 is from course start).
@@ -284,7 +287,7 @@ if (!empty($tasks)) {
         }
         $attrs = array('src' => $OUTPUT->image_url($layoutimg, 'report_trainingsessions'),
                        'title' => get_string($layoutimg, 'report_trainingsessions'));
-        $layout = html_writer::tag('img', null, $attrs);
+        $layout = html_writer::tag('pix', null, $attrs);
 
         if (empty($task->reportformat)) {
             $task->reportformat = 'csv';
@@ -293,12 +296,12 @@ if (!empty($tasks)) {
         $attrs = array('src' => $OUTPUT->image_url('f/'.$icons[$task->reportformat].'-32'),
                        'title' => get_string($task->reportformat, 'report_trainingsessions'),
                        'class' => 'bigicon');
-        $format = html_writer::tag('img', null, $attrs);
+        $format = html_writer::tag('pix', null, $attrs);
 
         $params = array('id' => $id, 'view' => 'courseraw', 'delete' => $task->id);
         $deleteurl = new moodle_url('/report/trainingsessions/index.php', $params);
         $attrs = array('src' => $OUTPUT->image_url('/t/delete'), 'title' => get_string('delete'));
-        $deleteimg = html_writer::tag('img', null, $attrs);
+        $deleteimg = html_writer::tag('pix', null, $attrs);
 
         $commands = '<a href="'.$deleteurl.'">'.$deleteimg.'</a>';
 

@@ -129,7 +129,7 @@ class chat_portfolio_caller extends portfolio_module_caller_base {
             $content .= $formatmessage->html;
             $lasttime = $message->timestamp;
         }
-        $content = preg_replace('/\<img[^>]*\>/', '', $content);
+        $content = preg_replace('/\<pix[^>]*\>/', '', $content);
 
         $this->exporter->write_new_file($content, clean_filename($this->cm->name . '-session.html'), false);
     }

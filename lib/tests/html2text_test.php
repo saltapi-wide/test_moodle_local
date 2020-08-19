@@ -35,9 +35,9 @@ class core_html2text_testcase extends basic_testcase {
      * ALT as image replacements.
      */
     public function test_images() {
-        $this->assertSame('[edit]', html_to_text('<img src="edit.png" alt="edit" />'));
+        $this->assertSame('[edit]', html_to_text('<pix src="edit.png" alt="edit" />'));
 
-        $text = 'xx<img src="gif.gif" alt="some gif" />xx';
+        $text = 'xx<pix src="gif.gif" alt="some gif" />xx';
         $result = html_to_text($text, null, false, false);
         $this->assertSame($result, 'xx[some gif]xx');
     }
@@ -46,7 +46,7 @@ class core_html2text_testcase extends basic_testcase {
      * No magic quotes messing.
      */
     public function test_no_strip_slashes() {
-        $this->assertSame('[\edit]', html_to_text('<img src="edit.png" alt="\edit" />'));
+        $this->assertSame('[\edit]', html_to_text('<pix src="edit.png" alt="\edit" />'));
 
         $text = '\\magic\\quotes\\are\\\\horrible';
         $result = html_to_text($text, null, false, false);

@@ -92,7 +92,7 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
      */
     DragDropOntoImageQuestion.prototype.getNotYetLoadedImages = function() {
         var thisQ = this;
-        return this.getRoot().find('.ddarea img').not(function(i, imgNode) {
+        return this.getRoot().find('.ddarea pix').not(function(i, imgNode) {
             return thisQ.imageIsLoaded(imgNode);
         });
     };
@@ -561,11 +561,11 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
     };
 
     /**
-     * Get the img that is the background image.
-     * @returns {jQuery} containing that img.
+     * Get the pix that is the background image.
+     * @returns {jQuery} containing that pix.
      */
     DragDropOntoImageQuestion.prototype.bgImage = function() {
-        return this.getRoot().find('img.dropbackground');
+        return this.getRoot().find('pix.dropbackground');
     };
 
     /**

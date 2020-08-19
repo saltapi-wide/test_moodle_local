@@ -100,7 +100,7 @@ class theme_eguru_core_course_renderer extends core_course_renderer {
                     $imgurl = $noimgurl;
                 }
 
-                $rowcontent .= '<div class="col-md-3 col-sm-6"><div class="fp-coursebox"><div class="fp-coursethumb"><a href="'.$courseurl.'"><img src="'.$imgurl.'" width="243" height="165" alt=""></a></div><div class="fp-courseinfo"><h5><a href="'.$courseurl.'">'.$course->get_formatted_name().'</a></h5></div></div></div>';
+                $rowcontent .= '<div class="col-md-3 col-sm-6"><div class="fp-coursebox"><div class="fp-coursethumb"><a href="'.$courseurl.'"><pix src="'.$imgurl.'" width="243" height="165" alt=""></a></div><div class="fp-courseinfo"><h5><a href="'.$courseurl.'">'.$course->get_formatted_name().'</a></h5></div></div></div>';
                 $content .= $rowcontent;
             }
             $content .= '</div>';
@@ -204,7 +204,7 @@ class theme_eguru_core_course_renderer extends core_course_renderer {
                     if (empty($imgurl)) {
                         $imgurl = $noimgurl;
                     }
-                    $coursehtml = '<div class="col-md-2"><div class="course-box"><div class="thumb"><a href="'.$courseurl.'"><img src="'.$imgurl.'" width="135" height="135" alt=""></a></div><div class="info"><h5><a href="'.$courseurl.'">'.$course->get_formatted_name().'</a></h5></div></div></div>';
+                    $coursehtml = '<div class="col-md-2"><div class="course-box"><div class="thumb"><a href="'.$courseurl.'"><pix src="'.$imgurl.'" width="135" height="135" alt=""></a></div><div class="info"><h5><a href="'.$courseurl.'">'.$course->get_formatted_name().'</a></h5></div></div></div>';
 
                     $rowcontent .= $coursehtml;
                 }

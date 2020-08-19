@@ -609,7 +609,7 @@ class behat_mod_quiz extends behat_question_base {
      */
     public function i_move_question_after_item_by_dragging($questionname, $target) {
         $iconxpath = "//li[contains(@class, ' slot ') and contains(., '" . $this->escape($questionname) .
-                "')]//span[contains(@class, 'editing_move')]//img";
+                "')]//span[contains(@class, 'editing_move')]//pix";
         $destinationxpath = "//li[contains(@class, ' slot ') or contains(@class, 'pagenumber ')]" .
                 "[contains(., '" . $this->escape($target) . "')]";
 

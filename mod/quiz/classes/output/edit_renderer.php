@@ -500,7 +500,7 @@ class edit_renderer extends \plugin_renderer_base {
         foreach ($structure->get_slots_in_section($section->id) as $slot) {
             $output .= $this->question_row($structure, $slot, $contexts, $pagevars, $pageurl);
         }
-        return html_writer::tag('ul', $output, array('class' => 'section img-text'));
+        return html_writer::tag('ul', $output, array('class' => 'section pix-text'));
     }
 
     /**

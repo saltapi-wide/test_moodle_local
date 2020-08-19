@@ -72,7 +72,7 @@ class core_portfoliolib_testcase extends advanced_testcase {
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($input, $output);
 
-        $input = '<div>Here, the <img src="nowhere" />@@PLUGINFILE@@' . $filepath . $filenameimg .
+        $input = '<div>Here, the <pix src="nowhere" />@@PLUGINFILE@@' . $filepath . $filenameimg .
             ' is</a> not supposed to be an actual URL placeholder.</div>';
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($input, $output);
@@ -93,13 +93,13 @@ class core_portfoliolib_testcase extends advanced_testcase {
         $this->assertSame($expected, $output);
 
         // Test that the image is matching.
-        $input = '<p>Here is an image <img src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"></p>'; // No trailing slash.
-        $expected = '<p>Here is an image <img src="files/' . $filenameimg . '"/></p>';
+        $input = '<p>Here is an image <pix src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"></p>'; // No trailing slash.
+        $expected = '<p>Here is an image <pix src="files/' . $filenameimg . '"/></p>';
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
-        $input = '<p>Here is an image <img src="@@PLUGINFILE@@' . $filepath . $filenameimg . '" /></p>'; // Trailing slash.
-        $expected = '<p>Here is an image <img src="files/' . $filenameimg . '"/></p>';
+        $input = '<p>Here is an image <pix src="@@PLUGINFILE@@' . $filepath . $filenameimg . '" /></p>'; // Trailing slash.
+        $expected = '<p>Here is an image <pix src="files/' . $filenameimg . '"/></p>';
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
@@ -109,8 +109,8 @@ class core_portfoliolib_testcase extends advanced_testcase {
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
-        $input = '<p><img alt="before" src="@@PLUGINFILE@@' . $filepath . $filenameimg . '" title="after"/></p>';
-        $expected = '<p><img alt="before" src="files/' . $filenameimg . '" title="after"/></p>';
+        $input = '<p><pix alt="before" src="@@PLUGINFILE@@' . $filepath . $filenameimg . '" title="after"/></p>';
+        $expected = '<p><pix alt="before" src="files/' . $filenameimg . '" title="after"/></p>';
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
@@ -121,8 +121,8 @@ class core_portfoliolib_testcase extends advanced_testcase {
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
-        $input = '<p><span title="@@PLUGINFILE/a.txt"><img src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/></span></p>';
-        $expected = '<p><span title="@@PLUGINFILE/a.txt"><img src="files/' . $filenameimg . '"/></span></p>';
+        $input = '<p><span title="@@PLUGINFILE/a.txt"><pix src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/></span></p>';
+        $expected = '<p><span title="@@PLUGINFILE/a.txt"><pix src="files/' . $filenameimg . '"/></span></p>';
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
@@ -134,16 +134,16 @@ class core_portfoliolib_testcase extends advanced_testcase {
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
-        $input = '<p><img rel="1" src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/>' .
-            '<img rel="2" src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/></p>';
-        $expected = '<p><img rel="1" src="files/' . $filenameimg . '"/><img rel="2" src="files/' . $filenameimg . '"/></p>';
+        $input = '<p><pix rel="1" src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/>' .
+            '<pix rel="2" src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/></p>';
+        $expected = '<p><pix rel="1" src="files/' . $filenameimg . '"/><pix rel="2" src="files/' . $filenameimg . '"/></p>';
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
 
         $input = '<p><a href="@@PLUGINFILE@@' . $filepath . $filenamepdf . '">join us!</a>' .
-            '<img src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/></p>';
+            '<pix src="@@PLUGINFILE@@' . $filepath . $filenameimg . '"/></p>';
         $expected = '<p><a href="files/' . $filenamepdf . '">' . $filenamepdf . '</a>' .
-            '<img src="files/' . $filenameimg . '"/></p>';
+            '<pix src="files/' . $filenameimg . '"/></p>';
         $output = portfolio_rewrite_pluginfile_urls($input, $context->id, $component, $filearea, $itemid, $format, $options);
         $this->assertSame($expected, $output);
     }

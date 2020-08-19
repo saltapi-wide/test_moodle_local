@@ -1,29 +1,5 @@
 <?php
 
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-/**
- * User Sessions Block
- *
- * @package    block_user_sessions
- * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-
 class block_user_sessions extends block_base {
 
 
@@ -49,7 +25,7 @@ class block_user_sessions extends block_base {
         $dbman = $DB->get_manager();
 
         // Define table block_trainingsessions to be created.
-        $table = new xmldb_table('user_sessions_settings');
+        $table = new xmldb_table('us_settings');
 
         // Adding fields to table block_trainingsessions.
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
@@ -72,6 +48,59 @@ class block_user_sessions extends block_base {
 
         }
 
+        //user_sessions_general_settings
+
+        // Define table block_trainingsessions to be created.
+        $table2 = new xmldb_table('us_general_settings');
+
+        // Adding fields to table block_trainingsessions.
+        $table2->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table2->add_field('active', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
+        $table2->add_field('courseid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table2->add_field('duration', XMLDB_TYPE_INTEGER, '5', null, null, null, '3600');
+        $table2->add_field('from_general', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table2->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table2->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+
+
+
+        // Adding keys to table training_sessions_settings
+        $table2->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+
+        // Conditionally launch create table for block_trainingsessions.
+        if (!$dbman->table_exists($table2)) {
+            $dbman->create_table($table2);
+        }
+
+
+        //user_sessions_user_settings
+
+        // Define table block_trainingsessions to be created.
+        $table3 = new xmldb_table('us_user_settings');
+
+        // Adding fields to table block_trainingsessions.
+        $table3->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table3->add_field('active', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
+        $table3->add_field('cmid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        //$table3->add_field('cm_module_id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table3->add_field('courseid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table3->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table3->add_field('modtype', XMLDB_TYPE_TEXT, '10', null, XMLDB_NOTNULL, null, null);
+        $table3->add_field('duration', XMLDB_TYPE_INTEGER, '5', null, null, null, '3600');
+        $table3->add_field('from_user', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table3->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table3->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+
+
+
+        // Adding keys to table training_sessions_settings
+        $table3->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+
+        // Conditionally launch create table for block_trainingsessions.
+        if (!$dbman->table_exists($table3)) {
+            $dbman->create_table($table3);
+        }
+
  
         $this->content         =  new stdClass;
 
@@ -91,26 +120,26 @@ class block_user_sessions extends block_base {
 
         $this->content->text = $css.'This is the '.$COURSE->fullname.' course.';
 
-        // anti gia footer vazw link
+        //anti gia footer vazw link
 
 
 
-        $url1 = new moodle_url('/blocks/user_sessions/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
-        // $url2 = new moodle_url('/blocks/simplehtml/view_datatable.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        $url1 = new moodle_url('/blocks/user_sessions/view2.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        //$url2 = new moodle_url('/blocks/simplehtml/view_datatable.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
 
-        // $this->content->footer = html_writer::link($url1, get_string('addpage', 'block_trainingsessions'),array('taget'=>'_blank'));
-        // $this->content->footer.= html_writer::link($url2, get_string('datatable', 'block_trainingsessions'),array('taget'=>'_blank'));
+        //$this->content->footer = html_writer::link($url1, get_string('addpage', 'block_trainingsessions'),array('taget'=>'_blank'));
+        //$this->content->footer.= html_writer::link($url2, get_string('datatable', 'block_trainingsessions'),array('taget'=>'_blank'));
 
 
         $this->content->footer = "<a class='btn btn-primary' href='{$url1}' target='_blank'>Settings</a>";
 
 
-        // if (!has_capability('block/user_sessions:addinstance', $PAGE->context)) {
+        //if (!has_capability('block/user_sessions:addinstance', $PAGE->context)) {
 
 
-            // $this->title = false;
-            // $this->content = false;
-            // $this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
+            //$this->title = false;
+            //$this->content = false;
+            //$this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
         }else{
             $this->title = false;
             $this->content->text.= '<style> .block_user_sessions{display: none!important;} </style>';
@@ -146,4 +175,5 @@ class block_user_sessions extends block_base {
 
 
 }
+
 

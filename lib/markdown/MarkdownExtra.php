@@ -324,7 +324,7 @@ class MarkdownExtra extends \Michelf\Markdown {
 	 * Tags that do not need to be closed.
 	 * @var string
 	 */
-	protected $auto_close_tags_re = 'hr|img|param|source|track';
+	protected $auto_close_tags_re = 'hr|pix|param|source|track';
 
 	/**
 	 * Hashify HTML Blocks and "clean tags".
@@ -903,7 +903,7 @@ class MarkdownExtra extends \Michelf\Markdown {
 	}
 
 	/**
-	 * Turn Markdown image shortcuts into <img> tags.
+	 * Turn Markdown image shortcuts into <pix> tags.
 	 * @param  string $text
 	 * @return string
 	 */
@@ -974,7 +974,7 @@ class MarkdownExtra extends \Michelf\Markdown {
 		$alt_text = $this->encodeAttribute($alt_text);
 		if (isset($this->urls[$link_id])) {
 			$url = $this->encodeURLAttribute($this->urls[$link_id]);
-			$result = "<img src=\"$url\" alt=\"$alt_text\"";
+			$result = "<pix src=\"$url\" alt=\"$alt_text\"";
 			if (isset($this->titles[$link_id])) {
 				$title = $this->titles[$link_id];
 				$title = $this->encodeAttribute($title);
@@ -1003,11 +1003,11 @@ class MarkdownExtra extends \Michelf\Markdown {
 		$alt_text		= $matches[2];
 		$url			= $matches[3] == '' ? $matches[4] : $matches[3];
 		$title			=& $matches[7];
-		$attr  = $this->doExtraAttributes("img", $dummy =& $matches[8]);
+		$attr  = $this->doExtraAttributes("pix", $dummy =& $matches[8]);
 
 		$alt_text = $this->encodeAttribute($alt_text);
 		$url = $this->encodeURLAttribute($url);
-		$result = "<img src=\"$url\" alt=\"$alt_text\"";
+		$result = "<pix src=\"$url\" alt=\"$alt_text\"";
 		if (isset($title)) {
 			$title = $this->encodeAttribute($title);
 			$result .=  " title=\"$title\""; // $title already quoted

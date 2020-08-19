@@ -65,7 +65,7 @@ function filter_algebra_image($imagefile, $tex= "", $height="", $width="", $alig
   $style .= '"';
   $anchorcontents = '';
   if ($imagefile) {
-    $anchorcontents .= "<img $title alt=\"".s($tex)."\" src=\"";
+    $anchorcontents .= "<pix $title alt=\"".s($tex)."\" src=\"";
     if ($CFG->slasharguments) {        // Use this method if possible for better caching
       $anchorcontents .= "$CFG->wwwroot/filter/algebra/pix.php/$imagefile";
     } else {

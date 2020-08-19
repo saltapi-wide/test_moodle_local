@@ -74,27 +74,27 @@ class core_grade_export_test extends advanced_testcase {
 
         $tests = [
             'Has server based image (HTML)' => [
-                '<p>See this reference: <img src="@@PLUGINFILE@@/test.img"></p>',
+                '<p>See this reference: <pix src="@@PLUGINFILE@@/test.pix"></p>',
                 FORMAT_HTML,
                 "See this reference: "
             ],
             'Has server based image and more (HTML)' => [
-                '<p>See <img src="@@PLUGINFILE@@/test.img"> for <em>reference</em></p>',
+                '<p>See <pix src="@@PLUGINFILE@@/test.pix"> for <em>reference</em></p>',
                 FORMAT_HTML,
                 "See  for reference"
             ],
             'Has server based video and more (HTML)' => [
-                '<p>See <video src="@@PLUGINFILE@@/test.img">video of a duck</video> for <em>reference</em></p>',
+                '<p>See <video src="@@PLUGINFILE@@/test.pix">video of a duck</video> for <em>reference</em></p>',
                 FORMAT_HTML,
                 'See video of a duck for reference'
             ],
             'Has server based video with text and more (HTML)' => [
-                '<p>See <video src="@@PLUGINFILE@@/test.img">@@PLUGINFILE@@/test.img</video> for <em>reference</em></p>',
+                '<p>See <video src="@@PLUGINFILE@@/test.pix">@@PLUGINFILE@@/test.pix</video> for <em>reference</em></p>',
                 FORMAT_HTML,
-                "See https://www.example.com/moodle/pluginfile.php/$contextid/grade/feedback/$gradeid/test.img for reference"
+                "See https://www.example.com/moodle/pluginfile.php/$contextid/grade/feedback/$gradeid/test.pix for reference"
             ],
             'Multiple videos (HTML)' => [
-                '<p>See <video src="@@PLUGINFILE@@/test.img">video of a duck</video> and '.
+                '<p>See <video src="@@PLUGINFILE@@/test.pix">video of a duck</video> and '.
                 '<video src="http://example.com/myimage.jpg">video of a cat</video> for <em>reference</em></p>',
                 FORMAT_HTML,
                 'See video of a duck and video of a cat for reference'
@@ -142,12 +142,12 @@ class core_grade_export_test extends advanced_testcase {
                 'This is an example string',
             ],
             'Has image (HTML)' => [
-                '<p>See this reference: <img src="http://example.com/myimage.jpg"></p>',
+                '<p>See this reference: <pix src="http://example.com/myimage.jpg"></p>',
                 FORMAT_HTML,
                 'See this reference: ',
             ],
             'Has image and more (HTML)' => [
-                '<p>See <img src="http://example.com/myimage.jpg"> for <em>reference</em></p>',
+                '<p>See <pix src="http://example.com/myimage.jpg"> for <em>reference</em></p>',
                 FORMAT_HTML,
                 'See  for reference',
             ],
@@ -163,9 +163,9 @@ class core_grade_export_test extends advanced_testcase {
                 'See video of a duck and video of a cat for reference'
             ],
             'HTML Looking tags in PLAIN' => [
-                'The way you have written the <img thing looks pretty fun >',
+                'The way you have written the <pix thing looks pretty fun >',
                 FORMAT_PLAIN,
-                'The way you have written the &lt;img thing looks pretty fun &gt;',
+                'The way you have written the &lt;pix thing looks pretty fun &gt;',
             ],
 
         ];

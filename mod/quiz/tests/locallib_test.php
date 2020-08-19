@@ -104,7 +104,7 @@ class mod_quiz_locallib_testcase extends advanced_testcase {
         $question = new stdClass();
         $question->qtype = 'multichoice';
         $question->name = 'The question name';
-        $question->questiontext = '<p>What sort of <b>inequality</b> is x &lt; y<img alt="?" src="..."></p>';
+        $question->questiontext = '<p>What sort of <b>inequality</b> is x &lt; y<pix alt="?" src="..."></p>';
         $question->questiontextformat = FORMAT_HTML;
 
         $summary = quiz_question_tostring($question);

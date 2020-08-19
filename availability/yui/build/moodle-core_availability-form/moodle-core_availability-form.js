@@ -1053,7 +1053,7 @@ M.core_availability.Item.prototype.pluginNode = null;
 M.core_availability.EyeIcon = function(individual, shown) {
     this.individual = individual;
     this.span = Y.Node.create('<a class="availability-eye col-form-label" href="#" role="button">');
-    var icon = Y.Node.create('<img />');
+    var icon = Y.Node.create('<pix />');
     this.span.appendChild(icon);
 
     // Set up button text and icon.
@@ -1134,7 +1134,7 @@ M.core_availability.EyeIcon.prototype.isHidden = function() {
 M.core_availability.DeleteIcon = function(toDelete) {
     this.span = Y.Node.create('<a class="d-inline-block col-form-label availability-delete p-x-1" href="#" title="' +
             M.util.get_string('delete', 'moodle') + '" role="button">');
-    var img = Y.Node.create('<img src="' + M.util.image_url('t/delete', 'core') +
+    var img = Y.Node.create('<pix src="' + M.util.image_url('t/delete', 'core') +
             '" alt="' + M.util.get_string('delete', 'moodle') + '" />');
     this.span.appendChild(img);
     var click = function(e) {

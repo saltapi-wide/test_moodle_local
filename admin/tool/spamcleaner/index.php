@@ -22,7 +22,7 @@ require_once($CFG->libdir.'/adminlib.php');
 // Configuration
 
 $autokeywords = array(
-                    "<img",
+                    "<pix",
                     "fuck",
                     "casino",
                     "porn",
@@ -282,7 +282,7 @@ function print_user_list($users_rs, $keywords) {
 function filter_user($user, $keywords, $count) {
     global $CFG;
     $image_search = false;
-    if (in_array('<img', $keywords)) {
+    if (in_array('<pix', $keywords)) {
         $image_search = true;
     }
     if (isset($user->summary)) {
@@ -305,12 +305,12 @@ function filter_user($user, $keywords, $count) {
         unset($user->subject);
     }
 
-    if (preg_match('#<img.*src=[\"\']('.$CFG->wwwroot.')#', $user->description, $matches)
+    if (preg_match('#<pix.*src=[\"\']('.$CFG->wwwroot.')#', $user->description, $matches)
         && $image_search) {
         $result = false;
         foreach ($keywords as $keyword) {
             if (preg_match('#'.$keyword.'#', $user->description)
-                && ($keyword != '<img')) {
+                && ($keyword != '<pix')) {
                 $result = true;
             }
         }

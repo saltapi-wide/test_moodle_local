@@ -248,9 +248,10 @@ class XlsRenderer {
                 $i++;
             }
         } else {
-            $worksheet->write_string($startrow - 1, 0, get_string('sessionstart', 'report_trainingsessions'), $xlsformats['TT']);
-            $worksheet->write_string($startrow - 1, 1, get_string('sessionend', 'report_trainingsessions'), $xlsformats['TT']);
-            $worksheet->write_string($startrow - 1, 2, get_string('duration', 'report_trainingsessions'), $xlsformats['TT']);
+            //saltapi
+            //$worksheet->write_string($startrow - 1, 0, get_string('sessionstart', 'report_trainingsessions'), $xlsformats['TT']);
+            //$worksheet->write_string($startrow - 1, 1, get_string('sessionend', 'report_trainingsessions'), $xlsformats['TT']);
+            //$worksheet->write_string($startrow - 1, 2, get_string('duration', 'report_trainingsessions'), $xlsformats['TT']);
         }
 
         return $worksheet;
@@ -445,15 +446,15 @@ class XlsRenderer {
             }
         }
 //saltapi
-//        $timecols = array('firstcourseaccess', 'lastcourseaccess');
-//        $durationcols = array('elapsed', 'extelapsed', 'extotherelapsed',
-//                          'activitytime', 'coursetime', 'othertime', 'uploadtime',
-//                          'elapsedoutofstructure', 'elapsedlastweek', 'extelapsedlastweek', 'extotherelapsedlastweek');
+        $timecols = array('firstcourseaccess', 'lastcourseaccess');
+        $durationcols = array('elapsed', 'extelapsed', 'extotherelapsed',
+                          'activitytime', 'coursetime', 'othertime', 'uploadtime',
+                          'elapsedoutofstructure', 'elapsedlastweek', 'extelapsedlastweek', 'extotherelapsedlastweek');
 
-        $timecols = array('firstcourseaccess');
-        $durationcols = array( 'extelapsed', 'extotherelapsed',
-            'othertime', 'uploadtime',
-            'elapsedlastweek', 'extelapsedlastweek', 'extotherelapsedlastweek');
+//        $timecols = array('firstcourseaccess');
+//        $durationcols = array( 'extelapsed', 'extotherelapsed',
+//            'activitytime','othertime', 'uploadtime',
+//            'elapsedlastweek', 'extelapsedlastweek', 'extotherelapsedlastweek');
 
         foreach ($cols as $c) {
 
@@ -468,22 +469,36 @@ class XlsRenderer {
             $row++;
             $worksheet->write_string($row, 0, get_string($c, 'report_trainingsessions').' :', $xlsformats['b']);
             if (in_array($c, $timecols)) {
-                $elapsed = $this->rt->format_time((0 + @$data->$c), 'xlst');
-                //hack lagos giati den eferne swsta to course last access
-//                $elapsed=date('d-m-Y H:i',$data->$c);
+
+                if($data->view!='allcourses'){
+                    $elapsed = $this->rt->format_time((0 + @$data->$c), 'xlst');
+
+
+                    //$elapsed = $this->rt->format_time((0 + @$data->$c), 'xlst');
+                    //hack lagos giati den eferne swsta to course last access
+
+
+                    $elapsed=date('d-m-Y H:i',$data->$c);
+                }
+
                 //to afinw etsi prepei na ftiaxtei gia na deixnei swsto date end hack
 
                 $worksheet->write_string($row, 1, $elapsed, $xlsformats['t']);
             } else {
                 $elapsed = $this->rt->format_time((0 + @$data->$c), 'xlsd');
-                //hack lagos giati eferne tin wra me format hh:mm:ss anti gia px 1h 15mins 30sec
-                $pieces=explode(':',$elapsed);
-                $elapsed='';
-                if($pieces[0]!=0){
-                    $elapsed.=$pieces[0].'h ';
+
+
+                if($data->view!='allcourses'){
+
+                    //hack lagos giati eferne tin wra me format hh:mm:ss anti gia px 1h 15mins 30sec
+                    $pieces=explode(':',$elapsed);
+                    $elapsed='';
+                    if($pieces[0]!=0){
+                        $elapsed.=$pieces[0].'h ';
+                    }
+                    $elapsed.=$pieces[1].' mins '.$pieces[2].' secs';
+                    //end hack
                 }
-                $elapsed.=$pieces[1].' mins '.$pieces[2].' secs';
-                //end hack
 
                 $worksheet->write_string($row, 1, $elapsed, $xlsformats['a']);
             }
@@ -756,10 +771,13 @@ class XlsRenderer {
 
         if (!empty($sessions)) {
 
+            //saltapi
+            /*
             $worksheet->write_string($row, 0, get_string('sessionstart', 'report_trainingsessions'), $xlsformats['t']);
             $worksheet->write_string($row, 1, get_string('sessionend', 'report_trainingsessions'), $xlsformats['t']);
             $worksheet->write_string($row, 2, get_string('duration', 'report_trainingsessions'), $xlsformats['t']);
             $row++;
+            */
 
             foreach ($sessions as $session) {
 
@@ -854,8 +872,14 @@ class XlsRenderer {
         $return = new StdClass;
         $return->elapsed = 0;
         $return->events = 0;
-        if (!empty($aggregate['coursetotal'])) {
-            foreach ($aggregate['coursetotal'] as $cid => $cdata) {
+
+        //saltapi
+
+        //old $aggregate['coursetotal']
+
+        if (!empty($aggregate['activities'])) {
+            foreach ($aggregate['activities'] as $cid => $cdata) {
+
                 if ($cid != 0) {
                     if (!in_array($cid, $courseids)) {
                         $fields = 'id,idnumber,shortname,fullname,category';
@@ -952,12 +976,16 @@ class XlsRenderer {
 
 
                 //extra time
+
+/*
                 $worksheet->write_string($row, 0, get_string('othertime', 'report_trainingsessions'), $xlsformats['a']);
                 //$elapsed = $this->rt->format_time($output[0][SITEID]->elapsed, 'xlsd');
                 $elapsed_extra = $return->elapsed-$total_site;
+                $elapsed_extra = $total_site;
                 $elapsed_extra=$this->rt->format_time($elapsed_extra, 'xlsd');
                 $worksheet->write_string($row, 1, $elapsed_extra, $xlsformats['d']);
                 $row++;
+*/
 
             }
 

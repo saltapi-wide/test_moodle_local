@@ -21,7 +21,7 @@
  */
 
 (function($) {
-    var img = $("#header").find('.avatar').find('img[src$="/u/f2"]');
+    var img = $("#header").find('.avatar').find('pix[src$="/u/f2"]');
     var src = img.attr('src');
     img.attr('src', src + '_white');
 

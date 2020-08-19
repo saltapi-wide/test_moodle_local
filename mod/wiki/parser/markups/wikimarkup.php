@@ -327,7 +327,7 @@ abstract class wiki_markup_parser extends generic_parser {
 
     protected function format_image($src, $alt, $caption = "", $align = 'left') {
         $src = $this->real_path($src);
-        return parser_utils::h('div', parser_utils::h('p', $caption) . '<img src="' . $src . '" alt="' . $alt . '" />', array('class' => 'wiki_image_' . $align));
+        return parser_utils::h('div', parser_utils::h('p', $caption) . '<pix src="' . $src . '" alt="' . $alt . '" />', array('class' => 'wiki_image_' . $align));
     }
 
     protected function real_path($url) {

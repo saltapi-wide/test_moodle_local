@@ -133,12 +133,12 @@ class dataformfield_url_renderer extends mod_dataform\pluginbase\dataformfieldre
 
             // Image.
             if ($type == 'image') {
-                return html_writer::empty_tag('img', array('src' => $url));
+                return html_writer::empty_tag('pix', array('src' => $url));
             }
 
             // Image flexible.
             if ($type == 'imageflex') {
-                return html_writer::empty_tag('img', array('src' => $url, 'style' => 'width:100%'));
+                return html_writer::empty_tag('pix', array('src' => $url, 'style' => 'width:100%'));
             }
 
             // Media.

@@ -69,10 +69,12 @@ class block_use_stats extends block_base {
      * Produce content for the bloc
      */
     public function get_content() {
-        global $USER, $CFG, $COURSE, $PAGE, $OUTPUT, $SESSION;
+        global $USER, $CFG, $COURSE, $PAGE, $OUTPUT, $SESSION,$DB;
 
         $config = get_config('block_use_stats');
         $debug = optional_param('debug', false, PARAM_BOOL);
+
+        //var_dump($COURSE);
 
         $renderer = $PAGE->get_renderer('block_use_stats');
 
@@ -95,6 +97,7 @@ class block_use_stats extends block_base {
         if (empty($this->instance)) {
             return $this->content;
         }
+
 
         // Get context so we can check capabilities.
         $context = context_block::instance($this->instance->id);
@@ -123,18 +126,43 @@ class block_use_stats extends block_base {
 
         $id = optional_param('id', 0, PARAM_INT);
 
+
         list($from, $to) = $this->get_range();
 
         $capabilities = array('block/use_stats:seesitedetails',
-                              'block/use_stats:seecoursedetails',
-                              'block/use_stats:seegroupdetails');
+            'block/use_stats:seecoursedetails',
+            'block/use_stats:seegroupdetails');
         if (has_any_capability($capabilities, $context, $USER->id)) {
             $userid = optional_param('uid', $USER->id, PARAM_INT);
         } else {
             $userid = $USER->id;
         }
 
-        $cache = cache::make('block_use_stats', 'aggregate');
+//saltapi enrol start
+        // We search first enrol time still active for this user.
+        $sql = "SELECT MIN(ue.timestart) as timestart
+                FROM {enrol} e
+                LEFT JOIN {user_enrolments} ue ON e.id = ue.enrolid
+                WHERE ue.userid={$userid} AND e.courseid={$COURSE->id}";
+
+        $user_enrol = $DB->get_record_sql($sql);
+        $from = $user_enrol->timestart;
+
+        $from_enrol = $from;
+
+
+
+        //$from= '1594774800';
+        //$from = $COURSE->startdate;
+
+
+//saltapi enrol end
+
+
+
+        //saltapi start
+
+        //$cache = cache::make('block_use_stats', 'aggregate');
 
         /*
          * We want to know the effective logrange against required period to
@@ -142,39 +170,89 @@ class block_use_stats extends block_base {
          */
         $logrange = block_use_stats_get_log_range($userid, $from, $to);
 
-        $cachekey = $userid.'_'.$logrange->min.'_'.$logrange->max;
-        $userkeys = unserialize($cache->get('user'.$userid));
+        //$cachekey = $userid.'_'.$logrange->min.'_'.$logrange->max;
+        //$userkeys = unserialize($cache->get('user'.$userid));
 
         $cachestate = '';
-        if ((!$aggregate = unserialize($cache->get($cachekey))) || $debug) {
-            if (debugging() || $debug) {
-                $cachestate = 'missed';
-            }
-            if (($COURSE->id > SITEID) && !empty($config->displayothertime)) {
-                $logs = use_stats_extract_logs($from, $to, $userid, $COURSE->id);
-            } else {
-                $logs = use_stats_extract_logs($from, $to, $userid);
-            }
+        //if ((!$aggregate = unserialize($cache->get($cachekey))) || $debug) {
+//saltapi
 
-            if ($logs) {
-                // Call without session storage for speed.
-                $aggregate = use_stats_aggregate_logs($logs, $from, $to, '', true);
-            }
-            $cache->set($cachekey, serialize($aggregate));
+//            if (debugging() || $debug) {
+//                $cachestate = 'missed';
+//            }
+        if (($COURSE->id > SITEID) && !empty($config->displayothertime)) {
 
-            // Update keys for this user.
-            if (empty($userkeys)) {
-                $userkeys = array();
-            }
-            if (!in_array($cachekey, $userkeys)) {
-                $userkeys[] = $cachekey;
-                $cache->set('user'.$userid, serialize($userkeys));
-            }
+
+            $userclause = " AND userid = {$userid} ";
+            $courseenrolclause = "e.courseid = {$COURSE->id} ";
+
+            //saltapi
+            $courseclause = '';
+            //$courseenrolclause = '';
+            $inparams = array();
+
+            //$config->enrolmentfilter = '1';
+
+/*
+            // We search first enrol time still active for this user.
+            $sql = "
+                SELECT
+                MIN(timestart) as timestart
+                FROM {enrol} e
+                LEFT JOIN {user_enrolments} ue ON e.id = ue.enrolid
+                WHERE
+                $courseenrolclause
+                $userclause
+                ";
+
+            $firstenrol = $DB->get_record_sql($sql, $inparams);
+            $from = $firstenrol->timestart;
+*/
+
+            //var_dump($firstenrol);
+
+//$from= '1594774800';
+//$from = $COURSE->startdate;
+$from = $from_enrol;
+
+
+            $logs = use_stats_extract_logs($from, $to, $userid, $COURSE->id);
         } else {
-            if (debugging()) {
-                $cachestate = 'hit';
-            }
+            $logs = use_stats_extract_logs($from, $to, $userid);
         }
+
+
+
+        if ($logs) {
+            // Call without session storage for speed.
+//$from= '1594774800';
+//$from = $COURSE->startdate;
+$from = $from_enrol;
+
+
+            $aggregate = use_stats_aggregate_logs($logs, $from, $to, '', true);
+        }
+        //$cache->set($cachekey, serialize($aggregate));
+
+        // Update keys for this user.
+        if (empty($userkeys)) {
+            $userkeys = array();
+        }
+//            if (!in_array($cachekey, $userkeys)) {
+//                $userkeys[] = $cachekey;
+//                $cache->set('user'.$userid, serialize($userkeys));
+//            }
+
+
+        //saltapi
+//        } else {
+//            if (debugging()) {
+//                $cachestate = 'hit';
+//            }
+//        }
+
+        //saltapi end
+
 
         if ($aggregate) {
 
@@ -206,14 +284,14 @@ class block_use_stats extends block_base {
 
             if (block_use_stats_supports_feature('view/detail')) {
                 $capabilities = array('block/use_stats:seeowndetails',
-                                      'block/use_stats:seesitedetails',
-                                      'block/use_stats:seecoursedetails',
-                                      'block/use_stats:seegroupdetails');
+                    'block/use_stats:seesitedetails',
+                    'block/use_stats:seecoursedetails',
+                    'block/use_stats:seegroupdetails');
                 if (has_any_capability($capabilities, $context, $USER->id)) {
                     $showdetailstr = get_string('showdetails', 'block_use_stats');
                     $params = array('id' => $this->instance->id, 'userid' => $userid, 'course' => $COURSE->id);
                     if (!empty($fromwhen)) {
-                         $params['ts_from'] = $fromwhen;
+                        $params['ts_from'] = $fromwhen;
                     }
                     $viewurl = new moodle_url('/blocks/use_stats/pro/detail.php', $params);
                     $this->content->text .= '<a href="'.$viewurl.'">'.$showdetailstr.'</a>';
@@ -548,6 +626,7 @@ class block_use_stats extends block_base {
                     if (!$courseid || (($COURSE->id > SITEID) && ($courseid == 1))) {
                         continue;
                     }
+                    //saltapi
                     if  ($courseid == 1) {
                         continue;
                     }
@@ -594,8 +673,8 @@ class block_use_stats extends block_base {
     private function _seeother() {
         $context = context_block::instance($this->instance->id);
         $capabilities = array('block/use_stats:seesitedetails',
-                              'block/use_stats:seecoursedetails',
-                              'block/use_stats:seegroupdetails');
+            'block/use_stats:seecoursedetails',
+            'block/use_stats:seegroupdetails');
         return has_any_capability($capabilities, $context);
     }
 

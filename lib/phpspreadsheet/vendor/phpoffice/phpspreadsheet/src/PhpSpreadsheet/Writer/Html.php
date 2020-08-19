@@ -655,7 +655,7 @@ class Html extends BaseWriter
                     }
 
                     $html .= '<div style="position: relative;">';
-                    $html .= '<img style="position: absolute; z-index: 1; left: ' .
+                    $html .= '<pix style="position: absolute; z-index: 1; left: ' .
                         $drawing->getOffsetX() . 'px; top: ' . $drawing->getOffsetY() . 'px; width: ' .
                         $drawing->getWidth() . 'px; height: ' . $drawing->getHeight() . 'px;" src="' .
                         $imageData . '" border="0" />';
@@ -676,7 +676,7 @@ class Html extends BaseWriter
                 //  max-width: 100% ensures that image doesnt overflow containing cell
                 //  width: X sets width of supplied image.
                 //  As a result, images bigger than cell will be contained and images smaller will not get stretched
-                $html .= '<img src="' . $dataUri . '" style="max-width:100%;width:' . $drawing->getWidth() . 'px;" />';
+                $html .= '<pix src="' . $dataUri . '" style="max-width:100%;width:' . $drawing->getWidth() . 'px;" />';
             }
         }
 
@@ -717,7 +717,7 @@ class Html extends BaseWriter
                         $imageData = 'data:' . $imageDetails['mime'] . ';base64,' . $base64;
 
                         $html .= '<div style="position: relative;">';
-                        $html .= '<img style="position: absolute; z-index: 1; left: ' . $chartCoordinates['xOffset'] . 'px; top: ' . $chartCoordinates['yOffset'] . 'px; width: ' . $imageDetails[0] . 'px; height: ' . $imageDetails[1] . 'px;" src="' . $imageData . '" border="0" />' . PHP_EOL;
+                        $html .= '<pix style="position: absolute; z-index: 1; left: ' . $chartCoordinates['xOffset'] . 'px; top: ' . $chartCoordinates['yOffset'] . 'px; width: ' . $imageDetails[0] . 'px; height: ' . $imageDetails[1] . 'px;" src="' . $imageData . '" border="0" />' . PHP_EOL;
                         $html .= '</div>';
 
                         unlink($chartFileName);

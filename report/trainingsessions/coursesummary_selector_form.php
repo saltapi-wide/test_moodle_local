@@ -57,7 +57,8 @@ class CourseSummarySelectorForm extends moodleform {
             'stopyear'  => 2020,
             'timezone'  => 99,
             'applydst'  => true,
-            'optional'  => false
+            'optional'  => false,
+            'step' => 1
         );
         $titles[] = get_string('from');
         $row[] = & $mform->createElement('date_time_selector', 'from', '', $dateparms);

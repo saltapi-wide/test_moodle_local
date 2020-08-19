@@ -36,10 +36,10 @@ define(['jquery', 'core/log', 'core/config'], function($, log, cfg) {
 
             var calculated = trainingsessionspro.checksum(payload);
 
-            var validicon = ' <img src="' + cfg.wwwroot + '/pix/i/valid.png' + '">';
-            var cautionicon = ' <img src="' + cfg.wwwroot + '/pix/i/warning.png' + '">';
-            var invalidicon = ' <img src="' + cfg.wwwroot + '/pix/i/invalid.png' + '">';
-            var waiticon = ' <img src="' + cfg.wwwroot + '/pix/i/ajaxloader.gif' + '">';
+            var validicon = ' <pix src="' + cfg.wwwroot + '/pix/i/valid.png' + '">';
+            var cautionicon = ' <pix src="' + cfg.wwwroot + '/pix/i/warning.png' + '">';
+            var invalidicon = ' <pix src="' + cfg.wwwroot + '/pix/i/invalid.png' + '">';
+            var waiticon = ' <pix src="' + cfg.wwwroot + '/pix/i/ajaxloader.gif' + '">';
 
             if (crc === calculated) {
                 var url = cfg.wwwroot + '/report/trainingsessions/pro/ajax/services.php?';
@@ -48,20 +48,20 @@ define(['jquery', 'core/log', 'core/config'], function($, log, cfg) {
                 url += '&customerkey=' + that.val();
                 url += '&provider=' + $('#id_s_report_trainingsessions_licenseprovider').val();
 
-                $('#id_s_report_trainingsessions_licensekey + img').remove();
+                $('#id_s_report_trainingsessions_licensekey + pix').remove();
                 $('#id_s_report_trainingsessions_licensekey').after(waiticon);
 
                 $.get(url, function(data) {
                     if (data.match(/SET OK/)) {
-                        $('#id_s_report_trainingsessions_licensekey + img').remove();
+                        $('#id_s_report_trainingsessions_licensekey + pix').remove();
                         $('#id_s_report_trainingsessions_licensekey').after(validicon);
                     } else {
-                        $('#id_s_report_trainingsessions_licensekey + img').remove();
+                        $('#id_s_report_trainingsessions_licensekey + pix').remove();
                         $('#id_s_report_trainingsessions_licensekey').after(invalidicon);
                     }
                 }, 'html');
             } else {
-                $('#id_s_report_trainingsessions_licensekey + img').remove();
+                $('#id_s_report_trainingsessions_licensekey + pix').remove();
                 $('#id_s_report_trainingsessions_licensekey').after(cautionicon);
             }
         },

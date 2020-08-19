@@ -100,7 +100,7 @@ class core_user_renderer extends plugin_renderer_base {
         if ($exclusivemode) {
             $output = '<div><ul class="inline-list">';
             foreach ($items['items'] as $item) {
-                $output .= '<li><div class="user-box">'. $item['img'] . $item['heading'] ."</div></li>\n";
+                $output .= '<li><div class="user-box">'. $item['pix'] . $item['heading'] ."</div></li>\n";
             }
             $output .= "</ul></div>\n";
             return $output;

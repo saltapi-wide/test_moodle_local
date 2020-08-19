@@ -62,7 +62,7 @@ YUI.add('moodle-enrol-otherusersmanager', function(Y) {
                     .append(Y.Node.create('<div class="'+CSS.CONTENT+'"></div>')
                         .append(Y.Node.create('<div class="'+CSS.AJAXCONTENT+'"></div>'))
                         .append(Y.Node.create('<div class="'+CSS.LIGHTBOX+' '+CSS.HIDDEN+'"></div>')
-                            .append(Y.Node.create('<img alt="loading" class="'+CSS.LOADINGICON+'" />')
+                            .append(Y.Node.create('<pix alt="loading" class="'+CSS.LOADINGICON+'" />')
                                 .setAttribute('src', M.util.image_url('i/loading', 'moodle')))
                             .setStyle('opacity', 0.5)))
                     .append(Y.Node.create('<div class="'+CSS.FOOTER+'"></div>')

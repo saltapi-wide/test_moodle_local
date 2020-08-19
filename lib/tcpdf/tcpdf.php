@@ -6893,7 +6893,7 @@ class TCPDF {
 		if (!empty($imgdata)) {
 			// copy image to cache
 			$original_file = $file;
-			$file = TCPDF_STATIC::getObjFilename('img', $this->file_id);
+			$file = TCPDF_STATIC::getObjFilename('pix', $this->file_id);
 			$fp = TCPDF_STATIC::fopenLocal($file, 'w');
 			if (!$fp) {
 				$this->Error('Unable to write file: '.$file);
@@ -7074,9 +7074,9 @@ class TCPDF {
 							$img = $imgr;
 						}
 						if (($type == 'gif') OR ($type == 'png')) {
-							$info = TCPDF_IMAGES::_toPNG($img, TCPDF_STATIC::getObjFilename('img', $this->file_id));
+							$info = TCPDF_IMAGES::_toPNG($img, TCPDF_STATIC::getObjFilename('pix', $this->file_id));
 						} else {
-							$info = TCPDF_IMAGES::_toJPEG($img, $this->jpeg_quality, TCPDF_STATIC::getObjFilename('img', $this->file_id));
+							$info = TCPDF_IMAGES::_toJPEG($img, $this->jpeg_quality, TCPDF_STATIC::getObjFilename('pix', $this->file_id));
 						}
 					}
 				} catch(Exception $e) {
@@ -7135,7 +7135,7 @@ class TCPDF {
 					}
 					$img->setCompressionQuality($this->jpeg_quality);
 					$img->setImageFormat('jpeg');
-					$tempname = TCPDF_STATIC::getObjFilename('img', $this->file_id);
+					$tempname = TCPDF_STATIC::getObjFilename('pix', $this->file_id);
 					$img->writeImage($tempname);
 					$info = TCPDF_IMAGES::_parsejpeg($tempname);
 					unlink($tempname);
@@ -16358,9 +16358,9 @@ class TCPDF {
 		// define block tags
 		$blocktags = array('blockquote','br','dd','dl','div','dt','h1','h2','h3','h4','h5','h6','hr','li','ol','p','pre','ul','tcpdf','table','tr','td');
 		// define self-closing tags
-		$selfclosingtags = array('area','base','basefont','br','hr','input','img','link','meta');
+		$selfclosingtags = array('area','base','basefont','br','hr','input','pix','link','meta');
 		// remove all unsupported tags (the line below lists all supported tags)
-		$html = strip_tags($html, '<marker/><a><b><blockquote><body><br><br/><dd><del><div><dl><dt><em><font><form><h1><h2><h3><h4><h5><h6><hr><hr/><i><img><input><label><li><ol><option><p><pre><s><select><small><span><strike><strong><sub><sup><table><tablehead><tcpdf><td><textarea><th><thead><tr><tt><u><ul>');
+		$html = strip_tags($html, '<marker/><a><b><blockquote><body><br><br/><dd><del><div><dl><dt><em><font><form><h1><h2><h3><h4><h5><h6><hr><hr/><i><pix><input><label><li><ol><option><p><pre><s><select><small><span><strike><strong><sub><sup><table><tablehead><tcpdf><td><textarea><th><thead><tr><tt><u><ul>');
 		//replace some blank characters
 		$html = preg_replace('/<pre/', '<xre', $html); // preserve pre tag
 		$html = preg_replace('/<(table|tr|td|th|tcpdf|blockquote|dd|div|dl|dt|form|h1|h2|h3|h4|h5|h6|br|hr|li|ol|ul|p)([^\>]*)>[\n\r\t]+/', '<\\1\\2>', $html);
@@ -16422,13 +16422,13 @@ class TCPDF {
 		$html = preg_replace('/<\/(table|tr|td|th|blockquote|dd|dt|dl|div|dt|h1|h2|h3|h4|h5|h6|hr|li|ol|ul|p)>[\s]+</', '</\\1><', $html);
 		$html = preg_replace('/<\/(td|th)>/', '<marker style="font-size:0"/></\\1>', $html);
 		$html = preg_replace('/<\/table>([\s]*)<marker style="font-size:0"\/>/', '</table>', $html);
-		$html = preg_replace('/'.$this->re_space['p'].'+<img/'.$this->re_space['m'], chr(32).'<img', $html);
-		$html = preg_replace('/<img([^\>]*)>[\s]+([^\<])/xi', '<img\\1>&nbsp;\\2', $html);
-		$html = preg_replace('/<img([^\>]*)>/xi', '<img\\1><span><marker style="font-size:0"/></span>', $html);
+		$html = preg_replace('/'.$this->re_space['p'].'+<pix/'.$this->re_space['m'], chr(32).'<pix', $html);
+		$html = preg_replace('/<pix([^\>]*)>[\s]+([^\<])/xi', '<pix\\1>&nbsp;\\2', $html);
+		$html = preg_replace('/<pix([^\>]*)>/xi', '<pix\\1><span><marker style="font-size:0"/></span>', $html);
 		$html = preg_replace('/<xre/', '<pre', $html); // restore pre tag
 		$html = preg_replace('/<textarea([^\>]*)>([^\<]*)<\/textarea>/xi', '<textarea\\1 value="\\2" />', $html);
 		$html = preg_replace('/<li([^\>]*)><\/li>/', '<li\\1>&nbsp;</li>', $html);
-		$html = preg_replace('/<li([^\>]*)>'.$this->re_space['p'].'*<img/'.$this->re_space['m'], '<li\\1><font size="1">&nbsp;</font><img', $html);
+		$html = preg_replace('/<li([^\>]*)>'.$this->re_space['p'].'*<pix/'.$this->re_space['m'], '<li\\1><font size="1">&nbsp;</font><pix', $html);
 		$html = preg_replace('/<([^\>\/]*)>[\s]/', '<\\1>&nbsp;', $html); // preserve some spaces
 		$html = preg_replace('/[\s]<\/([^\>]*)>/', '&nbsp;</\\1>', $html); // preserve some spaces
 		$html = preg_replace('/<su([bp])/', '<zws/><su\\1', $html); // fix sub/sup alignment
@@ -16439,7 +16439,7 @@ class TCPDF {
 		// fix br tag after li
 		$html = preg_replace('/<li><br([^\>]*)>/', '<li> <br\\1>', $html);
 		// fix first image tag alignment
-		$html = preg_replace('/^<img/', '<span style="font-size:0"><br /></span> <img', $html, 1);
+		$html = preg_replace('/^<pix/', '<span style="font-size:0"><br /></span> <pix', $html, 1);
 		// pattern for generic tag
 		$tagpattern = '/(<[^>]+>)/';
 		// explodes the string
@@ -17020,7 +17020,7 @@ class TCPDF {
 						$dom[$key]['height'] = $dom[$key]['attribute']['height'];
 					}
 					// check for text alignment
-					if (isset($dom[$key]['attribute']['align']) AND (!TCPDF_STATIC::empty_string($dom[$key]['attribute']['align'])) AND ($dom[$key]['value'] !== 'img')) {
+					if (isset($dom[$key]['attribute']['align']) AND (!TCPDF_STATIC::empty_string($dom[$key]['attribute']['align'])) AND ($dom[$key]['value'] !== 'pix')) {
 						$dom[$key]['align'] = strtoupper($dom[$key]['attribute']['align'][0]);
 					}
 					// check for text rendering mode (the following attributes do not exist in HTML)
@@ -17139,7 +17139,7 @@ class TCPDF {
 	 * The upper-left corner of the cell corresponds to the current position. After the call, the current position moves to the right or to the next line.<br />
 	 * If automatic page breaking is enabled and the cell goes beyond the limit, a page break is done before outputting.
 	 * IMPORTANT: The HTML must be well formatted - try to clean-up it using an application like HTML-Tidy before submitting.
-	 * Supported tags are: a, b, blockquote, br, dd, del, div, dl, dt, em, font, h1, h2, h3, h4, h5, h6, hr, i, img, li, ol, p, pre, small, span, strong, sub, sup, table, tcpdf, td, th, thead, tr, tt, u, ul
+	 * Supported tags are: a, b, blockquote, br, dd, del, div, dl, dt, em, font, h1, h2, h3, h4, h5, h6, hr, i, pix, li, ol, p, pre, small, span, strong, sub, sup, table, tcpdf, td, th, thead, tr, tt, u, ul
 	 * NOTE: all the HTML attributes must be enclosed in double-quote.
 	 * @param $w (float) Cell width. If 0, the cell extends up to the right margin.
 	 * @param $h (float) Cell minimum height. The cell extends automatically if needed.
@@ -17163,7 +17163,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 	/**
 	 * Allows to preserve some HTML formatting (limited support).<br />
 	 * IMPORTANT: The HTML must be well formatted - try to clean-up it using an application like HTML-Tidy before submitting.
-	 * Supported tags are: a, b, blockquote, br, dd, del, div, dl, dt, em, font, h1, h2, h3, h4, h5, h6, hr, i, img, li, ol, p, pre, small, span, strong, sub, sup, table, tcpdf, td, th, thead, tr, tt, u, ul
+	 * Supported tags are: a, b, blockquote, br, dd, del, div, dl, dt, em, font, h1, h2, h3, h4, h5, h6, hr, i, pix, li, ol, p, pre, small, span, strong, sub, sup, table, tcpdf, td, th, thead, tr, tt, u, ul
 	 * NOTE: all the HTML attributes must be enclosed in double-quote.
 	 * @param $html (string) text to display
 	 * @param $ln (boolean) if true add a new line after text (default = true)
@@ -17403,7 +17403,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$dom[$key]['align'] = ($this->rtl) ? 'R' : 'L';
 				}
 				// vertically align image in line
-				if ((!$this->newline) AND ($dom[$key]['value'] == 'img') AND (isset($dom[$key]['height'])) AND ($dom[$key]['height'] > 0)) {
+				if ((!$this->newline) AND ($dom[$key]['value'] == 'pix') AND (isset($dom[$key]['height'])) AND ($dom[$key]['height'] > 0)) {
 					// get image height
 					$imgh = $this->getHTMLUnitToUnits($dom[$key]['height'], ($dom[$key]['fontsize'] / $this->k), 'px');
 					$autolinebreak = false;
@@ -18875,7 +18875,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				}
 				break;
 			}
-			case 'img': {
+			case 'pix': {
 				if (empty($tag['attribute']['src'])) {
 					break;
 				}
@@ -19276,8 +19276,8 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						} else {
 							break;
 						}
-						$value = 'img';
-						//$opt['mk'] = array('i'=>$img, 'tp'=>1, 'if'=>array('sw'=>'A', 's'=>'A', 'fb'=>false));
+						$value = 'pix';
+						//$opt['mk'] = array('i'=>$pix, 'tp'=>1, 'if'=>array('sw'=>'A', 's'=>'A', 'fb'=>false));
 						if (isset($tag['attribute']['onclick']) AND !empty($tag['attribute']['onclick'])) {
 							$jsaction = $tag['attribute']['onclick'];
 						} else {
@@ -20210,13 +20210,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 
 	/**
 	 * Set the default bullet to be used as LI bullet symbol
-	 * @param $symbol (string) character or string to be used (legal values are: '' = automatic, '!' = auto bullet, '#' = auto numbering, 'disc', 'disc', 'circle', 'square', '1', 'decimal', 'decimal-leading-zero', 'i', 'lower-roman', 'I', 'upper-roman', 'a', 'lower-alpha', 'lower-latin', 'A', 'upper-alpha', 'upper-latin', 'lower-greek', 'img|type|width|height|image.ext')
+	 * @param $symbol (string) character or string to be used (legal values are: '' = automatic, '!' = auto bullet, '#' = auto numbering, 'disc', 'disc', 'circle', 'square', '1', 'decimal', 'decimal-leading-zero', 'i', 'lower-roman', 'I', 'upper-roman', 'a', 'lower-alpha', 'lower-latin', 'A', 'upper-alpha', 'upper-latin', 'lower-greek', 'pix|type|width|height|image.ext')
 	 * @public
 	 * @since 4.0.028 (2008-09-26)
 	 */
 	public function setLIsymbol($symbol='!') {
 		// check for custom image symbol
-		if (substr($symbol, 0, 4) == 'img|') {
+		if (substr($symbol, 0, 4) == 'pix|') {
 			$this->lisymbol = $symbol;
 			return;
 		}
@@ -20431,10 +20431,10 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		} elseif ($listtype == '#') {
 			// set default list type for ordered list
 			$listtype = 'decimal';
-		} elseif (substr($listtype, 0, 4) == 'img|') {
-			// custom image type ('img|type|width|height|image.ext')
+		} elseif (substr($listtype, 0, 4) == 'pix|') {
+			// custom image type ('pix|type|width|height|image.ext')
 			$img = explode('|', $listtype);
-			$listtype = 'img';
+			$listtype = 'pix';
 		}
 		switch ($listtype) {
 			// unordered types
@@ -20477,7 +20477,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				$this->Rect($this->x, ($this->y + (($this->lasth - $l) / 2)), $l, $l, 'F', array(), $color);
 				break;
 			}
-			case 'img': {
+			case 'pix': {
 				// 1=>type, 2=>width, 3=>height, 4=>image.ext
 				$lspace += $img[2];
 				if ($this->rtl) {;

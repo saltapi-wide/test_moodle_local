@@ -258,7 +258,7 @@ class ChatDaemon {
         echo <<<EOD
         <html><head>
         <meta http-equiv="refresh" content="$refreshinval">
-        <style type="text/css"> img{border:0} </style>
+        <style type="text/css"> pix{border:0} </style>
         <script type="text/javascript">
         //<![CDATA[
         function openpopup(url,name,options,fullscreen) {

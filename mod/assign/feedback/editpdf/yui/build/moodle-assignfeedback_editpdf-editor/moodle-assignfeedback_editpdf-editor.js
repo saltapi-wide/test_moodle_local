@@ -718,7 +718,7 @@ Y.extend(ANNOTATION, Y.Base, {
             this.drawable.shapes.push(shape);
 
             // Add a delete X to the annotation.
-            var deleteicon = Y.Node.create('<img src="' + M.util.image_url('trash', 'assignfeedback_editpdf') + '"/>'),
+            var deleteicon = Y.Node.create('<pix src="' + M.util.image_url('trash', 'assignfeedback_editpdf') + '"/>'),
                 deletelink = Y.Node.create('<a href="#" role="button"></a>');
 
             deleteicon.setAttrs({
@@ -1868,7 +1868,7 @@ Y.extend(COLOURPICKER, M.assignfeedback_editpdf.dropdown, {
             title = M.util.get_string(colour, 'assignfeedback_editpdf');
             iconname = this.get('iconprefix') + colour;
             img = M.util.image_url(iconname, 'assignfeedback_editpdf');
-            button = Y.Node.create('<button><img alt="' + title + '" src="' + img + '"/></button>');
+            button = Y.Node.create('<button><pix alt="' + title + '" src="' + img + '"/></button>');
             button.setAttribute('data-colour', colour);
             button.setAttribute('data-rgb', rgb);
             button.setStyle('backgroundImage', 'none');
@@ -1994,7 +1994,7 @@ Y.extend(STAMPPICKER, M.assignfeedback_editpdf.dropdown, {
             var button, listitem, title;
 
             title = M.util.get_string('stamp', 'assignfeedback_editpdf');
-            button = Y.Node.create('<button><img height="16" width="16" alt="' + title + '" src="' + stamp + '"/></button>');
+            button = Y.Node.create('<button><pix height="16" width="16" alt="' + title + '" src="' + stamp + '"/></button>');
             button.setAttribute('data-stamp', stamp);
             button.setStyle('backgroundImage', 'none');
             listitem = Y.Node.create('<li/>');
@@ -2165,7 +2165,7 @@ Y.extend(COMMENTMENU, M.assignfeedback_editpdf.dropdown, {
             var listitem = Y.Node.create('<li class="quicklist_comment"></li>'),
                 linkitem = Y.Node.create('<a href="#" tabindex="-1">' + quickcomment.rawtext + '</a>'),
                 deletelinkitem = Y.Node.create('<a href="#" tabindex="-1" class="delete_quicklist_comment">' +
-                                               '<img src="' + M.util.image_url('t/delete', 'core') + '" ' +
+                                               '<pix src="' + M.util.image_url('t/delete', 'core') + '" ' +
                                                'alt="' + M.util.get_string('deletecomment', 'assignfeedback_editpdf') + '"/>' +
                                                '</a>');
             linkitem.setAttribute('title', quickcomment.rawtext);
@@ -2560,7 +2560,7 @@ var COMMENT = function(editor, gradeid, pageno, x, y, width, colour, rawtext) {
                 'preserveAspectRatio="xMinYMin meet">' +
                 '<path d="M11 0H1C.4 0 0 .4 0 1v6c0 .6.4 1 1 1h1v4l4-4h5c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1z" ' +
                 'fill="currentColor" opacity="0.9" stroke="rgb(153, 153, 153)" stroke-width="0.5"/></svg>');
-        menu = Y.Node.create('<a href="#"><img src="' + M.util.image_url('t/contextmenu', 'core') + '"/></a>');
+        menu = Y.Node.create('<a href="#"><pix src="' + M.util.image_url('t/contextmenu', 'core') + '"/></a>');
 
         this.menulink = menu;
         container.append(label);

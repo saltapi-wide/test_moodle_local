@@ -277,7 +277,7 @@ class qtype_essay_walkthrough_testcase extends qbehaviour_walkthrough_test_base 
         $this->save_file_to_draft_area($usercontextid, $editordraftid, 'smile.txt', ':-)');
         $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.txt', 'Hello world!');
         $this->process_submission(array(
-                'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
+                'answer' => 'Here is a picture: <pix src="' . $CFG->wwwroot .
                                 "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
                                 '" alt="smile">.',
                 'answerformat' => FORMAT_HTML,
@@ -303,7 +303,7 @@ class qtype_essay_walkthrough_testcase extends qbehaviour_walkthrough_test_base 
         $attachementsdraftid = $matches[1];
 
         $this->process_submission(array(
-                'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
+                'answer' => 'Here is a picture: <pix src="' . $CFG->wwwroot .
                                 "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
                                 '" alt="smile">.',
                 'answerformat' => FORMAT_HTML,
@@ -351,7 +351,7 @@ class qtype_essay_walkthrough_testcase extends qbehaviour_walkthrough_test_base 
         $attachementsdraftid = $matches[1];
 
         $this->process_submission(array(
-                'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
+                'answer' => 'Here is a picture: <pix src="' . $CFG->wwwroot .
                                 "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
                                 '" alt="smile">.',
                 'answerformat' => FORMAT_HTML,
@@ -541,7 +541,7 @@ class qtype_essay_walkthrough_testcase extends qbehaviour_walkthrough_test_base 
         $this->save_file_to_draft_area($usercontextid, $editordraftid, 'smile.txt', ':-)');
         $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.txt', 'Hello world!');
         $this->process_submission(array(
-            'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
+            'answer' => 'Here is a picture: <pix src="' . $CFG->wwwroot .
                 "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
                 '" alt="smile">.',
             'answerformat' => FORMAT_HTML,
@@ -600,7 +600,7 @@ class qtype_essay_walkthrough_testcase extends qbehaviour_walkthrough_test_base 
         $this->save_file_to_draft_area($usercontextid, $editordraftid, 'smile.txt', ':-)');
         $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.txt', 'Hello world!');
         $this->process_submission(array(
-            'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
+            'answer' => 'Here is a picture: <pix src="' . $CFG->wwwroot .
                 "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
                 '" alt="smile">.',
             'answerformat' => FORMAT_HTML,

@@ -67,7 +67,7 @@ class Html2Text
         '/(<tr\b[^>]*>|<\/tr>)/i',                        // <tr> and </tr>
         '/<td\b[^>]*>(.*?)<\/td>/i',                      // <td> and </td>
         '/<span class="_html2text_ignore">.+?<\/span>/i', // <span class="_html2text_ignore">...</span>
-        '/<(img)\b[^>]*alt=\"([^>"]+)\"[^>]*>/i',         // <img> with alt tag
+        '/<(pix)\b[^>]*alt=\"([^>"]+)\"[^>]*>/i',         // <pix> with alt tag
     );
 
     /**
@@ -97,7 +97,7 @@ class Html2Text
         "\n",                            // <tr> and </tr>
         "\t\t\\1\n",                     // <td> and </td>
         "",                              // <span class="_html2text_ignore">...</span>
-        '[\\2]',                         // <img> with alt tag
+        '[\\2]',                         // <pix> with alt tag
     );
 
     /**

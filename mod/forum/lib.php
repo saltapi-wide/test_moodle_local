@@ -2801,7 +2801,7 @@ function forum_print_attachments($post, $cm, $type) {
             } else { //'returnimages'
                 if (in_array($mimetype, array('image/gif', 'image/jpeg', 'image/png'))) {
                     // Image attachments don't get printed as links
-                    $imagereturn .= "<br /><img src=\"$path\" alt=\"\" />";
+                    $imagereturn .= "<br /><pix src=\"$path\" alt=\"\" />";
                     if ($canexport) {
                         $button->set_callback_options('forum_portfolio_caller', array('postid' => $post->id, 'attachment' => $file->get_id()), 'mod_forum');
                         $button->set_format_by_file($file);

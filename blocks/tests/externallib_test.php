@@ -190,7 +190,7 @@ class core_block_externallib_testcase extends externallib_advanced_testcase {
             'nonscalar' => $nonscalar
         ];
         $block->instance_config_save((object) $configdata);
-        $filename = 'img.png';
+        $filename = 'pix.png';
         $filerecord = array(
             'contextid' => context_block::instance($block->instance->id)->id,
             'component' => 'block_html',

@@ -402,14 +402,14 @@ I'm writing to you from the Moodle Majlis in Muscat, Oman, where we just had sev
 URL outside a tag: https://moodle.org/logo/logo-240x60.gif
 Plugin url outside a tag: @@PLUGINFILE@@/logo-240x60.gif
 
-External link 1:<img src='https://moodle.org/logo/logo-240x60.gif' alt='Moodle'/>
-External link 2:<img alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif"/>
-Internal link 1:<img src='@@PLUGINFILE@@/logo-240x60.gif' alt='Moodle'/>
-Internal link 2:<img alt="Moodle" src="@@PLUGINFILE@@logo-240x60.gif"/>
+External link 1:<pix src='https://moodle.org/logo/logo-240x60.gif' alt='Moodle'/>
+External link 2:<pix alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif"/>
+Internal link 1:<pix src='@@PLUGINFILE@@/logo-240x60.gif' alt='Moodle'/>
+Internal link 2:<pix alt="Moodle" src="@@PLUGINFILE@@logo-240x60.gif"/>
 Anchor link 1:<a href="@@PLUGINFILE@@logo-240x60.gif" alt="bananas">Link text</a>
 Anchor link 2:<a title="bananas" href="../logo-240x60.gif">Link text</a>
-Anchor + ext. img:<a title="bananas" href="../logo-240x60.gif"><img alt="Moodle" src="@@PLUGINFILE@@logo-240x60.gif"/></a>
-Ext. anchor + img:<a href="@@PLUGINFILE@@logo-240x60.gif"><img alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif"/></a>
+Anchor + ext. pix:<a title="bananas" href="../logo-240x60.gif"><pix alt="Moodle" src="@@PLUGINFILE@@logo-240x60.gif"/></a>
+Ext. anchor + pix:<a href="@@PLUGINFILE@@logo-240x60.gif"><pix alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif"/></a>
 SOURCE;
         $expected = <<<EXPECTED
 Hello!
@@ -419,14 +419,14 @@ I'm writing to you from the Moodle Majlis in Muscat, Oman, where we just had sev
 URL outside a tag: https://moodle.org/logo/logo-240x60.gif
 Plugin url outside a tag: @@PLUGINFILE@@/logo-240x60.gif
 
-External link 1:<img src="https://moodle.org/logo/logo-240x60.gif" alt="Moodle" />
-External link 2:<img alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif" />
+External link 1:<pix src="https://moodle.org/logo/logo-240x60.gif" alt="Moodle" />
+External link 2:<pix alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif" />
 Internal link 1:
 Internal link 2:
 Anchor link 1:Link text
 Anchor link 2:<a title="bananas" href="../logo-240x60.gif">Link text</a>
-Anchor + ext. img:<a title="bananas" href="../logo-240x60.gif"></a>
-Ext. anchor + img:<img alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif" />
+Anchor + ext. pix:<a title="bananas" href="../logo-240x60.gif"></a>
+Ext. anchor + pix:<pix alt="Moodle" src="https://moodle.org/logo/logo-240x60.gif" />
 EXPECTED;
         $this->assertSame($expected, strip_pluginfile_content($source));
     }
@@ -804,9 +804,9 @@ EXPECTED;
         $url1 = "{$CFG->wwwroot}/draftfile.php/5/user/draft/99999999/test1.jpg";
         $url2 = "{$CFG->wwwroot}/draftfile.php/5/user/draft/99999998/test2.jpg";
 
-        $html = "<p>This is a test.</p><p><img src=\"${url1}\" alt=\"\" role=\"presentation\"></p>
-                <br>Test content.<p></p><p><img src=\"{$url2}\" alt=\"\" width=\"2048\" height=\"1536\"
-                role=\"presentation\" class=\"img-responsive atto_image_button_text-bottom\"><br></p>";
+        $html = "<p>This is a test.</p><p><pix src=\"${url1}\" alt=\"\" role=\"presentation\"></p>
+                <br>Test content.<p></p><p><pix src=\"{$url2}\" alt=\"\" width=\"2048\" height=\"1536\"
+                role=\"presentation\" class=\"pix-responsive atto_image_button_text-bottom\"><br></p>";
         $draftareas = array(
             array(
                 'urlbase' => 'draftfile.php',

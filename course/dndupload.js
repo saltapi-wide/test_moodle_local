@@ -450,7 +450,7 @@ M.course_dndupload = {
         if (!modsel) {
             // Create the above 'ul' if it doesn't exist
             modsel = document.createElement('ul');
-            modsel.className = 'section img-text';
+            modsel.className = 'section pix-text';
             var contentel = section.get('children').pop();
             var brel = contentel.get('children').pop();
             contentel.insertBefore(modsel, brel);

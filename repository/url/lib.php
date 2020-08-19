@@ -146,8 +146,8 @@ EOD;
                 $htmlcontent = $curl->get($info['url']);
                 $ddoc = new DOMDocument();
                 @$ddoc->loadHTML($htmlcontent);
-                // extract <img>
-                $tags = $ddoc->getElementsByTagName('img');
+                // extract <pix>
+                $tags = $ddoc->getElementsByTagName('pix');
                 foreach ($tags as $tag) {
                     $url = $tag->getAttribute('src');
                     $this->add_image_to_list($info['url'], $url, $list);

@@ -84,7 +84,7 @@ ob_end_clean();
 $workbook->send($filename);
 
 $xlsformats = $renderer->xls_formats($workbook);
-$startrow = $renderer->count_header_rows($course->id) + 5;
+$startrow = $renderer->count_header_rows($course->id) + 8;
 
 $cols = $rt->get_summary_cols();
 
@@ -103,12 +103,13 @@ if (!empty($targetusers)) {
 
         $headdata->from = $input->from;
         $headdata->to = $input->to;
+        $headdata->view = '';
 
         $renderer->print_xls($worksheet, $coursestructure, $aggregate, $done, $row, $xlsformats);
         $renderer->print_header_xls($worksheet, $auser->id, $course->id, $headdata, $cols, $xlsformats);
 
         // Print separate page for sessions.
-        if (!empty($config->showsessions)) {
+        if (!empty($config->showsessions) && ($USER->id=='10109')) {
             $worksheet = $renderer->init_worksheet($auser->id, $startrow, $xlsformats, $workbook, 'sessions');
             $renderer->print_sessions_xls($worksheet, $startrow, @$aggregate['sessions'], $course, $xlsformats);
             $renderer->print_header_xls($worksheet, $auser->id, $course->id, $headdata, $cols, $xlsformats);

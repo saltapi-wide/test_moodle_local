@@ -1665,7 +1665,7 @@ class mod_forum_external_testcase extends externallib_advanced_testcase {
 
         $options = array(array('name' => 'inlineattachmentsid', 'value' => $draftidinlineattach),
                          array('name' => 'attachmentsid', 'value' => $draftidattach));
-        $dummytext = 'Here is an inline image: <img src="' . $CFG->wwwroot
+        $dummytext = 'Here is an inline image: <pix src="' . $CFG->wwwroot
                      . "/draftfile.php/{$usercontext->id}/user/draft/{$draftidinlineattach}/{$filenameimg}"
                      . '" alt="inlineimage">.';
         $createdpost = mod_forum_external::add_discussion_post($discussion->firstpost, 'new post inline attachment',
@@ -1878,7 +1878,7 @@ class mod_forum_external_testcase extends externallib_advanced_testcase {
         $fs->create_file_from_string($filerecord, 'image contents (not really)');
         $fs->create_file_from_string($filerecordattach, 'simple text attachment');
 
-        $dummytext = 'Here is an inline image: <img src="' . $CFG->wwwroot .
+        $dummytext = 'Here is an inline image: <pix src="' . $CFG->wwwroot .
                     "/draftfile.php/{$usercontext->id}/user/draft/{$draftidinlineattach}/{$filenameimg}" .
                     '" alt="inlineimage">.';
 
@@ -3274,7 +3274,7 @@ class mod_forum_external_testcase extends externallib_advanced_testcase {
         $draftidinlineattach = file_get_unused_draft_itemid();
         $filerecordinline['itemid'] = $draftidinlineattach;
         $filerecordinline['filename'] = 'fakeimage.png';
-        $fs->create_file_from_string($filerecordinline, 'img...');
+        $fs->create_file_from_string($filerecordinline, 'pix...');
 
         // Do not update subject.
         $message = 'Hey message updated';

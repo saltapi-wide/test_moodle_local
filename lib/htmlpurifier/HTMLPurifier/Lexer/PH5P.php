@@ -1635,7 +1635,7 @@ class HTML5TreeConstructer
         'hr',
         'iframe',
         'image',
-        'img',
+        'pix',
         'input',
         'isindex',
         'li',
@@ -2540,13 +2540,13 @@ class HTML5TreeConstructer
                         break;
 
                     /* A start tag whose tag name is one of: "area", "basefont",
-                    "bgsound", "br", "embed", "img", "param", "spacer", "wbr" */
+                    "bgsound", "br", "embed", "pix", "param", "spacer", "wbr" */
                     case 'area':
                     case 'basefont':
                     case 'bgsound':
                     case 'br':
                     case 'embed':
-                    case 'img':
+                    case 'pix':
                     case 'param':
                     case 'spacer':
                     case 'wbr':
@@ -2582,9 +2582,9 @@ class HTML5TreeConstructer
 
                     /* A start tag whose tag name is "image" */
                     case 'image':
-                        /* Parse error. Change the token's tag name to "img" and
+                        /* Parse error. Change the token's tag name to "pix" and
                         reprocess it. (Don't ask.) */
-                        $token['name'] = 'img';
+                        $token['name'] = 'pix';
                         return $this->inBody($token);
                         break;
 
@@ -3246,7 +3246,7 @@ class HTML5TreeConstructer
                         break;
 
                     /* Or an end tag whose tag name is one of: "area", "basefont",
-                    "bgsound", "br", "embed", "hr", "iframe", "image", "img",
+                    "bgsound", "br", "embed", "hr", "iframe", "image", "pix",
                     "input", "isindex", "noembed", "noframes", "param", "select",
                     "spacer", "table", "textarea", "wbr" */
                     case 'area':
@@ -3257,7 +3257,7 @@ class HTML5TreeConstructer
                     case 'hr':
                     case 'iframe':
                     case 'image':
-                    case 'img':
+                    case 'pix':
                     case 'input':
                     case 'isindex':
                     case 'noembed':

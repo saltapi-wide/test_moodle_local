@@ -30,6 +30,8 @@ $string['trainingsessions:downloadreports'] = 'Peut télécharger les rapports';
 $string['trainingsessions:batch'] = 'Peut programmer des rapports'; // @DYNAKEY
 $string['trainingsessions:usegrading'] = 'Peut configurer les sorties de notes'; // @DYNAKEY
 
+$string['check_customtime'] = 'Afficher les heures avec une plage spécifique d\'heures pendant un certain nombre de jours';
+
 $string['accountstart'] = 'Création du compte utilisateur';
 $string['activitytime'] = 'Temps dans les activités ';
 $string['addcoursegrade'] = 'Ajoute la note du cours au rapport';

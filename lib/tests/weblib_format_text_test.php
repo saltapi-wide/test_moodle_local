@@ -37,7 +37,7 @@ class core_weblib_format_text_testcase extends advanced_testcase {
     public function test_format_text_format_html() {
         $this->resetAfterTest();
         filter_set_global_state('emoticon', TEXTFILTER_ON);
-        $this->assertRegExp('~^<p><img class="icon emoticon" alt="smile" title="smile" ' .
+        $this->assertRegExp('~^<p><pix class="icon emoticon" alt="smile" title="smile" ' .
                 'src="https://www.example.com/moodle/theme/image.php/_s/boost/core/1/s/smiley" /></p>$~',
                 format_text('<p>:-)</p>', FORMAT_HTML));
     }
@@ -67,7 +67,7 @@ class core_weblib_format_text_testcase extends advanced_testcase {
     public function test_format_text_format_markdown() {
         $this->resetAfterTest();
         filter_set_global_state('emoticon', TEXTFILTER_ON);
-        $this->assertRegExp('~^<p><em><img class="icon emoticon" alt="smile" title="smile" ' .
+        $this->assertRegExp('~^<p><em><pix class="icon emoticon" alt="smile" title="smile" ' .
                 'src="https://www.example.com/moodle/theme/image.php/_s/boost/core/1/s/smiley" />' .
                 '</em></p>\n$~',
                 format_text('*:-)*', FORMAT_MARKDOWN));
@@ -84,7 +84,7 @@ class core_weblib_format_text_testcase extends advanced_testcase {
         $this->resetAfterTest();
         filter_set_global_state('emoticon', TEXTFILTER_ON);
         $this->assertRegExp('~^<div class="text_to_html"><p>' .
-                '<img class="icon emoticon" alt="smile" title="smile" ' .
+                '<pix class="icon emoticon" alt="smile" title="smile" ' .
                 'src="https://www.example.com/moodle/theme/image.php/_s/boost/core/1/s/smiley" /></p></div>$~',
                 format_text('<p>:-)</p>', FORMAT_MOODLE));
     }
@@ -222,14 +222,14 @@ class core_weblib_format_text_testcase extends advanced_testcase {
                 '"&gt;',
             ],
             'On error alert' => [
-                '<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></img>',
-                '<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></img>',
-                '<img src="/" alt="" />',
+                '<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></pix>',
+                '<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></pix>',
+                '<pix src="/" alt="" />',
             ],
             'IMG onerror and javascript alert encode' => [
-                '<img src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000083&#0000083&#0000039&#0000041">',
-                '<img src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000083&#0000083&#0000039&#0000041">',
-                '<img src="x" alt="x" />',
+                '<pix src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000083&#0000083&#0000039&#0000041">',
+                '<pix src=x onerror="&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000083&#0000083&#0000039&#0000041">',
+                '<pix src="x" alt="x" />',
             ],
             'DIV background-image' => [
                 '<DIV STYLE="background-image: url(javascript:alert(\'XSS\'))">',

@@ -98,7 +98,7 @@
             $missing = true;
         } else {
             // took out hspace="\10\", because it does not validate. don't know what to replace with.
-            $icon = "<img src=\"" . $OUTPUT->image_url('icon', $module->name) . "\" class=\"icon\" alt=\"\" />";
+            $icon = "<pix src=\"" . $OUTPUT->image_url('icon', $module->name) . "\" class=\"icon\" alt=\"\" />";
             $strmodulename = $icon.' '.get_string('modulename', $module->name);
             $missing = false;
         }

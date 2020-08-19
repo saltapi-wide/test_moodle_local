@@ -1657,7 +1657,7 @@ class html_writer {
     /**
      * Outputs a tag with attributes and contents
      *
-     * @param string $tagname The name of tag ('a', 'img', 'span' etc.)
+     * @param string $tagname The name of tag ('a', 'pix', 'span' etc.)
      * @param string $contents What goes between the opening and closing tags
      * @param array $attributes The tag attributes (array('src' => $url, 'class' => 'class1') etc.)
      * @return string HTML fragment
@@ -1669,7 +1669,7 @@ class html_writer {
     /**
      * Outputs an opening tag with attributes
      *
-     * @param string $tagname The name of tag ('a', 'img', 'span' etc.)
+     * @param string $tagname The name of tag ('a', 'pix', 'span' etc.)
      * @param array $attributes The tag attributes (array('src' => $url, 'class' => 'class1') etc.)
      * @return string HTML fragment
      */
@@ -1680,7 +1680,7 @@ class html_writer {
     /**
      * Outputs a closing tag
      *
-     * @param string $tagname The name of tag ('a', 'img', 'span' etc.)
+     * @param string $tagname The name of tag ('a', 'pix', 'span' etc.)
      * @return string HTML fragment
      */
     public static function end_tag($tagname) {
@@ -1690,7 +1690,7 @@ class html_writer {
     /**
      * Outputs an empty tag with attributes
      *
-     * @param string $tagname The name of tag ('input', 'img', 'br' etc.)
+     * @param string $tagname The name of tag ('input', 'pix', 'br' etc.)
      * @param array $attributes The tag attributes (array('src' => $url, 'class' => 'class1') etc.)
      * @return string HTML fragment
      */
@@ -1701,7 +1701,7 @@ class html_writer {
     /**
      * Outputs a tag, but only if the contents are not empty
      *
-     * @param string $tagname The name of tag ('a', 'img', 'span' etc.)
+     * @param string $tagname The name of tag ('a', 'pix', 'span' etc.)
      * @param string $contents What goes between the opening and closing tags
      * @param array $attributes The tag attributes (array('src' => $url, 'class' => 'class1') etc.)
      * @return string HTML fragment
@@ -1763,7 +1763,7 @@ class html_writer {
         $attributes['src'] = $src;
         $attributes['alt'] = $alt;
 
-        return self::empty_tag('img', $attributes);
+        return self::empty_tag('pix', $attributes);
     }
 
     /**

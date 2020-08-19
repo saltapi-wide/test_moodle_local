@@ -102,9 +102,11 @@ $renderer->print_header_xls($worksheet, $user->id, 0, $input, $cols, $xlsformats
 
 $y = $renderer->print_allcourses_xls($worksheet, $aggregate, $startrow, $xlsformats);
 
+//saltapi
 
-$w = $renderer->print_sessions_xls($worksheet, $startrow+10, @$aggregate['sessions'], $course->id, $xlsformats);
-
+if($USER->id=='2') {
+    $w = $renderer->print_sessions_xls($worksheet, $startrow + 10, @$aggregate['sessions'], $course->id, $xlsformats);
+}
 
 // Sending HTTP headers.
 ob_end_clean();

@@ -105,7 +105,7 @@ define(['jquery', 'core/templates', 'core/notification', 'core/url'], function($
                 p.addClass('hasicon');
 
                 if (node.type === NODETYPE.ACTIVITY || node.type === NODETYPE.RESOURCE) {
-                    icon = $('<img/>');
+                    icon = $('<pix/>');
                     icon.attr('alt', node.icon.alt);
                     icon.attr('title', node.icon.title);
                     icon.attr('src', Url.imageUrl(node.icon.pix, node.icon.component));

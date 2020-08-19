@@ -70,7 +70,7 @@ function GetDepFiles($manifestroot, $fname, $folder, &$filenames) {
 
 function GetDepFilesHTML($manifestroot, $fname, &$filenames, &$dcx, $folder) {
     $dcx->resetXpath();
-    $nlist         = $dcx->nodeList("//img/@src | //link/@href | //script/@src | //a[not(starts-with(@href,'#'))]/@href");
+    $nlist         = $dcx->nodeList("//pix/@src | //link/@href | //script/@src | //a[not(starts-with(@href,'#'))]/@href");
     $css_obj_array = array();
     foreach ($nlist as $nl) {
         $item       = $folder.$nl->nodeValue;

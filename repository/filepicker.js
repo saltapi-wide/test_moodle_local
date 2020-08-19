@@ -117,12 +117,12 @@ YUI.add('moodle-core_filepicker', function(Y) {
      * with the new image source. */
     Y.YUI2.widget.Node.prototype.refreshPreviews = function(imgid, newsrc, regex) {
         if (!regex) {
-            regex = new RegExp("<img\\s[^>]*id=\""+imgid+"\"[^>]*?(/?)>", "im");
+            regex = new RegExp("<pix\\s[^>]*id=\""+imgid+"\"[^>]*?(/?)>", "im");
         }
         if (this.expanded || this.isLeaf) {
             var html = this.getContentHtml();
             if (html && this.setHtml && regex.test(html)) {
-                var newhtml = this.html.replace(regex, "<img id=\""+imgid+"\" src=\""+newsrc+"\" class=\"realpreview\"$1>", html);
+                var newhtml = this.html.replace(regex, "<pix id=\""+imgid+"\" src=\""+newsrc+"\" class=\"realpreview\"$1>", html);
                 this.setHtml(newhtml);
                 return true;
             }
@@ -205,8 +205,8 @@ YUI.add('moodle-core_filepicker', function(Y) {
             var tmpnodedata = {className:options.classnamecallback(node)};
             el.get('children').addClass(tmpnodedata.className);
             if (node.icon) {
-                el.one('.fp-icon').appendChild(Y.Node.create('<img/>'));
-                el.one('.fp-icon img').setImgSrc(node.icon, node.realicon, lazyloading);
+                el.one('.fp-icon').appendChild(Y.Node.create('<pix/>'));
+                el.one('.fp-icon pix').setImgSrc(node.icon, node.realicon, lazyloading);
             }
             // create node
             tmpnodedata.html = el.getContent();
@@ -308,8 +308,8 @@ YUI.add('moodle-core_filepicker', function(Y) {
             el.get('children').addClass(o.data['classname']);
             el.one('.fp-filename').setContent(o.value);
             if (o.data['icon']) {
-                el.one('.fp-icon').appendChild(Y.Node.create('<img/>'));
-                el.one('.fp-icon img').setImgSrc(o.data['icon'], o.data['realicon'], lazyloading);
+                el.one('.fp-icon').appendChild(Y.Node.create('<pix/>'));
+                el.one('.fp-icon pix').setImgSrc(o.data['icon'], o.data['realicon'], lazyloading);
             }
             if (options.rightclickcallback) {
                 el.get('children').addClass('fp-hascontextmenu');
@@ -406,7 +406,7 @@ YUI.add('moodle-core_filepicker', function(Y) {
                 }
                 filenamediv.setStyleAdv('width', width);
                 imgdiv.setStyleAdv('width', width).setStyleAdv('height', height);
-                var img = Y.Node.create('<img/>').setAttrs({
+                var img = Y.Node.create('<pix/>').setAttrs({
                         title: file_get_description(node),
                         alt: Y.Escape.html(node.thumbnail_alt ? node.thumbnail_alt : file_get_filename(node))}).
                     setStyle('maxWidth', ''+width+'px').
@@ -1100,7 +1100,7 @@ M.core_filepicker.init = function(Y, options) {
             selectnode.removeClass('loading');
             selectnode.one('.fp-saveas input').set('value', args.title);
 
-            var imgnode = Y.Node.create('<img/>').
+            var imgnode = Y.Node.create('<pix/>').
                 set('src', args.realthumbnail ? args.realthumbnail : args.thumbnail).
                 setStyle('maxHeight', ''+(args.thumbnail_height ? args.thumbnail_height : 90)+'px').
                 setStyle('maxWidth', ''+(args.thumbnail_width ? args.thumbnail_width : 90)+'px');

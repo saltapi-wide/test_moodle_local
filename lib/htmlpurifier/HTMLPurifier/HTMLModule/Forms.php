@@ -143,7 +143,7 @@ class HTMLPurifier_HTMLModule_Forms extends HTMLPurifier_HTMLModule
             'iframe' // legacy items
         );
 
-        // Extra exclusion: img usemap="" is not permitted within this element.
+        // Extra exclusion: pix usemap="" is not permitted within this element.
         // We'll omit this for now, since we don't have any good way of
         // indicating it yet.
 

@@ -67,7 +67,7 @@ define(['jquery', 'core/dragdrop', 'qtype_ddmarker/shapes', 'core/key_codes'], f
      * Draws the svg shapes of any drop zones that should be visible for feedback purposes.
      */
     DragDropMarkersQuestion.prototype.drawDropzones = function() {
-        var bgImage = this.getRoot().find('img.dropbackground');
+        var bgImage = this.getRoot().find('pix.dropbackground');
 
         this.getRoot().find('div.dropzones').html('<svg xmlns="http://www.w3.org/2000/svg" class="dropzones" ' +
             'width="' + bgImage.outerWidth() + '" ' +
@@ -276,11 +276,11 @@ define(['jquery', 'core/dragdrop', 'qtype_ddmarker/shapes', 'core/key_codes'], f
     };
 
     /**
-     * Get the img that is the background image.
-     * @returns {jQuery} containing that img.
+     * Get the pix that is the background image.
+     * @returns {jQuery} containing that pix.
      */
     DragDropMarkersQuestion.prototype.bgImage = function() {
-        return this.getRoot().find('img.dropbackground');
+        return this.getRoot().find('pix.dropbackground');
     };
 
     /**

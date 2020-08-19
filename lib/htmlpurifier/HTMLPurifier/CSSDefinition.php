@@ -234,8 +234,8 @@ class HTMLPurifier_CSSDefinition extends HTMLPurifier_Definition
             $max === null ?
                 $trusted_wh :
                 new HTMLPurifier_AttrDef_Switch(
-                    'img',
-                    // For img tags:
+                    'pix',
+                    // For pix tags:
                     new HTMLPurifier_AttrDef_CSS_Composite(
                         array(
                             new HTMLPurifier_AttrDef_CSS_Length('0', $max),

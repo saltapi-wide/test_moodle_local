@@ -66,9 +66,9 @@ class core_formslib_testcase extends advanced_testcase {
         $this->assertTrue($rule->validate('<p></p>'));
         $this->assertTrue($rule->validate('<p> </p>'));
         $this->assertTrue($rule->validate('<p>x</p>'));
-        $this->assertTrue($rule->validate('<img src="smile.jpg" alt="smile" />'));
-        $this->assertTrue($rule->validate('<img src="smile.jpg" alt="smile"/>'));
-        $this->assertTrue($rule->validate('<img src="smile.jpg" alt="smile"></img>'));
+        $this->assertTrue($rule->validate('<pix src="smile.jpg" alt="smile" />'));
+        $this->assertTrue($rule->validate('<pix src="smile.jpg" alt="smile"/>'));
+        $this->assertTrue($rule->validate('<pix src="smile.jpg" alt="smile"></pix>'));
         $this->assertTrue($rule->validate('<hr />'));
         $this->assertTrue($rule->validate('<hr/>'));
         $this->assertTrue($rule->validate('<hr>'));
@@ -95,9 +95,9 @@ class core_formslib_testcase extends advanced_testcase {
         $this->assertTrue($rule->validate(0));
         $this->assertTrue($rule->validate(true));
         $this->assertTrue($rule->validate('<p>x</p>'));
-        $this->assertTrue($rule->validate('<img src="smile.jpg" alt="smile" />'));
-        $this->assertTrue($rule->validate('<img src="smile.jpg" alt="smile"/>'));
-        $this->assertTrue($rule->validate('<img src="smile.jpg" alt="smile"></img>'));
+        $this->assertTrue($rule->validate('<pix src="smile.jpg" alt="smile" />'));
+        $this->assertTrue($rule->validate('<pix src="smile.jpg" alt="smile"/>'));
+        $this->assertTrue($rule->validate('<pix src="smile.jpg" alt="smile"></pix>'));
         $this->assertTrue($rule->validate('<hr />'));
         $this->assertTrue($rule->validate('<hr/>'));
         $this->assertTrue($rule->validate('<hr>'));

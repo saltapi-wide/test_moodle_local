@@ -44,7 +44,7 @@ class behat_message extends behat_base {
      */
     public static function get_partial_named_selectors(): array {
         return [
-            new behat_component_named_selector('Message', [".//*[@data-conversation-id]//img[%altMatch%]/.."]),
+            new behat_component_named_selector('Message', [".//*[@data-conversation-id]//pix[%altMatch%]/.."]),
             new behat_component_named_selector('Message conversation', [
                 <<<XPATH
     .//*[@data-region='message-drawer' and contains(., %locator%)]//div[@data-region='content-message-container']
@@ -153,7 +153,7 @@ XPATH
         );
         $this->execute('behat_general::i_click_on_in_the',
             array(
-                "//img[@title='Picture of ". $this->escape($userfullname) . "']",
+                "//pix[@title='Picture of ". $this->escape($userfullname) . "']",
                 "xpath_element",
                 "//*[@data-region='message-drawer']//*[@data-region='view-contact']",
                 "xpath_element",
@@ -308,7 +308,7 @@ XPATH
     public function i_select_conversation_in_the_conversations_list(string $convname, string $listname) {
         $xpath = '//*[@data-region="message-drawer"]//div[@data-region="view-overview-'.
             $this->escape($listname).
-            '"]//*[@data-conversation-id]//img[contains(@alt,"'.
+            '"]//*[@data-conversation-id]//pix[contains(@alt,"'.
             $this->escape($convname).'")]';
         $this->execute('behat_general::i_click_on', array($xpath, 'xpath_element'));
     }

@@ -326,8 +326,8 @@ function core_myprofile_navigation(core_user\output\myprofile\tree $tree, $user,
 
     if ($user->icq && !isset($hiddenfields['icqnumber'])) {
         $imurl = new moodle_url('http://web.icq.com/wwp', array('uin' => $user->icq) );
-        $iconurl = new moodle_url('http://web.icq.com/whitepages/online', array('icq' => $user->icq, 'img' => '5'));
-        $statusicon = html_writer::tag('img', '',
+        $iconurl = new moodle_url('http://web.icq.com/whitepages/online', array('icq' => $user->icq, 'pix' => '5'));
+        $statusicon = html_writer::tag('pix', '',
                 array('src' => $iconurl, 'class' => 'icon icon-post', 'alt' => get_string('status')));
         $node = new core_user\output\myprofile\node('contact', 'icqnumber', get_string('icqnumber'), null, null,
             html_writer::link($imurl, s($user->icq) . $statusicon));
@@ -341,7 +341,7 @@ function core_myprofile_navigation(core_user\output\myprofile\tree $tree, $user,
             // Bad luck, skype devs are lazy to set up SSL on their servers - see MDL-37233.
             $statusicon = '';
         } else {
-            $statusicon = html_writer::empty_tag('img',
+            $statusicon = html_writer::empty_tag('pix',
                 array('src' => $iconurl, 'class' => 'icon icon-post', 'alt' => get_string('status')));
         }
 
@@ -352,7 +352,7 @@ function core_myprofile_navigation(core_user\output\myprofile\tree $tree, $user,
     if ($user->yahoo && !isset($hiddenfields['yahooid'])) {
         $imurl = new moodle_url('http://edit.yahoo.com/config/send_webmesg', array('.target' => $user->yahoo, '.src' => 'pg'));
         $iconurl = new moodle_url('http://opi.yahoo.com/online', array('u' => $user->yahoo, 'm' => 'g', 't' => '0'));
-        $statusicon = html_writer::tag('img', '',
+        $statusicon = html_writer::tag('pix', '',
             array('src' => $iconurl, 'class' => 'iconsmall icon-post', 'alt' => get_string('status')));
 
         $node = new core_user\output\myprofile\node('contact', 'yahooid', get_string('yahooid'), null, null,

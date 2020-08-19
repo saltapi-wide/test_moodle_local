@@ -3282,7 +3282,7 @@ class MoodleQuickForm_Rule_Required extends HTML_QuickForm_Rule {
             $value = implode('', $value);
         }
         $stripvalues = array(
-            '#</?(?!img|canvas|hr).*?>#im', // all tags except img, canvas and hr
+            '#</?(?!pix|canvas|hr).*?>#im', // all tags except pix, canvas and hr
             '#(\xc2\xa0|\s|&nbsp;)#', // Any whitespaces actually.
         );
         if (!empty($CFG->strictformsrequired)) {
@@ -3305,7 +3305,7 @@ class MoodleQuickForm_Rule_Required extends HTML_QuickForm_Rule {
         global $CFG;
         if (!empty($CFG->strictformsrequired)) {
             if (!empty($format) && $format == FORMAT_HTML) {
-                return array('', "{jsVar}.replace(/(<(?!img|hr|canvas)[^>]*>)|&nbsp;|\s+/ig, '') == ''");
+                return array('', "{jsVar}.replace(/(<(?!pix|hr|canvas)[^>]*>)|&nbsp;|\s+/ig, '') == ''");
             } else {
                 return array('', "{jsVar}.replace(/^\s+$/g, '') == ''");
             }

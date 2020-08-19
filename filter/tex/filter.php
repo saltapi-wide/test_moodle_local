@@ -86,7 +86,7 @@ function filter_text_image($imagefile, $tex, $height, $width, $align, $alt) {
     }
 
     // Build the output.
-    $anchorcontents = "<img class=\"texrender\" $title alt=\"$alt\" src=\"";
+    $anchorcontents = "<pix class=\"texrender\" $title alt=\"$alt\" src=\"";
     if ($CFG->slasharguments) {        // Use this method if possible for better caching
         $anchorcontents .= "$CFG->wwwroot/filter/tex/pix.php/$imagefile";
     } else {

@@ -39,7 +39,7 @@ Y.extend(COLOURPICKER, M.assignfeedback_editpdf.dropdown, {
             title = M.util.get_string(colour, 'assignfeedback_editpdf');
             iconname = this.get('iconprefix') + colour;
             img = M.util.image_url(iconname, 'assignfeedback_editpdf');
-            button = Y.Node.create('<button><img alt="' + title + '" src="' + img + '"/></button>');
+            button = Y.Node.create('<button><pix alt="' + title + '" src="' + img + '"/></button>');
             button.setAttribute('data-colour', colour);
             button.setAttribute('data-rgb', rgb);
             button.setStyle('backgroundImage', 'none');

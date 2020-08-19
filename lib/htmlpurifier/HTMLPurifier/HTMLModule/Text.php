@@ -59,7 +59,7 @@ class HTMLPurifier_HTMLModule_Text extends HTMLPurifier_HTMLModule
         $this->addElement('blockquote', 'Block', 'Optional: Heading | Block | List', 'Common', array('cite' => 'URI'));
         $pre = $this->addElement('pre', 'Block', 'Inline', 'Common');
         $pre->excludes = $this->makeLookup(
-            'img',
+            'pix',
             'big',
             'small',
             'object',

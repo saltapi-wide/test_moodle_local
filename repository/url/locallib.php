@@ -497,7 +497,7 @@ function encode_url($url) {
  *
  * The function returns an associative array of associative arrays of
  * arrays of URLs.  The outermost array's keys are the tag (element) name,
- * such as "a" for <a> or "img" for <img>.  The values for these entries
+ * such as "a" for <a> or "pix" for <pix>.  The values for these entries
  * are associative arrays where the keys are attribute names for those
  * tags, such as "href" for <a href="...">.  Finally, the values for
  * those arrays are URLs found in those tags and attributes throughout
@@ -522,14 +522,14 @@ function extract_html_urls( $text )
 		array('element'=>'a',		'attribute'=>'urn'),		// 2.0
 		array('element'=>'base',	'attribute'=>'href'),		// 2.0
 		array('element'=>'form',	'attribute'=>'action'),		// 2.0
-		array('element'=>'img',		'attribute'=>'src'),		// 2.0
+		array('element'=>'pix',		'attribute'=>'src'),		// 2.0
 		array('element'=>'link',	'attribute'=>'href'),		// 2.0
 
 		array('element'=>'applet',	'attribute'=>'code'),		// 3.2
 		array('element'=>'applet',	'attribute'=>'codebase'),	// 3.2
 		array('element'=>'area',	'attribute'=>'href'),		// 3.2
 		array('element'=>'body',	'attribute'=>'background'),	// 3.2
-		array('element'=>'img',		'attribute'=>'usemap'),		// 3.2
+		array('element'=>'pix',		'attribute'=>'usemap'),		// 3.2
 		array('element'=>'input',	'attribute'=>'src'),		// 3.2
 
 		array('element'=>'applet',	'attribute'=>'archive'),	// 4.01
@@ -541,7 +541,7 @@ function extract_html_urls( $text )
 		array('element'=>'head',	'attribute'=>'profile'),	// 4.01
 		array('element'=>'iframe',	'attribute'=>'longdesc'),	// 4.01
 		array('element'=>'iframe',	'attribute'=>'src'),		// 4.01
-		array('element'=>'img',		'attribute'=>'longdesc'),	// 4.01
+		array('element'=>'pix',		'attribute'=>'longdesc'),	// 4.01
 		array('element'=>'input',	'attribute'=>'usemap'),		// 4.01
 		array('element'=>'ins',		'attribute'=>'cite'),		// 4.01
 		array('element'=>'object',	'attribute'=>'archive'),	// 4.01
@@ -571,8 +571,8 @@ function extract_html_urls( $text )
 		array('element'=>'embed',	'attribute'=>'pluginspage'),	// Extension
 		array('element'=>'html',	'attribute'=>'background'),	// Extension
 		array('element'=>'ilayer',	'attribute'=>'src'),		// Extension
-		array('element'=>'img',		'attribute'=>'dynsrc'),		// Extension
-		array('element'=>'img',		'attribute'=>'lowsrc'),		// Extension
+		array('element'=>'pix',		'attribute'=>'dynsrc'),		// Extension
+		array('element'=>'pix',		'attribute'=>'lowsrc'),		// Extension
 		array('element'=>'input',	'attribute'=>'dynsrc'),		// Extension
 		array('element'=>'input',	'attribute'=>'lowsrc'),		// Extension
 		array('element'=>'table',	'attribute'=>'background'),	// Extension

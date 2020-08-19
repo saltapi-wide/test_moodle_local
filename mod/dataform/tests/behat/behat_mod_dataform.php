@@ -1168,8 +1168,8 @@ class behat_mod_dataform extends behat_base {
 
             $this->execute('behat_general::click_link', array('Browse'));
 
-            $this->execute('behat_general::should_exist', array('//img[contains(@src, \'pluginfile.php\')]', 'xpath_element'));
-            $this->execute('behat_general::should_exist', array('//img[contains(@src, \'test_image.jpg\')]', 'xpath_element'));
+            $this->execute('behat_general::should_exist', array('//pix[contains(@src, \'pluginfile.php\')]', 'xpath_element'));
+            $this->execute('behat_general::should_exist', array('//pix[contains(@src, \'test_image.jpg\')]', 'xpath_element'));
         }
     }
 

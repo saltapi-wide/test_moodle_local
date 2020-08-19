@@ -52,8 +52,8 @@ class tagfeed implements templatable {
         $this->items = array();
         if ($items) {
             foreach ($items as $item) {
-                $item = (array)$item + array('img' => '', 'heading' => '', 'details' => '');
-                $this->add($item['img'], $item['heading'], $item['details']);
+                $item = (array)$item + array('pix' => '', 'heading' => '', 'details' => '');
+                $this->add($item['pix'], $item['heading'], $item['details']);
             }
         }
     }
@@ -67,7 +67,7 @@ class tagfeed implements templatable {
      * @param string $details HTML for item details (keep short)
      */
     public function add($img, $heading, $details = '') {
-        $this->items[] = array('img' => $img, 'heading' => $heading, 'details' => $details);
+        $this->items[] = array('pix' => $img, 'heading' => $heading, 'details' => $details);
     }
 
     /**

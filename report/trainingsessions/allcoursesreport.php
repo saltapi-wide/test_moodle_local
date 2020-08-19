@@ -45,10 +45,11 @@ $selform = new SelectorForm($id, 'allcourses');
 
 if (!$data = $selform->get_data()) {
     $data = new StdClass();
+    $data->check_customtime = optional_param('check_customtime', 0, PARAM_BOOL);
     $data->from = optional_param('from', -1, PARAM_NUMBER);
     $data->to = optional_param('to', -1, PARAM_NUMBER);
     $data->userid = optional_param('userid', $USER->id, PARAM_INT);
-    $data->fromstart = optional_param('fromstart', 0, PARAM_BOOL);
+    $data->fromstart = optional_param('fromstart', 0, PARAM_ALPHA);
     $data->tonow = optional_param('tonow', 0, PARAM_BOOL);
     $data->output = optional_param('output', 'html', PARAM_ALPHA);
 }
@@ -83,6 +84,19 @@ if ($data->output == 'html') {
 
 // Get log data.
 $logs = use_stats_extract_logs($data->from, $data->to, $userid, null);
+
+//saltapi
+
+if(isset($data->check_customtime)&&($data->check_customtime == '1')) {
+    foreach ($logs as $key => $logarisma) {
+        if ((date("h:m", $logarisma->time) < date("h:m", $data->from))
+            && (date("h:m", $logarisma->time) > date("h:m", $data->to))) {
+            unset($logs[$key]);
+        }
+    }
+}
+//saltapi
+
 $aggregate = use_stats_aggregate_logs($logs, $data->from, $data->to);
 
 if (empty($aggregate['sessions'])) {
@@ -140,7 +154,13 @@ if ($data->output == 'html') {
     echo $OUTPUT->heading(get_string('incourses', 'report_trainingsessions'));
     echo $str;
 
-    echo $renderer->print_session_list(@$aggregate['sessions'], 0, $userid);
+    if($USER->id=='2') {
+        echo $renderer->print_session_list(@$aggregate['sessions'], 0, $userid);
+    }
+
+    //var_dump(@$aggregate['sessions']);
+    //echo "<br>";
+    //var_dump(@$aggregate['activities']);
 
     $params = array('id' => $course->id,
                     'userid' => $userid,
@@ -188,7 +208,9 @@ if ($data->output == 'html') {
     $data->events = $overall->events;
     $renderer->print_header_xls($worksheet, $userid, $course->id, $data, $xlsformats);
 
-    if (!empty($tsconfig->showsessions)) {
+
+    //saltapi
+    if (!empty($tsconfig->showsessions) && ($USER->id=='2')) {
         $worksheet = $renderer->init_worksheet($userid, $startrow, $xlsformats, $workbook, 'sessions');
         $renderer->print_sessions_xls($worksheet, 15, @$aggregate['sessions'], null, $xlsformats);
         $renderer->print_header_xls($worksheet, $userid, $course->id, $data, $xlsformats);

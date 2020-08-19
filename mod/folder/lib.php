@@ -616,7 +616,7 @@ function folder_get_recent_mod_activity(&$activities, &$index, $timestart, $cour
 
         if (file_extension_in_typegroup($file->get_filename(), 'web_image')) {
             $image = $tmpactivity->content->url->out(false, array('preview' => 'tinyicon', 'oid' => $file->get_timemodified()));
-            $image = html_writer::empty_tag('img', array('src' => $image));
+            $image = html_writer::empty_tag('pix', array('src' => $image));
         } else {
             $image = $OUTPUT->pix_icon(file_file_icon($file, 24), $file->get_filename(), 'moodle');
         }
